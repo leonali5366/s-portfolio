@@ -7,6 +7,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-josefin-sans)"],
+        mono: ["var(--font-Marcellus-mono)"],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
