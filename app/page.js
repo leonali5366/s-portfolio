@@ -29,17 +29,17 @@ export default function Home() {
               <div className="w-full flex flex-col gap-y-10">
                 <div className="w-full text-[68px] font-mono flex flex-col text-nowrap">
                   <div className="overflow-hidden">
-                    <p id="text">You'r losing customers,</p>
+                    <p id="text">You&apos;r losing customers,</p>
                   </div>
                   <div className="overflow-hidden">
-                    <p id="text">if your business dosen't</p>
+                    <p id="text">if your business dosen&apos;t</p>
                   </div>
                   <div className="overflow-hidden">
                     <p id="text">have a website!</p>
                   </div>
                 </div>
                 <p className="text-[34px]">
-                  That's why a strong online presence <br /> is vital for your
+                  That&apos;s why a strong online presence <br /> is vital for your
                   company
                 </p>
               </div>
@@ -58,7 +58,7 @@ export default function Home() {
               <p className="text-[26px]  text-gray-600">
                 In fact, customers today browse websites before picking up the
                 phone. People expect you to have a website. Without one, they
-                might think you're new, unskilled, or not interested in your
+                might think you&apos;re new, unskilled, or not interested in your
                 business.
               </p>
               <p className="text-[26px] font-medium">
@@ -81,7 +81,7 @@ export default function Home() {
               </p>
               <p className="text-[28px] text-gray-600 font-normal">
                 A social media profile is free and takes only 5 minutes to set
-                up. Because anyone can use a Facebook business page, it won't
+                up. Because anyone can use a Facebook business page, it won&apos;t
                 help you stand out.
               </p>
               <p className="text-[28px] text-gray-800 font-medium">
@@ -98,7 +98,7 @@ export default function Home() {
                 </li>
                 <li className="text-[28px] text-gray-600 font-normal flex items-center gap-x-5">
                   <GiCheckMark />
-                  Increase your company's credibility;
+                  Increase your company&apos;s credibility;
                 </li>
                 <li className="text-[28px] text-gray-600 font-normal flex items-center gap-x-5">
                   <GiCheckMark />
@@ -117,10 +117,10 @@ export default function Home() {
         <div className="max-w-[1550px] mx-auto flex items-center justify-between gap-x-28">
           <div className="w-full flex flex-col gap-y-10">
             <h6 className="text-[65px] font-mono">
-              Hi! I'm Vlad — your website designer
+              Hi! I&apos;m Vlad — your website designer
             </h6>
             <p className="text-[28px] font-light text-slate-300">
-              I'm here to help you get more clients so you can focus on the
+              I&apos;m here to help you get more clients so you can focus on the
               reason you probably started your business: making the world a more
               beautiful place.
             </p>
@@ -130,7 +130,7 @@ export default function Home() {
               authority.
             </p>
             <p className="text-[28px] font-light text-slate-300">
-              As a person, I'm a very positive and self-disciplined human being.
+              As a person, I&apos;m a very positive and self-disciplined human being.
               Attention to detail — is at the heart of everything that I do. I
               strive to improve my work with each project, prioritizing quality
               over anything else.
