@@ -8,10 +8,10 @@ export default function Magnet({ children }) {
   useEffect(() => {
     var currRef = ref.current;
     const xTo = gsap.quickTo(ref.current, "x", {
-      duration: 1,
+      duration: 1.5,
     });
     const yTo = gsap.quickTo(ref.current, "y", {
-      duration: 1,
+      duration: 1.5,
     });
 
     const mouseMove = (e) => {
