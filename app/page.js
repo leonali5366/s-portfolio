@@ -61,10 +61,18 @@ export default function Home() {
       duration: 1,
       scrollTrigger: "#img-third",
     });
+    
   }, []);
   return (
     <ReactLenis root options={{ lerp: 0.1, duration: 1.5, smoothTouch: true }}>
       <main className="relative">
+        <div className="absolute top-0 left-0 w-full h-full border flex z-50">
+          <div
+            id="sidebar-1"
+            className="w-[60%] h-full border bg-[#121212]"
+          ></div>
+          <div className="w-[40%] h-full border bg-[#F5F5F5]"></div>
+        </div>
         <Header setIsHovered={setIsHovered} />
         <Cursor isHovered={isHovered} />
         {/* <div className="min-w-full min-h-screen" /> */}
@@ -136,13 +144,13 @@ export default function Home() {
             {/* 2nd components */}
             <div className="w-full flex justify-center items-end gap-x-14 relative">
               <h1
-                className="font-mono text-7xl absolute top-20 left-[40%] mix-blend-difference"
+                className="font-mono text-7xl absolute top-20 left-[40%] mix-blend-difference z-10"
                 id="m1-text"
               >
                 &quot;But I put all my info
               </h1>
               <h1
-                className="font-mono text-7xl absolute top-40 left-[40%] mix-blend-difference"
+                className="font-mono text-7xl absolute top-40 left-[40%] mix-blend-difference z-10"
                 id="m2-text"
               >
                 on my social pages!&quot;

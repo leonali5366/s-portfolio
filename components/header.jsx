@@ -1,8 +1,11 @@
+import { useState } from "react";
 import Magnet from "./Magnet";
 
 export default function Header({ setIsHovered }) {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <header className="flex items-center justify-between px-5 h-24 fixed top-0 w-full">
+     
       <Magnet>
         <span className="text-5xl">VeelMan</span>
       </Magnet>
@@ -38,6 +41,25 @@ export default function Header({ setIsHovered }) {
           href="#"
         >
           <a href="#">Testimonial</a>
+        </li>
+        <li
+          className="flex flex-col items-center justify-center gap-y-2 cursor-pointer group"
+          onClick={() => setIsOpen((prev) => !prev)}
+        >
+          <button
+            className={`w-10 h-[2px] bg-black ${
+              !isOpen && "group-hover:translate-x-1"
+            } ${
+              isOpen && "rotate-45 translate-y-[5.5px]"
+            } transition-transform duration-300`}
+          ></button>
+          <button
+            className={`w-10 h-[2px] bg-white ${
+              !isOpen && "group-hover:-translate-x-1"
+            } ${
+              isOpen && "-rotate-45 -translate-y-[5.5px]"
+            } transition-transform duration-300`}
+          ></button>
         </li>
       </ul>
     </header>
