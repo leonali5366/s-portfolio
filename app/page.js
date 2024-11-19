@@ -6,13 +6,14 @@ import { useGSAP } from "@gsap/react";
 import ReactLenis from "@studio-freight/react-lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { GiCheckMark } from "react-icons/gi";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   const [isHovered, setIsHovered] = useState(false);
+  const sidebar1 = useRef();
   useGSAP(() => {
     gsap.from("#text", {
       y: 100,
@@ -61,18 +62,11 @@ export default function Home() {
       duration: 1,
       scrollTrigger: "#img-third",
     });
-    
   }, []);
   return (
     <ReactLenis root options={{ lerp: 0.1, duration: 1.5, smoothTouch: true }}>
       <main className="relative">
-        <div className="absolute top-0 left-0 w-full h-full border flex z-50">
-          <div
-            id="sidebar-1"
-            className="w-[60%] h-full border bg-[#121212]"
-          ></div>
-          <div className="w-[40%] h-full border bg-[#F5F5F5]"></div>
-        </div>
+        
         <Header setIsHovered={setIsHovered} />
         <Cursor isHovered={isHovered} />
         {/* <div className="min-w-full min-h-screen" /> */}
