@@ -23,7 +23,6 @@ export default function Process() {
       end: "bottom center",
       animation: tween1,
       scrub: 1,
-      markers: true,
       onEnter: () => setNumber("01"),
       onEnterBack: () => setNumber("01"),
     });
