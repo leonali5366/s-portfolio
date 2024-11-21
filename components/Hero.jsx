@@ -6,22 +6,36 @@ import { useGSAP } from "@gsap/react";
 import { useEffect, useRef } from "react";
 import Magnet from "./Magnet";
 import { GoArrowRight } from "react-icons/go";
+import profile from "../app/images/profile.jpg";
+import { ScrollTrigger } from "gsap/all";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero({ setIsHovered }) {
+  useGSAP(() => {
+    gsap.to("#hero-img", {
+      scale: 1,
+      duration: 1,
+      scrollTrigger: "#hero-img",
+    });
+  }, []);
   return (
-    <div className="w-full h-screen bg-[#121212]">
+    <div className="w-full h-screen bg-[#121212] overflow-hidden">
       <div className="max-w-[1550px] mx-auto h-full flex items-center">
-        <div className="w-full h-full">
-          <img
-            src="https://cdn.prod.website-files.com/66277b11e48ec235af18f9cc/66277b11e48ec235af18faa4_Vlad-Tro-smiling.webp"
+        <div className="w-full max-h-full">
+          <Image
+            src={profile}
             alt=""
-            className="w-fit h-fit object-cover"
+            width="100%"
+            height="100%"
+            id="hero-img"
+            className="scale-150"
           />
         </div>
-        <div className="w-full flex flex-col gap-y-10">
-          <div className="text-6xl font-mono leading-snug">
-            I help you book more clients and standout from the competition with
-            a{" "}
+        <div className="w-full h-full flex flex-col justify-center gap-y-10">
+          <div className="text-5xl font-mono leading-snug">
+            I help you book more clients <br /> and standout from the <br />{" "}
+            competition with a{" "}
             <h1 className="flex gap-x-5">
               <p className="underline underline-thickness underline-offset-[0.8rem]">
                 cost-effective
@@ -33,14 +47,14 @@ export default function Hero({ setIsHovered }) {
             If you already have a website, book a FREE 30 call to get clear
             steps on improving its performance now!
           </p>
-            <button
-              className="flex gap-x-5 items-center text-2xl font-medium group uppercase w-fit"
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-            >
-              Book a free call{" "}
-              <div className="size-16 rounded-full bg-transparent border-dashed group-hover:bg-white border group-hover:scale-125 transition-all duration-300"></div>
-            </button>
+          <button
+            className="flex gap-x-5 items-center text-2xl font-medium group uppercase w-fit"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            Book a free call{" "}
+            <div className="size-16 rounded-full bg-transparent border-dashed group-hover:bg-white border group-hover:scale-125 transition-all duration-300"></div>
+          </button>
         </div>
       </div>
     </div>

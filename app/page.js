@@ -2,10 +2,12 @@
 import Cursor from "@/components/Cursor";
 import Header from "@/components/header";
 import Hero from "@/components/Hero";
+import HorizontalSec from "@/components/HorizontalSec";
+import Process from "@/components/Process";
 import { useGSAP } from "@gsap/react";
 import ReactLenis from "@studio-freight/react-lenis";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/all";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useRef, useState } from "react";
 import { GiCheckMark } from "react-icons/gi";
 
@@ -62,11 +64,14 @@ export default function Home() {
       duration: 1,
       scrollTrigger: "#img-third",
     });
+    // gsap.fromTo(
+    //   "#image",
+
+    // );
   }, []);
   return (
     <ReactLenis root options={{ lerp: 0.1, duration: 1.5, smoothTouch: true }}>
       <main className="relative">
-        
         <Header setIsHovered={setIsHovered} />
         <Cursor isHovered={isHovered} />
         {/* <div className="min-w-full min-h-screen" /> */}
@@ -149,11 +154,12 @@ export default function Home() {
               >
                 on my social pages!&quot;
               </h1>
-              <div className="w-full overflow-hidden" id="img-third">
+              <div className="w-full h-full" id="image">
                 <img
                   src="https://cdn.prod.website-files.com/66277b11e48ec235af18f9cc/66277b11e48ec235af18faaa_Vlad-Tro-talking-on-phone%400.25x.webp"
                   alt=""
                   className="w-full h-[1050px] object-cover"
+                  id=""
                 />
               </div>
               <div className="w-full h-full space-y-10">
@@ -226,6 +232,8 @@ export default function Home() {
             />
           </div>
         </div>
+        <HorizontalSec/>
+        <Process/>
       </main>
     </ReactLenis>
   );
