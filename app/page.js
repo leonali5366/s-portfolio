@@ -1,15 +1,21 @@
 "use client";
+import AboutMe from "@/components/AboutMe";
 import Cursor from "@/components/Cursor";
 import Header from "@/components/header";
 import Hero from "@/components/Hero";
 import HorizontalSec from "@/components/HorizontalSec";
+import Investment from "@/components/Investment";
 import Process from "@/components/Process";
+import Testimonial from "@/components/Testimonial";
 import { useGSAP } from "@gsap/react";
 import ReactLenis from "@studio-freight/react-lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import Image from "next/image";
 import { useRef, useState } from "react";
 import { GiCheckMark } from "react-icons/gi";
+import img3 from "../app/images/img3.jpg";
+import img4 from "../app/images/img4.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -64,13 +70,28 @@ export default function Home() {
       duration: 1,
       scrollTrigger: "#img-third",
     });
-    // gsap.fromTo(
-    //   "#image",
-
-    // );
+    gsap.from("#text-3", { y: 70, duration: 0.3, scrollTrigger: "#text-3" });
+    gsap.from("#text-4", {
+      y: 70,
+      duration: 0.3,
+      delay: 0.2,
+      scrollTrigger: "#text-4",
+    });
+    gsap.from("#text-5", {
+      y: 60,
+      duration: 0.3,
+      delay: 0.4,
+      opacity: 0,
+      scrollTrigger: "#text-5",
+    });
+    gsap.to("#image-wrappper-1", {
+      y: "-100%",
+      duration: 1,
+      scrollTrigger: "#img-trg-1",
+    });
   }, []);
   return (
-    <ReactLenis root options={{ lerp: 0.1, duration: 1.5, smoothTouch: true }}>
+    <ReactLenis root options={{ lerp: 0.1, duration: 1, smoothTouch: true }}>
       <main className="relative">
         <Header setIsHovered={setIsHovered} />
         <Cursor isHovered={isHovered} />
@@ -203,37 +224,62 @@ export default function Home() {
           </div>
         </div>
         <div className="w-full py-36 bg-[#121212]">
-          <div className="max-w-[1550px] mx-auto flex items-center justify-between gap-x-28">
+          <div className="max-w-[1450px] mx-auto flex justify-between gap-x-20">
             <div className="w-full flex flex-col gap-y-10">
-              <h6 className="text-[65px] font-mono">
-                Hi! I&apos;m Vlad — your website designer
-              </h6>
-              <p className="text-[28px] font-light text-slate-300">
-                I&apos;m here to help you get more clients so you can focus on
-                the reason you probably started your business: making the world
-                a more beautiful place.
-              </p>
-              <p className="text-[28px] font-light text-slate-300">
-                I design all-in-one, cost-effective websites that set you apart
-                from your competitors, represent your values, and build your
-                brand authority.
-              </p>
-              <p className="text-[28px] font-light text-slate-300">
-                As a person, I&apos;m a very positive and self-disciplined human
-                being. Attention to detail — is at the heart of everything that
-                I do. I strive to improve my work with each project,
-                prioritizing quality over anything else.
-              </p>
+              <div className="flex flex-col gap-y-3">
+                <div className="overflow-hidden">
+                  <h6
+                    className="text-[60px] font-mono leading-[5rem]"
+                    id="text-3"
+                  >
+                    Hi! I&apos;m Vlad — your
+                  </h6>
+                </div>
+                <div className="overflow-hidden">
+                  <h1
+                    className="text-[60px] font-mono leading-[5rem]"
+                    id="text-4"
+                  >
+                    website designer
+                  </h1>
+                </div>
+              </div>
+              <div className="flex flex-col gap-y-10" id="text-5">
+                <p className="text-[28px] font-light text-slate-300">
+                  I&apos;m here to help you get more clients so you can focus on
+                  the reason you probably started your business: making the
+                  world a more beautiful place.
+                </p>
+                <p className="text-[28px] font-light text-slate-300">
+                  I design all-in-one, cost-effective websites that set you
+                  apart from your competitors, represent your values, and build
+                  your brand authority.
+                </p>
+                <p className="text-[28px] font-light text-slate-300">
+                  As a person, I&apos;m a very positive and self-disciplined
+                  human being. Attention to detail — is at the heart of
+                  everything that I do. I strive to improve my work with each
+                  project, prioritizing quality over anything else.
+                </p>
+              </div>
             </div>
-            <img
-              src="https://cdn.prod.website-files.com/66277b11e48ec235af18f9cc/66277b11e48ec235af18fab5_Vlad-Tro-smiling-standing%400.25x.webp"
-              alt=""
-              className="h-[1000px] w-full object-cover"
-            />
+            <div
+              className="w-full h-[880px] overflow-hidden relative"
+              id="img-trg-1"
+            >
+              <Image src={img3} alt="" className="w-auto h-full" />
+              <div
+                className="absolute top-0 left-0 w-full h-1/2 bg-[#121212]"
+                id="image-wrappper-1"
+              />
+            </div>
           </div>
         </div>
-        <HorizontalSec/>
-        <Process/>
+        <HorizontalSec />
+        <Process />
+        <AboutMe />
+        <Investment />
+        <Testimonial />
       </main>
     </ReactLenis>
   );

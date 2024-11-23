@@ -33,7 +33,6 @@ export default function HorizontalSec() {
       pin: true,
       animation: tween,
       scrub: 1,
-      invalidateOnRefresh: true,
     });
   }, []);
   return (
