@@ -6,7 +6,7 @@ import { useRef, useState } from "react";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Process() {
-  const [number, setNumber] = useState(1);
+  const [number, setNumber] = useState("01");
   const sec1 = useRef();
   const sec2 = useRef();
   const sec3 = useRef();
@@ -59,62 +59,69 @@ export default function Process() {
       <div className="max-w-[1400px] w-full mx-auto flex flex-col gap-y-20">
         <h5 className="text-[84px] font-mono">My web design process</h5>
         <div className="flex w-full relative">
-          <div className="w-[95%] sticky top-[60%] h-fit">
+          <div className="w-[50%] sticky top-[60%] h-fit">
             <h1 className="text-[180px] text-white font-mono">{number}</h1>
           </div>
-          <div className="flex flex-col gap-y-24 pb-32">
+          <div className="w-full flex flex-col gap-y-24">
             <div className="flex flex-col gap-y-10 opacity-50" ref={sec1}>
               <div className="w-full h-[3px] bg-white" />
-              <div className="flex gap-x-20">
-                <h1 className="text-[50px] font-mono text-nowrap leading-9 w-full min-w-[320px]">
+              <div className="flex justify-between">
+                <h1 className="text-[50px] font-mono text-nowrap leading-9 w-full min-w-[300px]">
                   Setting goals
                 </h1>
                 <p className="text-[24px] ml-20">
-                  I start by asking you questions to get to know your company,
-                  your pain points, and your audience. We discuss the main goals
-                  for the website and then I create a sketch.
+                  First, (15 mins) we have a conversation about your goals for
+                  the business, who your audiences are and what you’re looking
+                  to achieve. With clear goals, your website is aligned with
+                  your brand and delivers. It’s a step that establishes the
+                  basis for a growth strategy focused on users and the
+                  competitiveness within your industry.
                 </p>
               </div>
             </div>
             <div className="flex flex-col gap-y-10 opacity-50" ref={sec2}>
               <div className="w-full h-[3px] bg-white" />
-              <div className="flex gap-x-20">
-                <h1 className="text-[50px] font-mono text-nowrap leading-9 w-full min-w-[320px]">
+              <div className="flex justify-between">
+                <h1 className="text-[50px] font-mono text-nowrap leading-9 w-full min-w-[300px]">
                   Visual design
                 </h1>
                 <p className="text-[24px] ml-20">
-                  I choose colors, fonts, and styles for your website. I design
-                  it with your audience in mind to ensure it effectively
-                  represents your brand and fulfills your requirements. I&apos;m
-                  always updating you throughout the process.
+                  Expert designers at Gloriousenthemes take care of visually
+                  stunning layouts as per your brand identity. We build your
+                  website with focus on aesthetics and user experience,
+                  designing your website that will make your audience
+                  captivated, improve navigation, and present your website
+                  professionally on any device.
                 </p>
               </div>
             </div>
             <div className="flex flex-col gap-y-10 opacity-50" ref={sec3}>
               <div className="w-full h-[3px] bg-white" />
-              <div className="flex gap-x-20">
-                <h1 className="text-[50px] font-mono text-nowrap leading-9 w-full min-w-[320px]">
+              <div className="flex justify-between">
+                <h1 className="text-[50px] font-mono text-nowrap leading-9 w-full min-w-[300px]">
                   Development
                 </h1>
                 <p className="text-[24px] ml-20">
-                  When you&apos;re happy with the design, I&apos;ll start
-                  bringing it to life. I make sure everything works smoothly on
-                  all devices. Also, I make sure it loads quickly, is secure,
-                  and is SEO friendly.
+                  Using what is available now, we bring the designs to life with
+                  a fully responsive and working website. Our objective is to
+                  deliver your site with speed, top performance, and effortless
+                  integration of features to help you gain conversions and
+                  guarantee longevity.
                 </p>
               </div>
             </div>
             <div className="flex flex-col gap-y-10 opacity-50" ref={sec4}>
               <div className="w-full h-[3px] bg-white" />
-              <div className="flex gap-x-20">
-                <h1 className="text-[50px] font-mono text-nowrap leading-9 w-full min-w-[320px]">
+              <div className="flex justify-between">
+                <h1 className="text-[50px] font-mono text-nowrap leading-9 w-full min-w-[300px]">
                   Launch
                 </h1>
                 <p className="text-[24px] ml-20">
-                  After I double-checked everything, the website is ready to
-                  launch. I walk you through your new website and teach you how
-                  to add content by yourself. We are going live and starting to
-                  tell your audience!
+                  Our testing for quality & functionality is rigorous, and we
+                  launch your website with precision. We’ll get the ball
+                  rolling, ensure it all runs smoothly, and get your site out
+                  there, saving to make an impact. We offer post launch support
+                  to help keep your site up to date and healthy.
                 </p>
               </div>
             </div>

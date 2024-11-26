@@ -1,39 +1,65 @@
-"use client";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import React, { useEffect, useRef } from "react";
 
-export default function Magnet({ children }) {
-  const ref = useRef(null);
+const Magnet = ({ children }) => {
+  const magnetRef = useRef(null);
 
   useEffect(() => {
-    var currRef = ref.current;
-    const xTo = gsap.quickTo(ref.current, "x", {
-      duration: 1.5,
-    });
-    const yTo = gsap.quickTo(ref.current, "y", {
-      duration: 1.5,
-    });
+    const magnetElement = magnetRef.current;
 
-    const mouseMove = (e) => {
-      const { clientX, clientY } = e;
-      const { width, height, left, top } = ref.current.getBoundingClientRect();
-      const x = clientX - (left + width / 2);
-      const y = clientY - (top + height / 2);
-      xTo(x);
-      yTo(y);
-    };
-    const mouseLeave = (e) => {
-      xTo(0);
-      yTo(0);
+    // Function to handle mouse move event while the mouse is inside the element
+    const handleMouseMove = (e) => {
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+
+      // Get the position of the magnet element
+      const magnetRect = magnetElement.getBoundingClientRect();
+      const magnetX = magnetRect.left + magnetRect.width / 2;
+      const magnetY = magnetRect.top + magnetRect.height / 2;
+
+      // Calculate distance between mouse and magnet center
+      const deltaX = mouseX - magnetX;
+      const deltaY = mouseY - magnetY;
+
+      // Use GSAP to animate the magnet to the mouse position
+      gsap.to(magnetElement, {
+        x: deltaX / 4, // Scale the movement
+        y: deltaY / 4,
+        duration: 0.3, // Smooth animation
+        ease: "power2.out", // Easing for smoothness
+        scale: 1.1, // Slightly scale up the element for magnet effect
+      });
     };
 
-    ref.current.addEventListener("mousemove", mouseMove);
-    ref.current.addEventListener("mouseleave", mouseLeave);
+    // Function to handle mouse enter event to start the effect
+    const handleMouseEnter = () => {
+      window.addEventListener("mousemove", handleMouseMove);
+    };
+
+    // Function to handle mouse leave event to stop the effect
+    const handleMouseLeave = () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      gsap.to(magnetElement, {
+        x: 0,
+        y: 0,
+        scale: 1, // Reset the scale
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    };
+
+    // Add event listeners for mouse enter and mouse leave
+    magnetElement.addEventListener("mouseenter", handleMouseEnter);
+    magnetElement.addEventListener("mouseleave", handleMouseLeave);
+
+    // Clean up event listeners on component unmount
     return () => {
-      currRef.addEventListener("mousemove", mouseMove);
-      currRef.addEventListener("mouseleave", mouseLeave);
+      magnetElement.removeEventListener("mouseenter", handleMouseEnter);
+      magnetElement.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, []);
 
-  return React.cloneElement(children, { ref });
-}
+  return <div ref={magnetRef} className="relative w-full sm:block hidden">{children}</div>;
+};
+
+export default Magnet;

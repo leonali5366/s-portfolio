@@ -79,6 +79,12 @@ const AboutMe = () => {
       delay: 1,
       scrollTrigger: "#trigger-3",
     });
+    gsap.to("#line-4", {
+      x: "100%",
+      duration: 2,
+      delay: 1,
+      scrollTrigger: "#trigger-4",
+    });
     gsap.to("#image-wrappper", {
       y: "-100%",
       duration: 1,
@@ -88,32 +94,33 @@ const AboutMe = () => {
   return (
     <div className="bg-[#121212] pb-[150px]">
       <div className="max-w-[1400px] mx-auto space-y-20">
-        <h1 className="text-[84px] font-mono">What makes me different</h1>
-        <div className="flex gap-x-10">
+        <h1 className="text-[84px] font-mono">What makes us different</h1>
+        <div className="flex justify-between gap-x-20">
           <div
-            className="w-full h-[97vh] overflow-hidden relative"
+            className="w-full h-full overflow-hidden relative"
             id="img-trg"
           >
-            <Image src={img} alt="" className="w-full h-full" />
+            <Image src={img} alt="" className="" />
             <div
               className="absolute top-0 left-0 w-full h-1/2 bg-[#121212]"
               id="image-wrappper"
             />
           </div>
-          <div className="flex flex-col justify-between">
+          <div className="flex flex-col justify-center gap-y-16">
             <div className="flex flex-col" id="trigger-1">
               <span className="text-white opacity-50 uppercase text-[16px] tracking-widest">
                 One
               </span>
               <div className="flex flex-col gap-y-7">
                 <div className="overflow-hidden">
-                  <header className="text-5xl font-mono" id="textH-1">
-                    Reasonable price
+                  <header className="text-4xl font-mono" id="textH-1">
+                    Affordable Price
                   </header>
                 </div>
                 <description className="text-2xl font-light" id="textD-1">
-                  Great web design shouldn&apos;t be a luxury. I build websites
-                  that meet your budget and have no hidden fees.
+                  At a price that fits your budget, I provide high quality web
+                  design services. My vision is to deliver world class
+                  experience without sacrificing design or results.
                 </description>
                 <line className="w-full h-[3px] bg-white relative overflow-hidden">
                   <div
@@ -129,14 +136,15 @@ const AboutMe = () => {
               </span>
               <div className="flex flex-col gap-y-7">
                 <div className="overflow-hidden">
-                  <header className="text-5xl font-mono" id="textH-2">
-                    Premier experience
+                  <header className="text-4xl font-mono" id="textH-2">
+                    Premier Experience (7 Years)
                   </header>
                 </div>
                 <description className="text-2xl font-light" id="textD-2">
-                  I pay attention to every single detail to give you the finest
-                  website experience you’ve ever had. So you can be certain that
-                  your website is in good hands.
+                  I have over 7 years of experience and can combine expertise,
+                  creativity and industry knowledge on every project. We know
+                  your website will not only look great, but it will do the real
+                  business thing too.
                 </description>
                 <line className="w-full h-[3px] bg-white relative overflow-hidden">
                   <div
@@ -152,13 +160,14 @@ const AboutMe = () => {
               </span>
               <div className="flex flex-col gap-y-7">
                 <div className="overflow-hidden">
-                  <header className="text-5xl font-mono" id="textH-3">
-                    Speed
+                  <header className="text-4xl font-mono" id="textH-3">
+                    Honesty You Can Trust
                   </header>
                 </div>
                 <description className="text-2xl font-light" id="textD-2">
-                  Many web design companies take months to create a website. I
-                  deliver a fully functional website in just 2-3 weeks.
+                  My work is based on transparency and trust. Throughout the
+                  process, I tell you how it’s going to be, with no surprises,
+                  no hidden costs.
                 </description>
                 <line className="w-full h-[3px] bg-white relative overflow-hidden">
                   <div
@@ -174,14 +183,20 @@ const AboutMe = () => {
               </span>
               <div className="flex flex-col gap-y-7">
                 <div className="overflow-hidden">
-                  <header className="text-5xl font-mono" id="textH-4">
-                    Post-project support
+                  <header className="text-4xl font-mono" id="textH-4">
+                    On-Time Delivery & Support
                   </header>
                 </div>
                 <description className="text-2xl font-light" id="textD-2">
-                  I never abandon my clients. My fee includes one year of
-                  post-project support. So you can always count on me for help.
+                  I am conscious of deadlines. timely delivery and reliable
+                  support on the website after we completed the project.
                 </description>
+                <line className="w-full h-[3px] bg-white relative overflow-hidden">
+                  <div
+                    className="absolute top-0 right-0 h-full w-full bg-[#121212]"
+                    id="line-4"
+                  />
+                </line>
               </div>
             </div>
           </div>

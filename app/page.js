@@ -16,80 +16,16 @@ import { useRef, useState } from "react";
 import { GiCheckMark } from "react-icons/gi";
 import img3 from "../app/images/img3.jpg";
 import img4 from "../app/images/img4.jpg";
+import Card from "@/components/Card";
+import Customer from "@/components/Customer";
+import Personal from "@/components/Personal";
+import Magnet from "@/components/Magnet";
 
-gsap.registerPlugin(ScrollTrigger);
+
 
 export default function Home() {
   const [isHovered, setIsHovered] = useState(false);
-  const sidebar1 = useRef();
-  useGSAP(() => {
-    gsap.from("#text", {
-      y: 100,
-      duration: 0.7,
-      stagger: 0.2,
-      scrollTrigger: {
-        trigger: "#text",
-        start: "bottom bottom",
-      },
-    });
-    gsap.from("#line", { y: -500, duration: 2, delay: 0.2 });
-    let tl1 = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#m1-text",
-        start: "top bottom",
-        end: "top top",
-        scrub: true,
-      },
-    });
-    tl1.to("#m1-text", { x: -60 });
-    let tl2 = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#m2-text",
-        start: "top bottom",
-        end: "top top",
-        scrub: true,
-      },
-    });
-    tl2.to("#m2-text", { x: 60 });
-    gsap.from("#percentage", {
-      y: 20,
-      delay: 1,
-      duration: 0.6,
-      opacity: 0,
-      scrollTrigger: "#percentage",
-    });
-    gsap.from("#second-c-text", {
-      y: 20,
-      delay: 1.5,
-      duration: 0.6,
-      opacity: 0,
-      scrollTrigger: "#second-c-text",
-    });
-    gsap.from("#img-third", {
-      y: 40,
-      duration: 1,
-      scrollTrigger: "#img-third",
-    });
-    gsap.from("#text-3", { y: 70, duration: 0.3, scrollTrigger: "#text-3" });
-    gsap.from("#text-4", {
-      y: 70,
-      duration: 0.3,
-      delay: 0.2,
-      scrollTrigger: "#text-4",
-    });
-    gsap.from("#text-5", {
-      y: 60,
-      duration: 0.3,
-      delay: 0.4,
-      opacity: 0,
-      scrollTrigger: "#text-5",
-    });
-    gsap.to("#image-wrappper-1", {
-      y: "-100%",
-      duration: 1,
-      scrollTrigger: "#img-trg-1",
-    });
-  }, []);
+  
   return (
     <ReactLenis root options={{ lerp: 0.1, duration: 1, smoothTouch: true }}>
       <main className="relative">
@@ -97,188 +33,13 @@ export default function Home() {
         <Cursor isHovered={isHovered} />
         {/* <div className="min-w-full min-h-screen" /> */}
         <Hero setIsHovered={setIsHovered} />
-        <div className="bg-[#F5F5F5]">
-          {/* 1st 2 components */}
-          <div className="max-w-[1550px] mx-auto py-32 space-y-44">
-            {/* 1st components */}
-            <div className="w-full flex justify-center gap-x-28">
-              <div className="flex w-full h-fit sticky top-10">
-                <div className="h-auto w-1 mr-5 overflow-hidden">
-                  <div className="w-full h-full bg-black" id="line" />
-                </div>
-                <div className="w-full flex flex-col gap-y-10">
-                  <div className="w-full text-[68px] font-mono flex flex-col text-nowrap">
-                    <div className="overflow-hidden">
-                      <p className="text-black" id="text">
-                        You&apos;r losing customers,
-                      </p>
-                    </div>
-                    <div className="overflow-hidden">
-                      <p className="text-black" id="text">
-                        if your business dosen&apos;t
-                      </p>
-                    </div>
-                    <div className="overflow-hidden">
-                      <p className="text-black" id="text">
-                        have a website!
-                      </p>
-                    </div>
-                  </div>
-                  <p className="text-[34px] text-black">
-                    That&apos;s why a strong online presence <br /> is vital for
-                    your company
-                  </p>
-                </div>
-              </div>
-              <div className=" flex flex-col gap-y-10 w-full">
-                <h1
-                  className="text-[74px] font-mono text-black"
-                  id="percentage"
-                >
-                  90%
-                </h1>
-                <p className="text-[26px]  text-gray-600" id="second-c-text">
-                  of people look for local services online first, according to
-                  data. Not having a website means missing out on potential new
-                  clients.
-                </p>
-                <p className="text-[26px]  text-gray-600" id="second-c-text">
-                  A website helps your company rank higher in search results,
-                  providing you with a greater competitive edge.
-                </p>
-                <p className="text-[26px]  text-gray-600" id="second-c-text">
-                  In fact, customers today browse websites before picking up the
-                  phone. People expect you to have a website. Without one, they
-                  might think you&apos;re new, unskilled, or not interested in
-                  your business.
-                </p>
-                <p
-                  className="text-[26px] font-medium text-black"
-                  id="second-c-text"
-                >
-                  In other words, if you want to attract more clients and gain
-                  their trust, you need a website!
-                </p>
-              </div>
-            </div>
-            {/* 2nd components */}
-            <div className="w-full flex justify-center items-end gap-x-14 relative">
-              <h1
-                className="font-mono text-7xl absolute top-20 left-[40%] mix-blend-difference z-10"
-                id="m1-text"
-              >
-                &quot;But I put all my info
-              </h1>
-              <h1
-                className="font-mono text-7xl absolute top-40 left-[40%] mix-blend-difference z-10"
-                id="m2-text"
-              >
-                on my social pages!&quot;
-              </h1>
-              <div className="w-full h-full" id="image">
-                <img
-                  src="https://cdn.prod.website-files.com/66277b11e48ec235af18f9cc/66277b11e48ec235af18faaa_Vlad-Tro-talking-on-phone%400.25x.webp"
-                  alt=""
-                  className="w-full h-[1050px] object-cover"
-                  id=""
-                />
-              </div>
-              <div className="w-full h-full space-y-10">
-                <p className="text-[28px] text-gray-600 font-normal">
-                  I often hear this from small business owners I work with. Yet,
-                  to effectively represent your brand, you need more than just
-                  social media.
-                </p>
-                <p className="text-[28px] text-gray-600 font-normal">
-                  A social media profile is free and takes only 5 minutes to set
-                  up. Because anyone can use a Facebook business page, it
-                  won&apos;t help you stand out.
-                </p>
-                <p className="text-[28px] text-gray-800 font-medium">
-                  Whereas a professionally-designed website enables you to:
-                </p>
-                <ul className="flex flex-col gap-y-4">
-                  <li className="text-[28px] text-gray-600 font-normal flex items-center gap-x-5">
-                    <GiCheckMark />
-                    Make a striking first impression that lasts;
-                  </li>
-                  <li className="text-[28px] text-gray-600 font-normal flex items-center gap-x-5">
-                    <GiCheckMark />
-                    Improve your brand image and customer retention;
-                  </li>
-                  <li className="text-[28px] text-gray-600 font-normal flex items-center gap-x-5">
-                    <GiCheckMark />
-                    Increase your company&apos;s credibility;
-                  </li>
-                  <li className="text-[28px] text-gray-600 font-normal flex items-center gap-x-5">
-                    <GiCheckMark />
-                    And most of all, stand out from your competitors.
-                  </li>
-                </ul>
-                <p className="text-[28px] text-gray-800 font-medium">
-                  To put it simply, your website is the backbone of your
-                  business that generates leads and helps you grow 24/7!
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="w-full py-36 bg-[#121212]">
-          <div className="max-w-[1450px] mx-auto flex justify-between gap-x-20">
-            <div className="w-full flex flex-col gap-y-10">
-              <div className="flex flex-col gap-y-3">
-                <div className="overflow-hidden">
-                  <h6
-                    className="text-[60px] font-mono leading-[5rem]"
-                    id="text-3"
-                  >
-                    Hi! I&apos;m Vlad — your
-                  </h6>
-                </div>
-                <div className="overflow-hidden">
-                  <h1
-                    className="text-[60px] font-mono leading-[5rem]"
-                    id="text-4"
-                  >
-                    website designer
-                  </h1>
-                </div>
-              </div>
-              <div className="flex flex-col gap-y-10" id="text-5">
-                <p className="text-[28px] font-light text-slate-300">
-                  I&apos;m here to help you get more clients so you can focus on
-                  the reason you probably started your business: making the
-                  world a more beautiful place.
-                </p>
-                <p className="text-[28px] font-light text-slate-300">
-                  I design all-in-one, cost-effective websites that set you
-                  apart from your competitors, represent your values, and build
-                  your brand authority.
-                </p>
-                <p className="text-[28px] font-light text-slate-300">
-                  As a person, I&apos;m a very positive and self-disciplined
-                  human being. Attention to detail — is at the heart of
-                  everything that I do. I strive to improve my work with each
-                  project, prioritizing quality over anything else.
-                </p>
-              </div>
-            </div>
-            <div
-              className="w-full h-[880px] overflow-hidden relative"
-              id="img-trg-1"
-            >
-              <Image src={img3} alt="" className="w-auto h-full" />
-              <div
-                className="absolute top-0 left-0 w-full h-1/2 bg-[#121212]"
-                id="image-wrappper-1"
-              />
-            </div>
-          </div>
-        </div>
-        <HorizontalSec />
+        <Personal/>
+        <Investment />
+        <Customer />
+        {/* <Card /> */}
+        {/* <HorizontalSec /> */}
         <Process />
         <AboutMe />
-        <Investment />
         <Testimonial />
       </main>
     </ReactLenis>
