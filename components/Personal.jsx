@@ -1,11 +1,41 @@
 import React from "react";
-import { GiCheckMark } from "react-icons/gi";
 import { BsArrowUpCircleFill } from "react-icons/bs";
-import { FaArrowUp } from "react-icons/fa6";
 import Magnet from "./Magnet";
 import { FiArrowRight } from "react-icons/fi";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
-const Personal = () => {
+gsap.registerPlugin(ScrollTrigger);
+
+const Personal = ({ setIsHovered }) => {
+  useGSAP(() => {
+    gsap.from("#text-rev-1", {
+      y: 40,
+      duration: 1,
+      opacity: 0,
+      scrollTrigger: "#text-rev-1",
+    });
+    gsap.from("#text-rev-2", {
+      y: 40,
+      duration: 1,
+      opacity: 0,
+      scrollTrigger: "#text-rev-2",
+    });
+    gsap.from("#text-rev-3", {
+      y: 40,
+      duration: 1,
+      opacity: 0,
+      scrollTrigger: "#text-rev-3",
+    });
+    gsap.from("#text-rev-4", {
+      y: 40,
+      duration: 1,
+      opacity: 0,
+      scrollTrigger: "#text-rev-4",
+    });
+  }, []);
+
   return (
     <div className="bg-[#F5F5F5]">
       {/* 1st 2 components */}
@@ -19,22 +49,34 @@ const Personal = () => {
             <div className="w-full flex flex-col gap-y-10">
               <div className="w-full sm:text-[68px] text-3xl font-mono flex flex-col">
                 <div className="overflow-hidden">
-                  <p className="text-black text-pretty sm:leading-[5rem]" id="text">
+                  <p
+                    className="text-black text-pretty sm:leading-[5rem]"
+                    id="text"
+                  >
                     Every Missed Click Is a
                   </p>
                 </div>
                 <div className="overflow-hidden">
-                  <p className="text-black text-pretty sm:leading-[5rem]" id="text">
+                  <p
+                    className="text-black text-pretty sm:leading-[5rem]"
+                    id="text"
+                  >
                     Lost Customer – Get a
                   </p>
                 </div>
                 <div className="overflow-hidden">
-                  <p className="text-black text-pretty sm:leading-[5rem]" id="text">
+                  <p
+                    className="text-black text-pretty sm:leading-[5rem]"
+                    id="text"
+                  >
                     Website Today!
                   </p>
                 </div>
               </div>
-              <p className="sm:text-[34px] text-lg text-black sm:leading-10">
+              <p
+                className="sm:text-[34px] text-lg text-black sm:leading-10"
+                id="text-rev-1"
+              >
                 Don’t let opportunities slip away—invest in a website that
                 attracts attention and converts clicks into lasting connections.
               </p>
@@ -50,7 +92,7 @@ const Personal = () => {
             </h1>
             <p
               className="sm:text-[26px] text-lg text-black opacity-70 text-pretty"
-              id="second-c-text"
+              id="text-rev-2"
             >
               Today we live in a digital world and your website is not just an
               online presence but your brand’s representative 24 hours a day, 7
@@ -61,7 +103,7 @@ const Personal = () => {
             </p>
             <p
               className="sm:text-[26px] text-lg text-black opacity-70 text-pretty"
-              id="second-c-text"
+              id="text-rev-3"
             >
               On top of that, a well designed website can actually contribute to
               building your brand’s trust and also help you attract new
@@ -71,7 +113,7 @@ const Personal = () => {
             </p>
             <p
               className="sm:text-[26px] text-lg text-black opacity-70 text-pretty"
-              id="second-c-text"
+              id="text-rev-4"
             >
               A tailored website can grow your business, build relationships
               with your customers, and achieve heights for your business
@@ -91,6 +133,8 @@ const Personal = () => {
                   transform: "translate(-50%, -50%)", // Center the content inside the element
                   transition: "transform 0.3s ease-out",
                 }}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
               >
                 <button className="text-3xl text-black">View Portfolio</button>
 

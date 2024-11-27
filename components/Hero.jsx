@@ -9,6 +9,7 @@ import { GoArrowRight } from "react-icons/go";
 import profile from "../app/images/profile.jpg";
 import { ScrollTrigger } from "gsap/all";
 import { FiArrowRight } from "react-icons/fi";
+import { BsArrowUpRight } from "react-icons/bs";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,6 +20,24 @@ export default function Hero({ setIsHovered }) {
       duration: 1,
       opacity: 1,
       scrollTrigger: "#hero-img",
+    });
+    gsap.from("#text-reveal-1", {
+      y: 40,
+      duration: 1,
+      opacity: 0,
+      scrollTrigger: "#text-reveal-1",
+    });
+    gsap.from("#text-reveal-2", {
+      y: 40,
+      duration: 1,
+      opacity: 0,
+      scrollTrigger: "#text-reveal-2",
+    });
+    gsap.from("#text-reveal-3", {
+      y: 40,
+      duration: 1,
+      opacity: 0,
+      scrollTrigger: "#text-reveal-3",
     });
   }, []);
   return (
@@ -34,15 +53,27 @@ export default function Hero({ setIsHovered }) {
           <div className="absolute inset-x-0 bottom-0 h-2/4 bg-gradient-to-t from-[#121212] opacity-100"></div>
         </div>
         <div className="w-full h-full flex flex-col justify-center gap-y-10">
-          <div className="sm:text-5xl text-3xl sm:text-left text-center sm:px-0 px-5 font-mono leading-snug capitalize text-pretty">
+          <h1
+            className="sm:text-5xl text-3xl sm:text-left text-center sm:px-0 px-5 font-mono capitalize text-pretty"
+            id="text-reveal-1"
+          >
             Get High-End Custom Websites or Online Shops without Breaking the
             Bank.
-          </div>
-          <p className="sm:text-[28px] text-xl sm:px-0 px-5 sm:text-left text-center font-light">
+          </h1>
+          <p
+            className="sm:text-[28px] text-xl sm:px-0 px-5 sm:text-left text-center font-light"
+            id="text-reveal-2"
+          >
             Unleash your brand’s potential with 100% custom-built websites,
             offering speed and seamless performance across all desktop, tablet,
             and mobile platforms.
           </p>
+          <div className="flex items-center gap-x-3 justify-center sm:hidden" id="text-reveal-3">
+            <button className="text-lg uppercase">book a free call</button>
+            <button className="size-12 rounded-full bg-white flex items-center justify-center">
+              <BsArrowUpRight className="text-black text-[22px] rotate-45" />
+            </button>
+          </div>
           <Magnet>
             <div
               className="flex items-center gap-x-5 group mt-10"

@@ -7,7 +7,7 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const AboutMe = () => {
+const AboutUs = ({ aboutus }) => {
   useGSAP(() => {
     gsap.from("#textH-1", {
       y: 40,
@@ -92,14 +92,13 @@ const AboutMe = () => {
     });
   }, []);
   return (
-    <div className="bg-[#121212] pb-[150px]">
-      <div className="max-w-[1400px] mx-auto space-y-20">
-        <h1 className="text-[84px] font-mono">What makes us different</h1>
-        <div className="flex justify-between gap-x-20">
-          <div
-            className="w-full h-full overflow-hidden relative"
-            id="img-trg"
-          >
+    <div className="bg-[#121212] sm:pb-[150px] sm:px-0 px-5" ref={aboutus}>
+      <div className="max-w-[1400px] mx-auto sm:space-y-20 space-y-10">
+        <h1 className="sm:text-[84px] text-5xl font-mono">
+          What makes us different
+        </h1>
+        <div className="flex sm:flex-row flex-col sm:justify-between sm:gap-x-20 gap-y-10">
+          <div className="w-full h-full overflow-hidden relative" id="img-trg">
             <Image src={img} alt="" className="" />
             <div
               className="absolute top-0 left-0 w-full h-1/2 bg-[#121212]"
@@ -206,4 +205,4 @@ const AboutMe = () => {
   );
 };
 
-export default AboutMe;
+export default AboutUs;

@@ -8,7 +8,7 @@ import ScrollTrigger from "gsap/dist/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Customer = () => {
+const Customer = ({ portfolio }) => {
   useGSAP(() => {
     gsap.from("#text", {
       y: 100,
@@ -45,13 +45,6 @@ const Customer = () => {
       opacity: 0,
       scrollTrigger: "#percentage",
     });
-    gsap.from("#second-c-text", {
-      y: 20,
-      delay: 1.5,
-      duration: 0.6,
-      opacity: 0,
-      scrollTrigger: "#second-c-text",
-    });
     gsap.from("#img-third", {
       y: 40,
       duration: 1,
@@ -71,6 +64,13 @@ const Customer = () => {
       opacity: 0,
       scrollTrigger: "#text-5",
     });
+    gsap.from("#text-6", {
+      y: 60,
+      duration: 0.3,
+      delay: 0.4,
+      opacity: 0,
+      scrollTrigger: "#text-6",
+    });
     gsap.to("#image-wrappper-1", {
       y: "-100%",
       duration: 1,
@@ -82,35 +82,50 @@ const Customer = () => {
       opacity: 1,
       scrollTrigger: "#img-trg-1",
     });
+    gsap.from("#reveal-trg", {
+      y: 40,
+      duration: 0.4,
+      opacity: 0,
+      scrollTrigger: "#reveal-trg",
+    });
   }, []);
   return (
-    <div className="w-full py-36 bg-[#121212]">
-      <div className="max-w-[1450px] mx-auto flex justify-between gap-x-20">
+    <div className="w-full py-36 bg-[#121212] sm:px-0 px-5" ref={portfolio}>
+      <div className="max-w-[1450px] mx-auto flex sm:flex-row flex-col-reverse sm:justify-between sm:gap-x-20 gap-y-10">
         <div className="w-full flex flex-col gap-y-10">
           <div className="flex flex-col gap-y-3">
             <div className="overflow-hidden">
-              <h6 className="text-5xl font-mono leading-[5rem]" id="text-3">
+              <h6
+                className="sm:text-5xl text-xl font-mono sm:leading-[5rem]"
+                id="text-3"
+              >
                 <small>Hi! I&apos;m</small> Shohanur Reza Shuvo —{" "}
                 <small>your</small>
               </h6>
             </div>
             <div className="overflow-hidden">
-              <h1 className="text-5xl font-mono leading-[5rem]" id="text-4">
+              <h1
+                className="sm:text-5xl text-xl font-mono sm:leading-[5rem]"
+                id="text-4"
+              >
                 Website Designer - <small>Owner</small>
               </h1>
             </div>
-            <ul className="opacity-90 space-y-2 list-disc">
-              <li className="text-2xl font-light">Some guidance is offered personally</li>
-              <li className="text-2xl font-light">Customer oriented, result oriented</li>
-              <li className="text-2xl font-light">
+            <div
+              className="opacity-90 sm:text-2xl font-light text-lg"
+              id="reveal-trg"
+            >
+              <p id="text-reveal">Some guidance is offered personally</p>
+              <p id="text-reveal">Customer oriented, result oriented</p>
+              <p id="text-reveal">
                 Over 7 Years of experience in web design field
-              </li>
-              <li className="text-2xl font-light">A young and dynamic company</li>
-              <li className="text-2xl font-light">Good accessibility</li>
-            </ul>
+              </p>
+              <p id="text-reveal">A young and dynamic company</p>
+              <p id="text-reveal">Good accessibility</p>
+            </div>
           </div>
-          <div className="flex flex-col gap-y-10" id="text-5">
-            <p className="text-[28px] font-light text-slate-300">
+          <div className="flex flex-col gap-y-10">
+            <p className="sm:text-[28px] font-light text-slate-300" id="text-5">
               It’s your success, my success. That’s why I won’t find a one size
               fits all solution to help your business separate online. I take a
               personalized approach to ensure I understand your goals and can
@@ -120,7 +135,7 @@ const Customer = () => {
               online presence so it will work to grow your brand, attract
               customers and increase revenue.
             </p>
-            <p className="text-[28px] font-light text-slate-300">
+            <p className="sm:text-[28px] font-light text-slate-300" id="text-6">
               I’m here to help you whether you currently have a website and need
               a redesign, you are in need of a new website altogether, or
               perhaps you just need some guidance on your digital strategy to

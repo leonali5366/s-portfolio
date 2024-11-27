@@ -78,10 +78,10 @@ const Card = () => {
   }, []);
   return (
     <div className="bg-[#121212] pb-32 overflow-hidden">
-      <div className="max-w-[1450px] mx-auto flex items-center justify-center">
-        <div className="grid grid-cols-2 gap-10">
+      <div className="max-w-[1450px] mx-auto flex items-center justify-center sm:px-0 px-5">
+        <div className="grid sm:grid-cols-2 grid-cols-1 gap-10">
           <div
-            className="size-[400px] overflow-hidden group relative"
+            className="sm:size-[500px] w-full h-[500px] overflow-hidden group relative"
             id="box-1"
           >
             <Image
@@ -95,11 +95,26 @@ const Card = () => {
               </button>
             </div>
           </div>
-          <div className="size-[400px] border" id="box-2"></div>
-          <div className="size-[400px] border" id="box-3"></div>
-          <div className="size-[400px] border" id="box-4"></div>
-          <div className="size-[400px] border" id="box-5"></div>
-          <div className="size-[400px] border" id="box-6"></div>
+          <div
+            className="sm:size-[500px] w-full h-[500px] border"
+            id="box-2"
+          ></div>
+          <div
+            className="sm:size-[500px] w-full h-[500px] border"
+            id="box-3"
+          ></div>
+          <div
+            className="sm:size-[500px] w-full h-[500px] border"
+            id="box-4"
+          ></div>
+          <div
+            className="sm:size-[500px] w-full h-[500px] border"
+            id="box-5"
+          ></div>
+          <div
+            className="sm:size-[500px] w-full h-[500px] border"
+            id="box-6"
+          ></div>
         </div>
       </div>
     </div>
