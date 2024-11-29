@@ -48,8 +48,10 @@ export default function Home() {
         <Process />
         <ProcessRes />
         <AboutUs aboutus={aboutus} />
-        <Testimonial />
-        <Contact />
+        <div className="flex sm:flex-row flex-col items-center justify-center gap-x-5 bg-[#121212] text-white">
+          <Contact />
+          <Testimonial />
+        </div>
         <Footer setIsHovered={setIsHovered} />
       </main>
     </ReactLenis>

@@ -47,20 +47,6 @@ const AboutUs = ({ aboutus }) => {
       opacity: 0,
       scrollTrigger: "#trigger-2",
     });
-    gsap.from("#textD-3", {
-      y: 10,
-      duration: 0.8,
-      delay: 0.5,
-      opacity: 0,
-      scrollTrigger: "#trigger-3",
-    });
-    gsap.from("#textD-4", {
-      y: 10,
-      duration: 0.8,
-      delay: 0.5,
-      opacity: 0,
-      scrollTrigger: "#trigger-4",
-    });
     gsap.to("#line-1", {
       x: "100%",
       duration: 2,
@@ -92,7 +78,10 @@ const AboutUs = ({ aboutus }) => {
     });
   }, []);
   return (
-    <div className="bg-[#121212] sm:pb-[150px] sm:px-0 px-5" ref={aboutus}>
+    <div
+      className="bg-[#121212] sm:pb-[150px] sm:px-0 px-5 text-white"
+      ref={aboutus}
+    >
       <div className="max-w-[1400px] mx-auto sm:space-y-20 space-y-10">
         <h1 className="sm:text-[84px] text-5xl font-mono">
           What makes us different

@@ -1,3 +1,4 @@
+'use client'
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
@@ -55,7 +56,7 @@ export default function Process() {
     });
   }, []);
   return (
-    <div className="bg-[#121212] pb-32 sm:block hidden">
+    <div className="bg-[#121212] pb-32 sm:block hidden text-white">
       <div className="max-w-[1400px] w-full mx-auto flex flex-col gap-y-20">
         <h5 className="text-[84px] font-mono">My web design process</h5>
         <div className="flex w-full relative">

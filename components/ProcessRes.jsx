@@ -1,3 +1,4 @@
+'use client'
 import React from "react";
 import OpacityComponent from "./OpacityComponent";
 import gsap from "gsap";
@@ -123,7 +124,7 @@ const ProcessRes = () => {
   }, []);
 
   return (
-    <div className="bg-[#121212] sm:hidden px-5 flex flex-col gap-y-10 pb-32">
+    <div className="bg-[#121212] sm:hidden px-5 flex flex-col gap-y-10 pb-32 text-white">
       <h1 className="text-4xl font-mono">My web design process</h1>
       <OpacityComponent>
         <div className="flex flex-col gap-y-5" id="reveal-trg-1">

@@ -1,3 +1,4 @@
+'use client'
 import Image from "next/image";
 import React from "react";
 
@@ -20,35 +21,12 @@ const Customer = ({ portfolio }) => {
       },
     });
     gsap.from("#line", { y: -500, duration: 2, delay: 0.2 });
-    let tl1 = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#m1-text",
-        start: "top bottom",
-        end: "top top",
-        scrub: true,
-      },
-    });
-    tl1.to("#m1-text", { x: -60 });
-    let tl2 = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#m2-text",
-        start: "top bottom",
-        end: "top top",
-        scrub: true,
-      },
-    });
-    tl2.to("#m2-text", { x: 60 });
     gsap.from("#percentage", {
       y: 20,
       delay: 1,
       duration: 0.6,
       opacity: 0,
       scrollTrigger: "#percentage",
-    });
-    gsap.from("#img-third", {
-      y: 40,
-      duration: 1,
-      scrollTrigger: "#img-third",
     });
     gsap.from("#text-3", { y: 70, duration: 0.3, scrollTrigger: "#text-3" });
     gsap.from("#text-4", {
@@ -90,7 +68,7 @@ const Customer = ({ portfolio }) => {
     });
   }, []);
   return (
-    <div className="w-full py-36 bg-[#121212] sm:px-0 px-5" ref={portfolio}>
+    <div className="w-full py-36 bg-[#121212] sm:px-0 px-5 text-white" ref={portfolio}>
       <div className="max-w-[1450px] mx-auto flex sm:flex-row flex-col-reverse sm:justify-between sm:gap-x-20 gap-y-10">
         <div className="w-full flex flex-col gap-y-10">
           <div className="flex flex-col gap-y-3">

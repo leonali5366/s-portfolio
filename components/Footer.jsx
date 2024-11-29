@@ -8,6 +8,7 @@ import { MdAlternateEmail } from "react-icons/md";
 import { FaWhatsapp } from "react-icons/fa";
 import { BsArrowUpRight } from "react-icons/bs";
 import { CiGlobe } from "react-icons/ci";
+import GoogleCalendarScheduler from "./GoogleCalendarScheduler";
 
 const Footer = ({ setIsHovered }) => {
   const magnetRef = useRef(null);
@@ -77,43 +78,45 @@ const Footer = ({ setIsHovered }) => {
         next best move, together
       </p>
       <div className="flex sm:flex-row flex-col items-center justify-center gap-y-5">
-        <div className="flex items-center gap-x-3 justify-center sm:hidden">
-          <button className="text-lg uppercase font-semibold">
-            book a free call
-          </button>
-          <button className="size-12 rounded-full bg-black flex items-center justify-center">
-            <BsArrowUpRight className="text-white text-[22px] rotate-45" />
-          </button>
-        </div>
+        <GoogleCalendarScheduler>
+          <div className="flex items-center gap-x-3 justify-center sm:hidden">
+            <button className="text-lg uppercase font-semibold">
+              book a free call
+            </button>
+            <button className="size-12 rounded-full bg-black flex items-center justify-center">
+              <BsArrowUpRight className="text-white text-[22px] rotate-45" />
+            </button>
+          </div>
+        </GoogleCalendarScheduler>
         <div ref={magnetRef} className="w-[400px] relative sm:block hidden">
-          <div
-            className="flex items-center gap-x-5 group"
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)", // Center the content inside the element
-              transition: "transform 0.3s ease-out",
-            }}
-          >
-            <button
-              className="flex gap-x-5 items-center text-2xl font-medium group uppercase w-fit text-nowrap"
+          <GoogleCalendarScheduler>
+            <div
+              className="flex items-center gap-x-5 group"
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)", // Center the content inside the element
+                transition: "transform 0.3s ease-out",
+              }}
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
-              Book a free call
-            </button>
-            <button className="size-14 rounded-full bg-transparent border-dashed group-hover:bg-black border-black border-2 group-hover:scale-[1.2] transition-all duration-300 flex items-center justify-center relative overflow-hidden">
-              <FiArrowRight
-                size={24}
-                className="group-hover:text-white absolute text-4xl transition-all transform duration-300 ease-out opacity-100 group-hover:translate-y-[-50px] group-hover:opacity-0"
-              />
-              <FiArrowRight
-                size={24}
-                className="group-hover:text-white absolute text-4xl translate-y-12 opacity-0 transition-all transform duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100"
-              />
-            </button>
-          </div>
+              <button className="flex gap-x-5 items-center text-2xl font-medium group uppercase w-fit text-nowrap">
+                Book a free call
+              </button>
+              <button className="size-14 rounded-full bg-transparent border-dashed group-hover:bg-black border-black border-2 group-hover:scale-[1.2] transition-all duration-300 flex items-center justify-center relative overflow-hidden">
+                <FiArrowRight
+                  size={24}
+                  className="group-hover:text-white absolute text-4xl transition-all transform duration-300 ease-out opacity-100 group-hover:translate-y-[-50px] group-hover:opacity-0"
+                />
+                <FiArrowRight
+                  size={24}
+                  className="group-hover:text-white absolute text-4xl translate-y-12 opacity-0 transition-all transform duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100"
+                />
+              </button>
+            </div>
+          </GoogleCalendarScheduler>
         </div>
         <button
           className="underline text-lg font-semibold uppercase underline-offset-8"

@@ -11,7 +11,7 @@ export default function Header({
   return (
     <header className="flex items-center justify-between px-5 h-16 fixed top-0 w-full bg-black/60 backdrop-blur z-[999]">
       <span className="text-5xl">VeelMan</span>
-      <ul className="sm:flex hidden items-center gap-x-5 text-xl">
+      <ul className="sm:flex hidden items-center gap-x-5 text-xl text-white">
         <li
           className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300"
           href="#"

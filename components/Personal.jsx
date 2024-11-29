@@ -1,3 +1,4 @@
+'use client'
 import React from "react";
 import { BsArrowUpCircleFill } from "react-icons/bs";
 import Magnet from "./Magnet";

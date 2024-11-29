@@ -42,7 +42,7 @@ const Investment = ({ pricing, setIsHovered }) => {
 
   return (
     <div
-      className="bg-[#121212] sm:py-[150px] py-10 sm:px-0 px-5"
+      className="bg-[#121212] sm:py-[150px] py-10 sm:px-0 px-5 text-white"
       ref={pricing}
     >
       <div className="max-w-[1400px] mx-auto flex flex-col gap-y-10">
@@ -59,7 +59,7 @@ const Investment = ({ pricing, setIsHovered }) => {
           >
             <div className="w-full h-full border sm:p-[50px] p-5 flex flex-col items-center justify-between gap-y-7">
               <h1 className="sm:text-[46px] text-2xl font-mono border-b-2 text-nowrap sm:leading-[4rem]">
-                Business
+                Business Website Design
               </h1>
               <ul className="flex flex-col gap-y-3">
                 <li className="flex gap-x-5 items-center">
@@ -152,7 +152,7 @@ const Investment = ({ pricing, setIsHovered }) => {
           >
             <div className="w-full h-full border sm:p-[50px] p-5 flex flex-col items-center justify-between gap-y-7">
               <h1 className="sm:text-[46px] text-2xl font-mono border-b-2 text-nowrap sm:leading-[4rem]">
-                Webshop
+                Ecomerce Website Design
               </h1>
               <ul className="flex flex-col gap-y-3">
                 <li className="flex gap-x-5 items-center">
@@ -254,7 +254,7 @@ const Investment = ({ pricing, setIsHovered }) => {
           >
             <div className="w-full h-full border sm:p-[50px] p-5 flex flex-col items-center justify-between gap-y-7">
               <h1 className="sm:text-[46px] text-2xl font-mono border-b-2 text-nowrap sm:leading-[4rem]">
-                Redesign
+                Redesign Website
               </h1>
               <ul className="flex flex-col gap-y-3">
                 <li className="flex gap-x-5 items-center">
