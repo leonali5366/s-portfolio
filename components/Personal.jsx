@@ -107,7 +107,7 @@ const Personal = ({ portfolio }) => {
           </div>
           <div className="flex flex-col gap-y-10">
             <p
-              className="sm:text-[28px] text-lg font-light text-slate-300"
+              className="sm:text-[26px] text-lg font-light text-slate-300"
               id="text-5"
             >
               It’s your success, my success. That’s why I won’t find a one size
@@ -120,7 +120,7 @@ const Personal = ({ portfolio }) => {
               customers and increase revenue.
             </p>
             <p
-              className="sm:text-[28px] text-lg font-light text-slate-300"
+              className="sm:text-[26px] text-lg font-light text-slate-300"
               id="text-6"
             >
               I’m here to help you whether you currently have a website and need
