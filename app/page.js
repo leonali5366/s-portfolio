@@ -7,13 +7,13 @@ import Process from "@/components/Process";
 import Testimonial from "@/components/Testimonial";
 import ReactLenis from "@studio-freight/react-lenis";
 import { useRef, useState } from "react";
-import Customer from "@/components/Customer";
-import Personal from "@/components/Personal";
 import ProcessRes from "@/components/ProcessRes";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import AboutUs from "@/components/AboutMe";
 import Card from "@/components/Card";
+import Customer from "@/components/Customer";
+import Personal from "@/components/Personal";
 
 export default function Home() {
   const [isHovered, setIsHovered] = useState(false);
@@ -41,14 +41,14 @@ export default function Home() {
         />
         <Cursor isHovered={isHovered} />
         <Hero setIsHovered={setIsHovered} />
-        <Personal setIsHovered={setIsHovered} />
+        <Customer setIsHovered={setIsHovered} />
         <Investment
           scrollToSection={scrollToSection}
           pricing={pricing}
           setIsHovered={setIsHovered}
           contact={contact}
         />
-        <Customer portfolio={portfolio} />
+        <Personal portfolio={portfolio} />
         <Card />
         <Process />
         <ProcessRes />

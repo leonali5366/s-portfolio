@@ -1,141 +1,218 @@
-'use client'
-import Image from "next/image";
+"use client";
 import React from "react";
-
-import img3 from "../app/images/img3.jpg";
-import { useGSAP } from "@gsap/react";
+import { BsArrowUpCircleFill } from "react-icons/bs";
+import Magnet from "./Magnet";
+import { FiArrowRight } from "react-icons/fi";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Customer = ({ portfolio }) => {
+const Customer = ({ setIsHovered }) => {
   useGSAP(() => {
-    gsap.from("#text", {
-      y: 100,
-      duration: 0.7,
-      stagger: 0.2,
-      scrollTrigger: {
-        trigger: "#text",
-        start: "bottom bottom",
-      },
-    });
-    gsap.from("#line", { y: -500, duration: 2, delay: 0.2 });
-    gsap.from("#percentage", {
-      y: 20,
-      delay: 1,
-      duration: 0.6,
-      opacity: 0,
-      scrollTrigger: "#percentage",
-    });
-    gsap.from("#text-3", { y: 70, duration: 0.3, scrollTrigger: "#text-3" });
-    gsap.from("#text-4", {
-      y: 70,
-      duration: 0.3,
-      delay: 0.2,
-      scrollTrigger: "#text-4",
-    });
-    gsap.from("#text-5", {
-      y: 60,
-      duration: 0.3,
-      delay: 0.4,
-      opacity: 0,
-      scrollTrigger: "#text-5",
-    });
-    gsap.from("#text-6", {
-      y: 60,
-      duration: 0.3,
-      delay: 0.4,
-      opacity: 0,
-      scrollTrigger: "#text-6",
-    });
-    gsap.to("#image-wrappper-1", {
-      y: "-100%",
-      duration: 1,
-      opacity: 1,
-      scrollTrigger: "#img-trg-1",
-    });
-    gsap.to("#image-wrapper-1-o", {
-      duration: 1,
-      opacity: 1,
-      scrollTrigger: "#img-trg-1",
-    });
-    gsap.from("#reveal-trg", {
+    gsap.from("#text-rev-1", {
       y: 40,
-      duration: 0.4,
+      duration: 1,
       opacity: 0,
-      scrollTrigger: "#reveal-trg",
+      scrollTrigger: "#text-rev-1",
+    });
+    gsap.from("#text-rev-2", {
+      y: 40,
+      duration: 1,
+      opacity: 0,
+      scrollTrigger: "#text-rev-2",
+    });
+    gsap.from("#text-rev-3", {
+      y: 40,
+      duration: 1,
+      opacity: 0,
+      scrollTrigger: "#text-rev-3",
+    });
+    gsap.from("#text-rev-4", {
+      y: 40,
+      duration: 1,
+      opacity: 0,
+      scrollTrigger: "#text-rev-4",
     });
   }, []);
+
   return (
-    <div className="w-full py-36 bg-[#121212] sm:px-0 px-5 text-white" ref={portfolio}>
-      <div className="max-w-[1450px] mx-auto flex sm:flex-row flex-col-reverse sm:justify-between sm:gap-x-20 gap-y-10">
-        <div className="w-full flex flex-col gap-y-10">
-          <div className="flex flex-col gap-y-3">
-            <div className="overflow-hidden">
-              <h6
-                className="sm:text-5xl text-xl font-mono sm:leading-[5rem]"
-                id="text-3"
-              >
-                <small>Hi! I&apos;m</small> Shohanur Reza Shuvo —{" "}
-                <small>your</small>
-              </h6>
+    <div className="bg-[#F5F5F5]">
+      {/* 1st 2 components */}
+      <div className="max-w-[1550px] mx-auto sm:py-32 py-14 space-y-44">
+        {/* 1st components */}
+        <div className="w-full flex sm:flex-row flex-col justify-center sm:gap-x-28 gap-y-10">
+          <div className="flex w-full h-fit sm:sticky sm:top-10 sm:px-0 px-5">
+            <div className="h-auto sm:w-1 w-[2px] mr-5 overflow-hidden">
+              <div className="w-full h-full bg-black" id="line" />
             </div>
-            <div className="overflow-hidden">
-              <h1
-                className="sm:text-5xl text-xl font-mono sm:leading-[5rem]"
-                id="text-4"
+            <div className="w-full flex flex-col gap-y-10">
+              <div className="w-full sm:text-[68px] text-3xl font-mono flex flex-col">
+                <div className="overflow-hidden">
+                  <p
+                    className="text-black text-pretty sm:leading-[5rem]"
+                    id="text"
+                  >
+                    Every Missed Click Is a
+                  </p>
+                </div>
+                <div className="overflow-hidden">
+                  <p
+                    className="text-black text-pretty sm:leading-[5rem]"
+                    id="text"
+                  >
+                    Lost Customer – Get a
+                  </p>
+                </div>
+                <div className="overflow-hidden">
+                  <p
+                    className="text-black text-pretty sm:leading-[5rem]"
+                    id="text"
+                  >
+                    Website Today!
+                  </p>
+                </div>
+              </div>
+              <p
+                className="sm:text-[34px] text-lg text-black sm:leading-10"
+                id="text-rev-1"
               >
-                Website Designer - <small>Owner</small>
-              </h1>
-            </div>
-            <div
-              className="opacity-90 sm:text-2xl font-light text-lg"
-              id="reveal-trg"
-            >
-              <p id="text-reveal">Some guidance is offered personally</p>
-              <p id="text-reveal">Customer oriented, result oriented</p>
-              <p id="text-reveal">
-                Over 7 Years of experience in web design field
+                Don’t let opportunities slip away—invest in a website that
+                attracts attention and converts clicks into lasting connections.
               </p>
-              <p id="text-reveal">A young and dynamic company</p>
-              <p id="text-reveal">Good accessibility</p>
             </div>
           </div>
-          <div className="flex flex-col gap-y-10">
-            <p className="sm:text-[30px] font-light text-slate-300" id="text-5">
-              It’s your success, my success. That’s why I won’t find a one size
-              fits all solution to help your business separate online. I take a
-              personalized approach to ensure I understand your goals and can
-              deliver a solution that helps your business stand out. Designing
-              professional, responsive websites and offering ongoing support,
-              you can count on me to help with setting up and working with your
-              online presence so it will work to grow your brand, attract
-              customers and increase revenue.
+          <div className="flex flex-col sm:gap-y-10 gap-y-5 w-full sm:px-0 px-5">
+            <h1
+              className="sm:text-[74px] text-5xl font-mono text-black flex items-center gap-x-5 group"
+              id="percentage"
+            >
+              90%
+              <BsArrowUpCircleFill className="group-hover:text-green-500 transition-colors duration-300" />
+            </h1>
+            <p
+              className="sm:text-[26px] text-lg text-black opacity-70 text-pretty"
+              id="text-rev-2"
+            >
+              Today we live in a digital world and your website is not just an
+              online presence but your brand’s representative 24 hours a day, 7
+              days a week. Very few people go to your site or visit your store
+              without a professional website, but your competitors may be just a
+              click away. Convenience, credibility, and Information — at your
+              audience’s fingertips.
             </p>
-            <p className="sm:text-[30px] font-light text-slate-300" id="text-6">
-              I’m here to help you whether you currently have a website and need
-              a redesign, you are in need of a new website altogether, or
-              perhaps you just need some guidance on your digital strategy to
-              take your business to the next level. Together let’s make it
-              happen, let’s turn your vision into reality!
+            <p
+              className="sm:text-[26px] text-lg text-black opacity-70 text-pretty"
+              id="text-rev-3"
+            >
+              On top of that, a well designed website can actually contribute to
+              building your brand’s trust and also help you attract new
+              customers and nurture existing relationships. It’s where you put
+              on display your product, tell the story, and build that sense of
+              connection.
             </p>
+            <p
+              className="sm:text-[26px] text-lg text-black opacity-70 text-pretty"
+              id="text-rev-4"
+            >
+              A tailored website can grow your business, build relationships
+              with your customers, and achieve heights for your business
+              regardless of whether you are a startup or small business or you
+              are an old and established company. Don’t leave valuable
+              opportunities on the table, invest in a website that performs as
+              much as you do. We will help you convert your vision into a
+              reality.
+            </p>
+            <Magnet>
+              <div
+                className="flex items-center gap-x-5 group mt-5"
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)", // Center the content inside the element
+                  transition: "transform 0.3s ease-out",
+                }}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+              >
+                <button className="text-3xl text-black">View Portfolio</button>
+
+                <button className="size-10 rounded-full border-2 border-dashed bg-transparent border-black group-hover:scale-125 group-hover:bg-black transition-all duration-300 flex items-center justify-center overflow-hidden">
+                  <FiArrowRight
+                    size={20}
+                    className="group-hover:text-white text-black absolute text-4xl transition-all transform duration-300 ease-out opacity-100 group-hover:translate-y-[-50px] group-hover:opacity-0"
+                  />
+                  <FiArrowRight
+                    size={20}
+                    className="group-hover:text-white text-black absolute text-4xl translate-y-12 opacity-0 transition-all transform duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100"
+                  />
+                </button>
+              </div>
+            </Magnet>
           </div>
         </div>
-        <div className="overflow-hidden relative" id="img-trg-1">
-          <Image
-            src={'/images/about.webp'}
-            width={1000}
-            height={1200}
-            alt=""
-            className="opacity-0"
-            id="image-wrapper-1-o"
-          />
-          <div
-            className="absolute top-0 left-0 w-full h-1/2 bg-[#121212]"
-            id="image-wrappper-1"
-          />
-        </div>
+        {/* 2nd components */}
+        {/* <div className="w-full flex justify-center items-end gap-x-14 relative">
+          <h1
+            className="font-mono text-7xl absolute top-20 left-[40%] mix-blend-difference z-10"
+            id="m1-text"
+          >
+            &quot;But I put all my info
+          </h1>
+          <h1
+            className="font-mono text-7xl absolute top-40 left-[40%] mix-blend-difference z-10"
+            id="m2-text"
+          >
+            on my social pages!&quot;
+          </h1>
+          <div className="w-full h-full" id="image">
+            <img
+              src="https://cdn.prod.website-files.com/66277b11e48ec235af18f9cc/66277b11e48ec235af18faaa_Vlad-Tro-talking-on-phone%400.25x.webp"
+              alt=""
+              className="w-full h-[1050px] object-cover"
+              id=""
+            />
+          </div>
+          <div className="w-full h-full space-y-10">
+            <p className="text-[28px] text-gray-600 font-normal">
+              I often hear this from small business owners I work with. Yet, to
+              effectively represent your brand, you need more than just social
+              media.
+            </p>
+            <p className="text-[28px] text-gray-600 font-normal">
+              A social media profile is free and takes only 5 minutes to set up.
+              Because anyone can use a Facebook business page, it won&apos;t
+              help you stand out.
+            </p>
+            <p className="text-[28px] text-gray-800 font-medium">
+              Whereas a professionally-designed website enables you to:
+            </p>
+            <ul className="flex flex-col gap-y-4">
+              <li className="text-[28px] text-gray-600 font-normal flex items-center gap-x-5">
+                <GiCheckMark />
+                Make a striking first impression that lasts;
+              </li>
+              <li className="text-[28px] text-gray-600 font-normal flex items-center gap-x-5">
+                <GiCheckMark />
+                Improve your brand image and customer retention;
+              </li>
+              <li className="text-[28px] text-gray-600 font-normal flex items-center gap-x-5">
+                <GiCheckMark />
+                Increase your company&apos;s credibility;
+              </li>
+              <li className="text-[28px] text-gray-600 font-normal flex items-center gap-x-5">
+                <GiCheckMark />
+                And most of all, stand out from your competitors.
+              </li>
+            </ul>
+            <p className="text-[28px] text-gray-800 font-medium">
+              To put it simply, your website is the backbone of your business
+              that generates leads and helps you grow 24/7!
+            </p>
+          </div>
+        </div> */}
       </div>
     </div>
   );
