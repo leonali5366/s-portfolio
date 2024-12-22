@@ -9,7 +9,7 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Investment = ({ pricing, setIsHovered }) => {
+const Investment = ({ pricing, setIsHovered, scrollToSection, contact }) => {
   useGSAP(() => {
     gsap.from("#text-reveal", {
       y: 40,
@@ -129,7 +129,10 @@ const Investment = ({ pricing, setIsHovered }) => {
                   onMouseEnter={() => setIsHovered(true)}
                   onMouseLeave={() => setIsHovered(false)}
                 >
-                  <button className="flex gap-x-5 items-center text-2xl font-medium group uppercase w-fit text-nowrap">
+                  <button
+                    onClick={() => scrollToSection(contact)}
+                    className="flex gap-x-5 items-center text-2xl font-medium group uppercase w-fit text-nowrap"
+                  >
                     Contact Us
                   </button>
                   <button className="size-14 rounded-full bg-transparent border-dashed group-hover:bg-white border-2 group-hover:scale-[1.2] transition-all duration-300 flex items-center justify-center relative overflow-hidden">
@@ -229,7 +232,10 @@ const Investment = ({ pricing, setIsHovered }) => {
                   onMouseEnter={() => setIsHovered(true)}
                   onMouseLeave={() => setIsHovered(false)}
                 >
-                  <button className="flex gap-x-5 items-center text-2xl font-medium group uppercase w-fit text-nowrap">
+                  <button
+                    onClick={() => scrollToSection(contact)}
+                    className="flex gap-x-5 items-center text-2xl font-medium group uppercase w-fit text-nowrap"
+                  >
                     Contact Us
                   </button>
                   <button className="size-14 rounded-full bg-transparent border-dashed group-hover:bg-white border-2 group-hover:scale-[1.2] transition-all duration-300 flex items-center justify-center relative overflow-hidden">
@@ -324,7 +330,10 @@ const Investment = ({ pricing, setIsHovered }) => {
                   onMouseEnter={() => setIsHovered(true)}
                   onMouseLeave={() => setIsHovered(false)}
                 >
-                  <button className="flex gap-x-5 items-center text-2xl font-medium group uppercase w-fit text-nowrap">
+                  <button
+                    onClick={() => scrollToSection(contact)}
+                    className="flex gap-x-5 items-center text-2xl font-medium group uppercase w-fit text-nowrap"
+                  >
                     Contact Us
                   </button>
                   <button className="size-14 rounded-full bg-transparent border-dashed group-hover:bg-white border-2 group-hover:scale-[1.2] transition-all duration-300 flex items-center justify-center relative overflow-hidden">

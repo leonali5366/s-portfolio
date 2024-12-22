@@ -88,7 +88,7 @@ const AboutUs = ({ aboutus }) => {
         </h1>
         <div className="flex sm:flex-row flex-col sm:justify-between sm:gap-x-20 gap-y-10">
           <div className="w-full h-full overflow-hidden relative" id="img-trg">
-            <Image src={img} alt="" className="" />
+            <Image src={'/images/work.webp'} alt="" width={1000} height={1200} className="" />
             <div
               className="absolute top-0 left-0 w-full h-1/2 bg-[#121212]"
               id="image-wrappper"

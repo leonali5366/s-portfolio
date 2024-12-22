@@ -103,7 +103,7 @@ const Customer = ({ portfolio }) => {
             </div>
           </div>
           <div className="flex flex-col gap-y-10">
-            <p className="sm:text-[28px] font-light text-slate-300" id="text-5">
+            <p className="sm:text-[30px] font-light text-slate-300" id="text-5">
               It’s your success, my success. That’s why I won’t find a one size
               fits all solution to help your business separate online. I take a
               personalized approach to ensure I understand your goals and can
@@ -113,7 +113,7 @@ const Customer = ({ portfolio }) => {
               online presence so it will work to grow your brand, attract
               customers and increase revenue.
             </p>
-            <p className="sm:text-[28px] font-light text-slate-300" id="text-6">
+            <p className="sm:text-[30px] font-light text-slate-300" id="text-6">
               I’m here to help you whether you currently have a website and need
               a redesign, you are in need of a new website altogether, or
               perhaps you just need some guidance on your digital strategy to
@@ -124,7 +124,9 @@ const Customer = ({ portfolio }) => {
         </div>
         <div className="overflow-hidden relative" id="img-trg-1">
           <Image
-            src={img3}
+            src={'/images/about.webp'}
+            width={1000}
+            height={1200}
             alt=""
             className="opacity-0"
             id="image-wrapper-1-o"

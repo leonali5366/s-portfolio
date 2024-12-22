@@ -128,7 +128,7 @@ const Footer = ({ setIsHovered }) => {
       </div>
       <div className="flex flex-col gap-y-5 mb-5">
         <div className="flex items-center justify-between">
-          <h1 className="text-3xl">Veelman</h1>
+          <h1 className="text-3xl">ShuvoDesign</h1>
           <div className="flex items-center gap-x-3">
             <Magnet>
               <a
@@ -176,12 +176,7 @@ const Footer = ({ setIsHovered }) => {
         </div>
         <div className="w-full h-[1px] bg-black"></div>
         <div className="flex sm:flex-row flex-col items-center justify-between">
-          <p className="sm:text-base text-sm">
-            ©2024 All Rights Reserved. Licenses
-          </p>
-          <p className="sm:text-base text-sm">
-            Powered by Webflow, designed by Vlad Tro
-          </p>
+          <p className="sm:text-base text-sm">©2024 All Rights Reserved.</p>
         </div>
       </div>
     </div>

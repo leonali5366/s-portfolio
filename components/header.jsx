@@ -10,11 +10,10 @@ export default function Header({
   const [isOpen, setIsOpen] = useState(false);
   return (
     <header className="flex items-center justify-between px-5 h-16 fixed top-0 w-full bg-black/60 backdrop-blur z-[999]">
-      <span className="text-5xl">VeelMan</span>
+      <span className="text-5xl">ShuvoDesign</span>
       <ul className="sm:flex hidden items-center gap-x-5 text-xl text-white">
         <li
           className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300"
-          href="#"
           onClick={() => scrollToSection(portfolio)}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
@@ -26,27 +25,24 @@ export default function Header({
           onClick={() => scrollToSection(aboutus)}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          href="#"
         >
-          <a href="#">About me</a>
+          About me
         </li>
         <li
           className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300"
           onClick={() => scrollToSection(pricing)}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          href="#"
         >
-          <a href="#">Pricing</a>
+          Pricing
         </li>
         <li
           className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300"
           onClick={() => scrollToSection(portfolio)}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          href="#"
         >
-          <a href="#">Testimonial</a>
+          Testimonial
         </li>
         {/* <li
           className="flex flex-col items-center justify-center gap-y-2 cursor-pointer group"

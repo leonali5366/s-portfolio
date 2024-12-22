@@ -17,15 +17,15 @@ import Card from "@/components/Card";
 
 export default function Home() {
   const [isHovered, setIsHovered] = useState(false);
-  const portfolio = useRef(null);
-  const aboutus = useRef(null);
-  const pricing = useRef(null);
+  const portfolio = useRef();
+  const aboutus = useRef();
+  const pricing = useRef();
+  const contact = useRef();
 
   // Function to handle scrolling to a specific section
   const scrollToSection = (ref) => {
     ref.current.scrollIntoView({
       behavior: "smooth", // Smooth scrolling
-      block: "start", // Align to the top of the viewport
     });
   };
 
@@ -42,14 +42,19 @@ export default function Home() {
         <Cursor isHovered={isHovered} />
         <Hero setIsHovered={setIsHovered} />
         <Personal setIsHovered={setIsHovered} />
-        <Investment pricing={pricing} setIsHovered={setIsHovered} />
+        <Investment
+          scrollToSection={scrollToSection}
+          pricing={pricing}
+          setIsHovered={setIsHovered}
+          contact={contact}
+        />
         <Customer portfolio={portfolio} />
         <Card />
         <Process />
         <ProcessRes />
         <AboutUs aboutus={aboutus} />
         <div className="flex sm:flex-row flex-col items-center justify-center gap-x-5 bg-[#121212] text-white">
-          <Contact />
+          <Contact contact={contact} />
           <Testimonial />
         </div>
         <Footer setIsHovered={setIsHovered} />

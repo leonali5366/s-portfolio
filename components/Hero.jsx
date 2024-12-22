@@ -101,10 +101,12 @@ export default function Hero({ setIsHovered }) {
       <div className="max-w-[1550px] mx-auto h-full flex sm:flex-row flex-col items-center justify-center relative">
         <div className="w-full h-full relative overflow-hidden">
           <Image
-            src={profile}
+            src={'/images/profile.png'}
+            width={400}
+            height={500}
             alt=""
             id="hero-img"
-            className="scale-150 opacity-0"
+            className="scale-150 opacity-0 max-h-full h-full w-auto"
           />
           <div className="absolute inset-x-0 bottom-0 h-2/4 bg-gradient-to-t from-[#121212] opacity-100"></div>
         </div>

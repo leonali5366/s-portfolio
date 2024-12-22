@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { BsArrowRight } from "react-icons/bs";
 
-const Contact = () => {
+const Contact = ({ contact }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -35,8 +35,8 @@ const Contact = () => {
     }
   };
   return (
-    <div className="h-full bg-primary/30 px-5 w-full">
-      <div className="container mx-auto py-32 text-center xl:text-left flex items-center justify-center h-full">
+    <div className="h-full bg-primary/30 px-5 w-full" ref={contact}>
+      <div className="container mx-auto sm:py-32 py-10 text-center xl:text-left flex items-center justify-center h-full">
         {/* text & form */}
         <div className="flex flex-col w-full max-w-[700px]">
           {/* text */}
@@ -97,4 +97,3 @@ const Contact = () => {
 };
 
 export default Contact;
-
