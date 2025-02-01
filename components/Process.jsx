@@ -56,7 +56,7 @@ export default function Process() {
     });
   }, []);
   return (
-    <div className="bg-[#121212] pb-32 sm:block hidden text-white">
+    <div className="bg-[#121212] pb-32 lg:block hidden text-white">
       <div className="max-w-[1400px] w-full mx-auto flex flex-col gap-y-20">
         <h5 className="text-[84px] font-mono">My web design process</h5>
         <div className="flex w-full relative">

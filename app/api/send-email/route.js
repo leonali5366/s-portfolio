@@ -3,7 +3,7 @@ import nodemailer from "nodemailer";
 
 export async function POST(req) {
   try {
-    const { name, email, message } = await req.json();
+    const { name, email, message, subject } = await req.json();
 
     // Setup Nodemailer transport
     const transporter = nodemailer.createTransport({
@@ -17,7 +17,7 @@ export async function POST(req) {
     const mailOptions = {
       from: email, // Sender's email
       to: process.env.EMAIL_USER, // Replace with your email
-      subject: `Message from ${name} via Website`,
+      subject: `${subject}`,
       text: `You have a new message from ${name} (${email}):\n\n${message}`,
       html: `<p>You have a new message from <strong>${name}</strong> (${email})</p><p><strong>Message:</strong><br>${message}</p>`,
     };

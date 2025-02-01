@@ -14,13 +14,16 @@ import AboutUs from "@/components/AboutMe";
 import Card from "@/components/Card";
 import Customer from "@/components/Customer";
 import Personal from "@/components/Personal";
+import VideoSwiper from "@/components/VideoSwiper";
 
 export default function Home() {
   const [isHovered, setIsHovered] = useState(false);
-  const portfolio = useRef();
   const aboutus = useRef();
   const pricing = useRef();
   const contact = useRef();
+  const aboutMe = useRef();
+  const home = useRef();
+  const testimonial = useRef();
 
   // Function to handle scrolling to a specific section
   const scrollToSection = (ref) => {
@@ -34,28 +37,36 @@ export default function Home() {
       <main className="relative">
         <Header
           scrollToSection={scrollToSection}
-          portfolio={portfolio}
+          aboutMe={aboutMe}
           aboutus={aboutus}
           pricing={pricing}
+          home={home}
+          contact={contact}
+          testimonial={testimonial}
           setIsHovered={setIsHovered}
         />
         <Cursor isHovered={isHovered} />
-        <Hero setIsHovered={setIsHovered} />
-        <Customer setIsHovered={setIsHovered} />
+        <Hero setIsHovered={setIsHovered} home={home} />
+        <Customer
+          setIsHovered={setIsHovered}
+          scrollToSection={scrollToSection}
+          aboutMe={aboutMe}
+        />
         <Investment
           scrollToSection={scrollToSection}
           pricing={pricing}
           setIsHovered={setIsHovered}
           contact={contact}
         />
-        <Personal portfolio={portfolio} />
+        <Personal aboutMe={aboutMe} />
         <Card />
         <Process />
         <ProcessRes />
         <AboutUs aboutus={aboutus} />
-        <div className="flex sm:flex-row flex-col items-center justify-center gap-x-5 bg-[#121212] text-white">
+        <VideoSwiper />
+        <div className="flex xl:flex-row max-xl:py-10 flex-col items-center justify-center gap-x-5 bg-[#121212] text-white">
           <Contact contact={contact} />
-          <Testimonial />
+          <Testimonial testimonial={testimonial} />
         </div>
         <Footer setIsHovered={setIsHovered} />
       </main>

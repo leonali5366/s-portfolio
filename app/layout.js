@@ -1,5 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
+import { EdgeStoreProvider } from "@/lib/edgestore";
+import { Toaster } from "sonner";
 
 const JosefinSans = localFont({
   src: "./fonts/JosefinSans-VariableFont_wght.ttf",
@@ -23,7 +25,10 @@ export default function RootLayout({ children }) {
       <body
         className={`${JosefinSans.variable} ${MarcellusMono.variable} font-sans antialiased`}
       >
-        {children}
+        <EdgeStoreProvider>
+          <Toaster richColors />
+          {children}
+        </EdgeStoreProvider>
       </body>
     </html>
   );

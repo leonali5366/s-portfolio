@@ -9,6 +9,52 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const packageContent = [
+  {
+    title: "Business Website Design",
+    benefits: [
+      "A complete custom website.",
+      "Optimized SEO for Google Ranking.",
+      "Responsive design (Desktop & mobile-friendly).",
+      "Custom unlimited page design as your requirements.",
+      "Fast Response and Timely Delivery",
+      "24/7 Support Let&apos;s get started.(1h replay)",
+      "Support 15 Days after complete project.",
+    ],
+    description:
+      "Your website must have a professional look and be well functioning. Based on your wishes, we create custom websites for you.",
+  },
+  {
+    title: "Ecomerce Website Design",
+    benefits: [
+      "You have your dashboard for efficiently managing orders.",
+      "Links with payment providers like Mollie, Sisow, Stripe etc.",
+      "Responsive design (Desktop & mobile-friendly).",
+      "SEO Setup and marketing tools integration.",
+      "Upload more than 20+ Products with Variation.",
+      "Fast Response and Timely Delivery",
+      "24/7 Support Let&apos;s get started.(1h replay)",
+      "Support 15 Days after complete project.",
+    ],
+    description:
+      "Do you want to start an online web store or is your existing webshop ready for a renewal? (website name) creates rare sites that correspond to your desires. Dashboard makes managing new orders easy.",
+  },
+  {
+    title: "Redesign Website",
+    benefits: [
+      "100% unique custom web design",
+      "SEO Setup and marketing tools integration",
+      "Complete your property",
+      "Fast Response and Timely Delivery",
+      "Including satisfaction guarantee",
+      "Support 15 Days after complete project",
+      "24/7 Support Let&apos;s get started.(1h replay)",
+    ],
+    description:
+      "Dedicated to creating stunning, functional websites tailored to your unique business needs. Transform Your Website with a Fresh Look and Full Support—Message Us to Get Started Today!",
+  },
+];
+
 const Investment = ({ pricing, setIsHovered, scrollToSection, contact }) => {
   useGSAP(() => {
     gsap.from("#text-reveal", {
@@ -41,24 +87,26 @@ const Investment = ({ pricing, setIsHovered, scrollToSection, contact }) => {
   }, []);
 
   return (
-    <div
-      className="bg-[#121212] sm:py-[150px] py-10 sm:px-0 px-5 text-white"
-      ref={pricing}
-    >
-      <div className="max-w-[1400px] mx-auto flex flex-col gap-y-10">
+    <div className="bg-[#121212] xl:py-[150px] py-10 text-white" ref={pricing}>
+      <div className="flex flex-col gap-y-10">
+        {/* header */}
         <h1
-          className="sm:text-[84px] text-4xl font-mono mb-10"
+          className="xl:text-[84px] md:text-6xl max-xl:text-center text-4xl font-mono mb-10"
           id="text-reveal"
         >
           The Investment
         </h1>
-        <div className="flex sm:flex-row flex-col sm:gap-x-20 gap-y-10 h-auto">
+        {/* packages */}
+        <div className="grid 2xl:grid-cols-3 lg:grid-cols-2 gap-5 px-5 items-center justify-center">
+          {/* package 1 */}
           <div
-            className="w-full sm:h-screen bg-[#282828] sm:p-3 p-2"
+            className="max-w-[700px] mx-auto w-full sm:h-screen bg-[#282828] sm:p-3 p-2"
             id="reveal-card-1"
           >
-            <div className="w-full h-full border sm:p-[50px] p-5 flex flex-col items-center justify-between gap-y-7">
-              <h1 className="sm:text-[46px] text-2xl font-mono border-b-2 text-nowrap sm:leading-[4rem]">
+            {/* package 1 */}
+
+            <div className="w-full h-full border xl:p-[50px] max-xl:pb-10 p-5 flex flex-col items-center justify-between gap-y-7">
+              <h1 className="sm:text-[36px] text-2xl font-mono border-b-2 text-nowrap sm:leading-[4rem]">
                 Business Website Design
               </h1>
               <ul className="flex flex-col gap-y-3">
@@ -77,7 +125,7 @@ const Investment = ({ pricing, setIsHovered, scrollToSection, contact }) => {
                 <li className="flex gap-x-5 items-center">
                   <IoCheckmarkDone className="sm:min-w-6 min-w-5 sm:text-[30px] text-lg" />
                   <p className="sm:text-[22px] text-lg font-light text-left mt-2">
-                    Responsive design (Desktop & mobile-friendly )
+                    Responsive design (Desktop & mobile-friendly)
                   </p>
                 </li>
                 <li className="flex gap-x-5 items-center">
@@ -106,11 +154,13 @@ const Investment = ({ pricing, setIsHovered, scrollToSection, contact }) => {
                 </li>
               </ul>
               <h1 className="sm:text-xl sm:text-left text-center">
-                Your website must have a professional look and be well
-                functioning. Based on your wishes, we create custom websites for
-                you.
+                Your website must be professional and functional. We create
+                custom websites based on your wishes.
               </h1>
-              <div className="flex items-center gap-x-3 justify-center sm:hidden">
+              <div
+                onClick={() => scrollToSection(contact)}
+                className="flex items-center gap-x-3 justify-center xl:hidden"
+              >
                 <button className="text-lg uppercase">contact us</button>
                 <button className="size-12 rounded-full bg-white flex items-center justify-center">
                   <BsArrowUpRight className="text-black text-[22px] rotate-45" />
@@ -118,7 +168,7 @@ const Investment = ({ pricing, setIsHovered, scrollToSection, contact }) => {
               </div>
               <Magnet>
                 <div
-                  className="flex items-center gap-x-5 group"
+                  className="flex items-center gap-x-5 group max-xl:hidden"
                   style={{
                     position: "absolute",
                     top: "50%",
@@ -128,11 +178,9 @@ const Investment = ({ pricing, setIsHovered, scrollToSection, contact }) => {
                   }}
                   onMouseEnter={() => setIsHovered(true)}
                   onMouseLeave={() => setIsHovered(false)}
+                  onClick={() => scrollToSection(contact)}
                 >
-                  <button
-                    onClick={() => scrollToSection(contact)}
-                    className="flex gap-x-5 items-center text-2xl font-medium group uppercase w-fit text-nowrap"
-                  >
+                  <button className="flex gap-x-5 items-center text-2xl font-medium group uppercase w-fit text-nowrap">
                     Contact Us
                   </button>
                   <button className="size-14 rounded-full bg-transparent border-dashed group-hover:bg-white border-2 group-hover:scale-[1.2] transition-all duration-300 flex items-center justify-center relative overflow-hidden">
@@ -149,13 +197,16 @@ const Investment = ({ pricing, setIsHovered, scrollToSection, contact }) => {
               </Magnet>
             </div>
           </div>
+          {/* package 2 */}
+
           <div
-            className="w-full sm:h-screen bg-[#282828] sm:p-3 p-2"
+            className="max-w-[700px] mx-auto w-full sm:h-screen bg-[#282828] sm:p-3 p-2"
             id="reveal-card-2"
           >
-            <div className="w-full h-full border sm:p-[50px] p-5 flex flex-col items-center justify-between gap-y-7">
-              <h1 className="sm:text-[46px] text-2xl font-mono border-b-2 text-nowrap sm:leading-[4rem]">
-                Ecomerce Website Design
+            {/* package 2 */}
+            <div className="w-full h-full border xl:p-[50px] max-xl:pb-10 p-5 flex flex-col items-center justify-between gap-y-7">
+              <h1 className="sm:text-[36px] text-2xl font-mono border-b-2 text-nowrap sm:leading-[4rem]">
+                E-Commerce Website Design
               </h1>
               <ul className="flex flex-col gap-y-3">
                 <li className="flex gap-x-5 items-center">
@@ -173,7 +224,7 @@ const Investment = ({ pricing, setIsHovered, scrollToSection, contact }) => {
                 <li className="flex gap-x-5 items-center">
                   <IoCheckmarkDone className="sm:min-w-6 min-w-5 sm:text-[30px] text-lg" />
                   <p className="sm:text-[22px] text-lg font-light text-left mt-2">
-                    Responsive design ( Desktop & mobile-friendly )
+                    Responsive design (Desktop & mobile-friendly)
                   </p>
                 </li>
                 <li className="flex gap-x-5 items-center">
@@ -208,12 +259,15 @@ const Investment = ({ pricing, setIsHovered, scrollToSection, contact }) => {
                 </li>
               </ul>
               <h1 className="sm:text-xl sm:text-left text-center">
-                Do you want to start an online web store or is your existing
+                Do you want to start an online web store, or is your existing
                 webshop ready for a renewal? (website name) creates rare sites
-                that correspond to your desires. Dashboard makes managing new
-                orders easy.
+                that correspond to your desires. The dashboard makes managing
+                new orders easy.
               </h1>
-              <div className="flex items-center gap-x-3 justify-center sm:hidden">
+              <div
+                onClick={() => scrollToSection(contact)}
+                className="flex items-center gap-x-3 justify-center xl:hidden"
+              >
                 <button className="text-lg uppercase">contact us</button>
                 <button className="size-12 rounded-full bg-white flex items-center justify-center">
                   <BsArrowUpRight className="text-black text-[22px] rotate-45" />
@@ -221,7 +275,7 @@ const Investment = ({ pricing, setIsHovered, scrollToSection, contact }) => {
               </div>
               <Magnet>
                 <div
-                  className="flex items-center gap-x-5 group"
+                  className="flex items-center gap-x-5 group max-xl:hidden"
                   style={{
                     position: "absolute",
                     top: "50%",
@@ -231,11 +285,9 @@ const Investment = ({ pricing, setIsHovered, scrollToSection, contact }) => {
                   }}
                   onMouseEnter={() => setIsHovered(true)}
                   onMouseLeave={() => setIsHovered(false)}
+                  onClick={() => scrollToSection(contact)}
                 >
-                  <button
-                    onClick={() => scrollToSection(contact)}
-                    className="flex gap-x-5 items-center text-2xl font-medium group uppercase w-fit text-nowrap"
-                  >
+                  <button className="flex gap-x-5 items-center text-2xl font-medium group uppercase w-fit text-nowrap">
                     Contact Us
                   </button>
                   <button className="size-14 rounded-full bg-transparent border-dashed group-hover:bg-white border-2 group-hover:scale-[1.2] transition-all duration-300 flex items-center justify-center relative overflow-hidden">
@@ -252,14 +304,13 @@ const Investment = ({ pricing, setIsHovered, scrollToSection, contact }) => {
               </Magnet>
             </div>
           </div>
-        </div>
-        <div className="sm:flex sm:justify-center">
+          {/* package 3 */}
           <div
-            className="sm:w-[47%] w-full sm:h-screen bg-[#282828] sm:p-3 p-2"
+            className="max-w-[700px] mx-auto w-full sm:h-screen bg-[#282828] sm:p-3 p-2"
             id="reveal-card-3"
           >
-            <div className="w-full h-full border sm:p-[50px] p-5 flex flex-col items-center justify-between gap-y-7">
-              <h1 className="sm:text-[46px] text-2xl font-mono border-b-2 text-nowrap sm:leading-[4rem]">
+            <div className="w-full h-full border xl:p-[50px] max-xl:pb-10 p-5 flex flex-col items-center justify-between gap-y-7">
+              <h1 className="sm:text-[36px] text-2xl font-mono border-b-2 text-nowrap sm:leading-[4rem]">
                 Redesign Website
               </h1>
               <ul className="flex flex-col gap-y-3">
@@ -311,7 +362,10 @@ const Investment = ({ pricing, setIsHovered, scrollToSection, contact }) => {
                 your unique business needs. Transform Your Website with a Fresh
                 Look and Full Support—Message Us to Get Started Today!
               </h1>
-              <div className="flex items-center gap-x-3 justify-center sm:hidden">
+              <div
+                onClick={() => scrollToSection(contact)}
+                className="flex items-center gap-x-3 justify-center xl:hidden"
+              >
                 <button className="text-lg uppercase">contact us</button>
                 <button className="size-12 rounded-full bg-white flex items-center justify-center">
                   <BsArrowUpRight className="text-black text-[22px] rotate-45" />
@@ -319,7 +373,7 @@ const Investment = ({ pricing, setIsHovered, scrollToSection, contact }) => {
               </div>
               <Magnet>
                 <div
-                  className="flex items-center gap-x-5 group"
+                  className="flex items-center gap-x-5 group max-xl:hidden"
                   style={{
                     position: "absolute",
                     top: "50%",
@@ -329,11 +383,9 @@ const Investment = ({ pricing, setIsHovered, scrollToSection, contact }) => {
                   }}
                   onMouseEnter={() => setIsHovered(true)}
                   onMouseLeave={() => setIsHovered(false)}
+                  onClick={() => scrollToSection(contact)}
                 >
-                  <button
-                    onClick={() => scrollToSection(contact)}
-                    className="flex gap-x-5 items-center text-2xl font-medium group uppercase w-fit text-nowrap"
-                  >
+                  <button className="flex gap-x-5 items-center text-2xl font-medium group uppercase w-fit text-nowrap">
                     Contact Us
                   </button>
                   <button className="size-14 rounded-full bg-transparent border-dashed group-hover:bg-white border-2 group-hover:scale-[1.2] transition-all duration-300 flex items-center justify-center relative overflow-hidden">

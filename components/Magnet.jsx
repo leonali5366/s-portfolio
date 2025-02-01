@@ -59,7 +59,7 @@ const Magnet = ({ children }) => {
     };
   }, []);
 
-  return <div ref={magnetRef} className="relative w-full sm:block hidden">{children}</div>;
+  return <div ref={magnetRef} className="relative w-full">{children}</div>;
 };
 
 export default Magnet;

@@ -9,7 +9,7 @@ import ScrollTrigger from "gsap/dist/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Personal = ({ portfolio }) => {
+const Personal = ({ aboutMe }) => {
   useGSAP(() => {
     gsap.from("#text", {
       y: 100,
@@ -69,10 +69,10 @@ const Personal = ({ portfolio }) => {
   }, []);
   return (
     <div
-      className="w-full py-36 bg-[#121212] sm:px-0 px-5 text-white"
-      ref={portfolio}
+      className="w-full xl:py-36 bg-[#121212] sm:px-0 px-5 text-white"
+      ref={aboutMe}
     >
-      <div className="max-w-[1450px] mx-auto flex sm:flex-row flex-col-reverse sm:justify-between sm:gap-x-20 gap-y-10">
+      <div className="max-w-[1450px] mx-auto flex lg:flex-row flex-col-reverse sm:justify-between lg:gap-x-20 gap-y-10 px-5">
         <div className="w-full flex flex-col gap-y-10">
           <div className="flex flex-col gap-y-3">
             <div className="overflow-hidden">
@@ -110,24 +110,22 @@ const Personal = ({ portfolio }) => {
               className="sm:text-[26px] text-lg font-light text-slate-300"
               id="text-5"
             >
-              It’s your success, my success. That’s why I won’t find a one size
-              fits all solution to help your business separate online. I take a
-              personalized approach to ensure I understand your goals and can
-              deliver a solution that helps your business stand out. Designing
-              professional, responsive websites and offering ongoing support,
-              you can count on me to help with setting up and working with your
-              online presence so it will work to grow your brand, attract
-              customers and increase revenue.
+              Your success is always my priority and success. That’s why I avoid
+              one-size-fits-all solutions and focus on a personalized approach
+              to meet your unique goals. I design professional, responsive
+              websites tailored to help your business stand out online. With
+              ongoing support, I’ll ensure your online presence works to grow
+              your brand, attract customers, and increase revenue.
             </p>
             <p
               className="sm:text-[26px] text-lg font-light text-slate-300"
               id="text-6"
             >
-              I’m here to help you whether you currently have a website and need
-              a redesign, you are in need of a new website altogether, or
-              perhaps you just need some guidance on your digital strategy to
-              take your business to the next level. Together let’s make it
-              happen, let’s turn your vision into reality!
+              I’m here to support you, whether you require a complete website
+              redesign, a brand-new website, or expert guidance on your digital
+              strategy to elevate your business. Together, we can bring your
+              vision live and take your online presence to the next level. Let’s
+              make it happen!
             </p>
           </div>
         </div>

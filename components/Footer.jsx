@@ -68,18 +68,18 @@ const Footer = ({ setIsHovered }) => {
     };
   }, []);
   return (
-    <div className="bg-[#F5F5F5] text-black pt-20 flex flex-col sm:gap-y-20 gap-y-10 overflow-hidden sm:px-10 px-5">
-      <h1 className="text-center sm:text-7xl font-mono text-4xl text-pretty">
+    <div className="bg-[#F5F5F5] text-black pt-20 flex flex-col xl:gap-y-20 gap-y-10 overflow-hidden xl:px-10 px-5">
+      <h1 className="text-center xl:text-7xl md:text-5xl font-mono text-4xl text-pretty">
         Let&apos;s create a custom website that works <br /> for your business &
         increase your sales.
       </h1>
-      <p className="text-center sm:text-3xl text-xl">
+      <p className="text-center xl:text-3xl md:text-2xl text-xl">
         Book a free 30-minute strategy call and we’ll <br /> figure out your
         next best move, together
       </p>
-      <div className="flex sm:flex-row flex-col items-center justify-center gap-y-5">
+      <div className="flex xl:flex-row flex-col items-center justify-center gap-y-5">
         <GoogleCalendarScheduler>
-          <div className="flex items-center gap-x-3 justify-center sm:hidden">
+          <div className="flex items-center gap-x-3 justify-center xl:hidden">
             <button className="text-lg uppercase font-semibold">
               book a free call
             </button>
@@ -88,7 +88,7 @@ const Footer = ({ setIsHovered }) => {
             </button>
           </div>
         </GoogleCalendarScheduler>
-        <div ref={magnetRef} className="w-[400px] relative sm:block hidden">
+        <div ref={magnetRef} className="w-[400px] relative xl:block hidden">
           <GoogleCalendarScheduler>
             <div
               className="flex items-center gap-x-5 group"
@@ -126,9 +126,9 @@ const Footer = ({ setIsHovered }) => {
           or sent me an email
         </button>
       </div>
-      <div className="flex flex-col gap-y-5 mb-5">
+      <div className="flex flex-col xl:gap-y-5 md:gap-y-3 gap-y-1 mb-5">
         <div className="flex items-center justify-between">
-          <h1 className="text-3xl">ShuvoDesign</h1>
+          <h1 className="xl:text-3xl md:text-2xl text-xl">ShuvoDesign</h1>
           <div className="flex items-center gap-x-3">
             <Magnet>
               <a
@@ -138,7 +138,7 @@ const Footer = ({ setIsHovered }) => {
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
               >
-                <FaLinkedinIn className="text-3xl" />
+                <FaLinkedinIn className="xl:text-3xl md:text-2xl text-xl" />
               </a>
             </Magnet>
             <Magnet>
@@ -147,7 +147,7 @@ const Footer = ({ setIsHovered }) => {
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
               >
-                <MdAlternateEmail className="text-3xl" />
+                <MdAlternateEmail className="xl:text-3xl md:text-2xl text-xl" />
               </a>
             </Magnet>
             <Magnet>
@@ -158,7 +158,7 @@ const Footer = ({ setIsHovered }) => {
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
               >
-                <FaWhatsapp className="text-3xl" />
+                <FaWhatsapp className="xl:text-3xl md:text-2xl text-xl" />
               </a>
             </Magnet>
             <Magnet>
@@ -169,15 +169,15 @@ const Footer = ({ setIsHovered }) => {
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
               >
-                <CiGlobe className="text-3xl" />
+                <CiGlobe className="xl:text-3xl md:text-2xl text-xl" />
               </a>
             </Magnet>
           </div>
         </div>
         <div className="w-full h-[1px] bg-black"></div>
-        <div className="flex sm:flex-row flex-col items-center justify-between">
-          <p className="sm:text-base text-sm">©2024 All Rights Reserved.</p>
-        </div>
+        <p className="md:text-base max-lg:text-center text-sm mt-1">
+          ©2024 All Rights Reserved.
+        </p>
       </div>
     </div>
   );

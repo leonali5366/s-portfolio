@@ -1,193 +1,82 @@
+"use client";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { GoArrowUpRight } from "react-icons/go";
-import web1 from "../app/images/web1.png";
-import web2 from "../app/images/web2.png";
-import web3 from "../app/images/web3.png";
-import web4 from "../app/images/web4.png";
-import web5 from "../app/images/web5.png";
-import web6 from "../app/images/web6.png";
-import web7 from "../app/images/web7.png";
-import web8 from "../app/images/web8.png";
+import axios from "axios";
+import { toast } from "sonner";
+import Link from "next/link";
+import { Skeleton } from "./ui/skeleton";
+
 gsap.registerPlugin(ScrollTrigger);
 
 const Card = () => {
-  useGSAP(() => {
-    gsap.from("#box-1", {
-      x: -700,
-      duration: 0.9,
-      opacity: 0,
-      scrollTrigger: {
-        trigger: "#box-1",
-        start: "top bottom",
-        end: "top center",
-        scrub: 0.6,
-      },
-    });
-    gsap.from("#box-2", {
-      x: 700,
-      duration: 0.9,
-      opacity: 0,
-      scrollTrigger: {
-        trigger: "#box-2",
-        start: "top bottom",
-        end: "top center",
-        scrub: 0.6,
-      },
-    });
-    gsap.from("#box-3", {
-      x: -700,
-      duration: 0.9,
-      opacity: 0,
-      scrollTrigger: {
-        trigger: "#box-3",
-        start: "top bottom",
-        end: "top center",
-        scrub: 0.6,
-      },
-    });
-    gsap.from("#box-4", {
-      x: 700,
-      duration: 0.9,
-      opacity: 0,
-      scrollTrigger: {
-        trigger: "#box-4",
-        start: "top bottom",
-        end: "top center",
-        scrub: 0.6,
-      },
-    });
-    gsap.from("#box-5", {
-      x: -700,
-      duration: 0.9,
-      opacity: 0,
-      scrollTrigger: {
-        trigger: "#box-5",
-        start: "top bottom",
-        end: "top center",
-        scrub: 0.6,
-      },
-    });
-    gsap.from("#box-6", {
-      x: 700,
-      duration: 0.9,
-      opacity: 0,
-      scrollTrigger: {
-        trigger: "#box-6",
-        start: "top bottom",
-        end: "top center",
-        scrub: 0.6,
-      },
-    });
+  const [projects, setProjects] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Fetch projects on mount
+  useEffect(() => {
+    fetchProjects();
   }, []);
+
+  const fetchProjects = async () => {
+    setIsLoading(true);
+    try {
+      const response = await axios.get("/api/add-project");
+      const allProjects = response.data.data;
+      const limitedProjects = allProjects.slice(0, 6);
+      setProjects(limitedProjects);
+    } catch (error) {
+      console.error("Error fetching projects:", error);
+      toast.error("Failed to fetch projects");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  if (isLoading) {
+    return (
+      <div className="bg-[#121212] h-screen flex items-center justify-center">
+        <div className="text-white">Loading videos...</div>
+      </div>
+    );
+  }
   return (
-    <div className="bg-[#121212] pb-32 overflow-hidden">
-      <div className="max-w-[1450px] mx-auto flex items-center justify-center sm:px-0 px-5">
-        <div className="grid sm:grid-cols-2 grid-cols-1 gap-10">
-          <div
-            className="sm:size-[500px] w-full h-[500px] overflow-hidden group relative rounded-lg"
-            id="box-1"
-          >
-            <Image
-              src={web1}
-              alt=""
-              className="w-full h-auto group-hover:-translate-y-1/2 transition-transform duration-1000"
-            />
-            <div className="absolute top-0 left-0 w-full h-full group-hover:bg-black group-hover:opacity-50 opacity-0 group-hover:backdrop-blur transition-all duration-500 flex items-center justify-center">
-              <button className="size-16 rounded-full bg-white flex items-center justify-center backdrop-blur">
-                <GoArrowUpRight size={32} className="text-black" />
-              </button>
-            </div>
-          </div>
-          <div className="sm:size-[500px] w-full h-[500px]" id="box-2">
-            <div
-              className="sm:size-[500px] w-full h-[500px] overflow-hidden group relative rounded-lg"
-              id="box-2"
-            >
-              <Image
-                src={web2}
-                alt=""
-                className="w-full h-auto group-hover:-translate-y-1/2 transition-transform duration-1000"
-              />
-              <div className="absolute top-0 left-0 w-full h-full group-hover:bg-black group-hover:opacity-50 opacity-0 group-hover:backdrop-blur transition-all duration-500 flex items-center justify-center">
-                <button className="size-16 rounded-full bg-white flex items-center justify-center backdrop-blur">
-                  <GoArrowUpRight size={32} className="text-black" />
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="sm:size-[500px] w-full h-[500px]" id="box-3">
-            <div
-              className="sm:size-[500px] w-full h-[500px] overflow-hidden group relative rounded-lg"
-              id="box-1"
-            >
-              <Image
-                src={web3}
-                alt=""
-                className="w-full h-auto group-hover:-translate-y-1/2 transition-transform duration-1000"
-              />
-              <div className="absolute top-0 left-0 w-full h-full group-hover:bg-black group-hover:opacity-50 opacity-0 group-hover:backdrop-blur transition-all duration-500 flex items-center justify-center">
-                <button className="size-16 rounded-full bg-white flex items-center justify-center backdrop-blur">
-                  <GoArrowUpRight size={32} className="text-black" />
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="sm:size-[500px] w-full h-[500px]" id="box-4">
-            <div
-              className="sm:size-[500px] w-full h-[500px] overflow-hidden group relative rounded-lg"
-              id="box-1"
-            >
-              <Image
-                src={web4}
-                alt=""
-                className="w-full h-auto group-hover:-translate-y-1/2 transition-transform duration-1000"
-              />
-              <div className="absolute top-0 left-0 w-full h-full group-hover:bg-black group-hover:opacity-50 opacity-0 group-hover:backdrop-blur transition-all duration-500 flex items-center justify-center">
-                <button className="size-16 rounded-full bg-white flex items-center justify-center backdrop-blur">
-                  <GoArrowUpRight size={32} className="text-black" />
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="sm:size-[500px] w-full h-[500px]" id="box-5">
-            <div
-              className="sm:size-[500px] w-full h-[500px] overflow-hidden group relative rounded-lg"
-              id="box-1"
-            >
-              <Image
-                src={web5}
-                alt=""
-                className="w-full h-auto group-hover:-translate-y-1/2 transition-transform duration-1000"
-              />
-              <div className="absolute top-0 left-0 w-full h-full group-hover:bg-black group-hover:opacity-50 opacity-0 group-hover:backdrop-blur transition-all duration-500 flex items-center justify-center">
-                <button className="size-16 rounded-full bg-white flex items-center justify-center backdrop-blur">
-                  <GoArrowUpRight size={32} className="text-black" />
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="sm:size-[500px] w-full h-[500px]" id="box-6">
-            <div
-              className="sm:size-[500px] w-full h-[500px] overflow-hidden group relative rounded-lg"
-              id="box-1"
-            >
-              <Image
-                src={web6}
-                alt=""
-                className="w-full h-auto group-hover:-translate-y-1/2 transition-transform duration-1000"
-              />
-              <div className="absolute top-0 left-0 w-full h-full group-hover:bg-black group-hover:opacity-50 opacity-0 group-hover:backdrop-blur transition-all duration-500 flex items-center justify-center">
-                <button className="size-16 rounded-full bg-white flex items-center justify-center backdrop-blur">
-                  <GoArrowUpRight size={32} className="text-black" />
-                </button>
-              </div>
-            </div>
-          </div>
+    <div className="bg-[#121212]">
+      <div className="max-w-[1200px] mx-auto px-5 py-20 flex flex-col justify-between h-screen gap-20">
+        <h1 className="text-white xl:text-[84px] md:text-6xl text-4xl font-mono text-center">
+          Projects
+        </h1>
+        <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10">
+          {projects.map((project, i) => {
+            return (
+              <a href={project.websiteUrl} key={project.id} target="_blank">
+                <div className="w-full h-[300px] overflow-hidden group relative rounded-lg">
+                  <Image
+                    src={project.imageUrl}
+                    alt=""
+                    objectFit="cover"
+                    fill
+                    className="rounded-md group-hover:-translate-y-1/2 transition-transform duration-1000"
+                  />
+                  <div className="absolute top-0 left-0 w-full h-full group-hover:bg-black group-hover:opacity-50 opacity-0 group-hover:backdrop-blur transition-all duration-500 flex flex-col items-center justify-center gap-5">
+                    <h1 className="text-white text-2xl">{project.name}</h1>
+                    <button className="size-16 rounded-full bg-white flex items-center justify-center backdrop-blur">
+                      <GoArrowUpRight size={32} className="text-black" />
+                    </button>
+                  </div>
+                </div>
+              </a>
+            );
+          })}
         </div>
+        <Link href={"/projects"} className="flex items-center justify-center">
+          <button className="px-5 text-white bg-blue-500 hover:bg-blue-600 transition-colors duration-300 ease-in-out rounded py-2">
+            View All
+          </button>
+        </Link>
       </div>
     </div>
   );

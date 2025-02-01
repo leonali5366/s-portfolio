@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { BsArrowUpCircleFill } from "react-icons/bs";
+import { BsArrowUpCircleFill, BsArrowUpRight } from "react-icons/bs";
 import Magnet from "./Magnet";
 import { FiArrowRight } from "react-icons/fi";
 import gsap from "gsap";
@@ -9,7 +9,7 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Customer = ({ setIsHovered }) => {
+const Customer = ({ setIsHovered, scrollToSection, aboutMe }) => {
   useGSAP(() => {
     gsap.from("#text-rev-1", {
       y: 40,
@@ -40,7 +40,7 @@ const Customer = ({ setIsHovered }) => {
   return (
     <div className="bg-[#F5F5F5]">
       {/* 1st 2 components */}
-      <div className="max-w-[1550px] mx-auto sm:py-32 py-14 space-y-44">
+      <div className="max-w-[1550px] mx-auto sm:py-32 py-14 space-y-44 px-5">
         {/* 1st components */}
         <div className="w-full flex sm:flex-row flex-col justify-center sm:gap-x-28 gap-y-10">
           <div className="flex w-full h-fit sm:sticky sm:top-10 sm:px-0 px-5">
@@ -48,10 +48,10 @@ const Customer = ({ setIsHovered }) => {
               <div className="w-full h-full bg-black" id="line" />
             </div>
             <div className="w-full flex flex-col gap-y-10">
-              <div className="w-full sm:text-[68px] text-3xl font-mono flex flex-col">
+              <div className="w-full lg:text-[68px] sm:text-5xl text-3xl font-mono flex flex-col">
                 <div className="overflow-hidden">
                   <p
-                    className="text-black text-pretty sm:leading-[5rem]"
+                    className="text-black text-pretty lg:leading-[5rem] sm:leading-[4rem]"
                     id="text"
                   >
                     Every Missed Click Is a
@@ -59,7 +59,7 @@ const Customer = ({ setIsHovered }) => {
                 </div>
                 <div className="overflow-hidden">
                   <p
-                    className="text-black text-pretty sm:leading-[5rem]"
+                    className="text-black text-pretty lg:leading-[5rem] sm:leading-[4rem]"
                     id="text"
                   >
                     Lost Customer – Get a
@@ -67,7 +67,7 @@ const Customer = ({ setIsHovered }) => {
                 </div>
                 <div className="overflow-hidden">
                   <p
-                    className="text-black text-pretty sm:leading-[5rem]"
+                    className="text-black text-pretty lg:leading-[5rem] sm:leading-[4rem]"
                     id="text"
                   >
                     Website Today!
@@ -75,7 +75,7 @@ const Customer = ({ setIsHovered }) => {
                 </div>
               </div>
               <p
-                className="sm:text-[34px] text-lg text-black sm:leading-10"
+                className="lg:text-[34px] sm:text-2xl text-lg text-black sm:leading-10"
                 id="text-rev-1"
               >
                 Don’t let opportunities slip away—invest in a website that
@@ -83,42 +83,41 @@ const Customer = ({ setIsHovered }) => {
               </p>
             </div>
           </div>
-          <div className="flex flex-col sm:gap-y-10 gap-y-5 w-full sm:px-0 px-5">
+          <div className="flex flex-col lg:gap-y-10 sm:gap-y-7 gap-y-5 w-full sm:px-0 px-5">
             <h1
-              className="sm:text-[74px] text-5xl font-mono text-black flex items-center gap-x-5 group"
+              className="lg:text-[74px] sm:text-6xl text-5xl font-mono text-black flex items-center gap-x-5 group"
               id="percentage"
             >
               90%
               <BsArrowUpCircleFill className="group-hover:text-green-500 transition-colors duration-300" />
             </h1>
             <p
-              className="sm:text-[26px] text-lg text-black opacity-70 text-pretty"
+              className="lg:text-[26px] sm:text-xl text-lg text-black opacity-70 text-pretty"
               id="text-rev-2"
             >
               Today we live in a digital world and your website is not just an
               online presence but your brand’s representative 24 hours a day, 7
               days a week. Very few people go to your site or visit your store
-              without a professional website, but your competitors may be just a
-              click away. Convenience, credibility, and Information — at your
-              audience’s fingertips.
+              without a professional website. Still, your competitors may be
+              just a click away—convenience, credibility, and Information — at
+              your audience’s fingertips.
             </p>
             <p
-              className="sm:text-[26px] text-lg text-black opacity-70 text-pretty"
+              className="lg:text-[26px] sm:text-xl text-lg text-black opacity-70 text-pretty"
               id="text-rev-3"
             >
-              On top of that, a well designed website can actually contribute to
-              building your brand’s trust and also help you attract new
-              customers and nurture existing relationships. It’s where you put
-              on display your product, tell the story, and build that sense of
-              connection.
+              In addition, a well-designed website can also contribute to
+              building your brand’s trust, help you attract new customers, and
+              nurture existing relationships. It’s where you display your
+              product, tell the story, and build that sense of connection.
             </p>
             <p
-              className="sm:text-[26px] text-lg text-black opacity-70 text-pretty"
+              className="lg:text-[26px] sm:text-xl text-lg text-black opacity-70 text-pretty"
               id="text-rev-4"
             >
               A tailored website can grow your business, build relationships
               with your customers, and achieve heights for your business
-              regardless of whether you are a startup or small business or you
+              regardless of whether you are a startup or small business, or you
               are an old and established company. Don’t leave valuable
               opportunities on the table, invest in a website that performs as
               much as you do. We will help you convert your vision into a
@@ -126,7 +125,16 @@ const Customer = ({ setIsHovered }) => {
             </p>
             <Magnet>
               <div
-                className="flex items-center gap-x-5 group mt-5"
+                className="flex items-center gap-x-3 justify-center lg:hidden"
+                id="text-reveal-3"
+              >
+                <button className="text-lg uppercase">View Portfolio</button>
+                <button className="size-12 rounded-full bg-black flex items-center justify-center">
+                  <BsArrowUpRight className="text-white text-[22px] rotate-45" />
+                </button>
+              </div>
+              <div
+                className="flex items-center gap-x-5 group mt-5 max-lg:hidden"
                 style={{
                   position: "absolute",
                   top: "50%",
@@ -136,6 +144,7 @@ const Customer = ({ setIsHovered }) => {
                 }}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
+                onClick={() => scrollToSection(aboutMe)}
               >
                 <button className="text-3xl text-black">View Portfolio</button>
 

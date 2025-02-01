@@ -124,11 +124,11 @@ const ProcessRes = () => {
   }, []);
 
   return (
-    <div className="bg-[#121212] sm:hidden px-5 flex flex-col gap-y-10 pb-32 text-white">
+    <div className="bg-[#121212] lg:hidden px-5 flex flex-col gap-y-10 pb-32 text-white">
       <h1 className="text-4xl font-mono">My web design process</h1>
       <OpacityComponent>
         <div className="flex flex-col gap-y-5" id="reveal-trg-1">
-          <div className="flex items-center justify-between gap-x-12">
+          <div className="flex items-center justify-between gap-x-8">
             <div className="overflow-hidden min-w-fit">
               <h1 className="text-7xl font-mono" id="text-p-reveal-1">
                 01
@@ -160,7 +160,7 @@ const ProcessRes = () => {
       </OpacityComponent>
       <OpacityComponent>
         <div className="flex flex-col gap-y-5" id="reveal-trg-2">
-          <div className="flex items-center justify-between gap-x-12">
+          <div className="flex items-center justify-between gap-x-8">
             <div className="overflow-hidden min-w-fit">
               <h1 className="text-7xl font-mono" id="text-p-reveal-4">
                 02
@@ -192,7 +192,7 @@ const ProcessRes = () => {
 
       <OpacityComponent>
         <div className="flex flex-col gap-y-5" id="reveal-trg-3">
-          <div className="flex items-center justify-between gap-x-12">
+          <div className="flex items-center justify-between gap-x-8">
             <div className="overflow-hidden min-w-fit">
               <h1 className="text-7xl font-mono" id="text-p-reveal-7">
                 03
@@ -222,7 +222,7 @@ const ProcessRes = () => {
       </OpacityComponent>
       <OpacityComponent>
         <div className="flex flex-col gap-y-5" id="reveal-trg-4">
-          <div className="flex items-center justify-between gap-x-12">
+          <div className="flex items-center justify-between gap-x-8">
             <div className="overflow-hidden min-w-fit">
               <h1 className="text-7xl font-mono" id="text-p-reveal-10">
                 04

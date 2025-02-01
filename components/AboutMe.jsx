@@ -79,14 +79,14 @@ const AboutUs = ({ aboutus }) => {
   }, []);
   return (
     <div
-      className="bg-[#121212] sm:pb-[150px] sm:px-0 px-5 text-white"
+      className="bg-[#121212] lg:pb-[150px] lg:px-0 px-5 text-white"
       ref={aboutus}
     >
       <div className="max-w-[1400px] mx-auto sm:space-y-20 space-y-10">
-        <h1 className="sm:text-[84px] text-5xl font-mono">
+        <h1 className="lg:text-[84px] text-5xl font-mono">
           What makes us different
         </h1>
-        <div className="flex sm:flex-row flex-col sm:justify-between sm:gap-x-20 gap-y-10">
+        <div className="flex lg:flex-row flex-col lg:justify-between lg:gap-x-20 gap-y-10">
           <div className="w-full h-full overflow-hidden relative" id="img-trg">
             <Image src={'/images/work.webp'} alt="" width={1000} height={1200} className="" />
             <div

@@ -12,7 +12,7 @@ import { FaSquareWhatsapp } from "react-icons/fa6";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Hero({ setIsHovered }) {
+export default function Hero({ setIsHovered, home }) {
   const magnetRef = useRef(null);
 
   useEffect(() => {
@@ -97,16 +97,19 @@ export default function Hero({ setIsHovered }) {
     });
   }, []);
   return (
-    <div className="w-full sm:h-screen bg-[#121212] overflow-hidden py-10 text-white">
-      <div className="max-w-[1550px] mx-auto h-full flex sm:flex-row flex-col items-center justify-center relative">
-        <div className="w-full h-full relative overflow-hidden">
+    <div
+      className="w-full lg:h-screen bg-[#121212] overflow-hidden py-10 text-white"
+      ref={home}
+    >
+      <div className="max-w-[1550px] mx-auto h-full flex lg:flex-row flex-col items-center justify-center relative px-5">
+        <div className="lg:w-full w-[500px] lg:h-full h-[800px] relative overflow-hidden">
           <Image
-            src={'/images/profile.png'}
-            width={400}
-            height={500}
+            src={"/images/profile.png"}
+            objectFit="cover"
+            layout="fill"
             alt=""
             id="hero-img"
-            className="scale-150 opacity-0 max-h-full h-full w-auto"
+            className="scale-150 opacity-0"
           />
           <div className="absolute inset-x-0 bottom-0 h-2/4 bg-gradient-to-t from-[#121212] opacity-100"></div>
         </div>
