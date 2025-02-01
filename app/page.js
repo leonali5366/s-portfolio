@@ -24,6 +24,7 @@ export default function Home() {
   const aboutMe = useRef();
   const home = useRef();
   const testimonial = useRef();
+  const process = useRef();
 
   // Function to handle scrolling to a specific section
   const scrollToSection = (ref) => {
@@ -41,6 +42,7 @@ export default function Home() {
           aboutus={aboutus}
           pricing={pricing}
           home={home}
+          process={process}
           contact={contact}
           testimonial={testimonial}
           setIsHovered={setIsHovered}
@@ -60,8 +62,8 @@ export default function Home() {
         />
         <Personal aboutMe={aboutMe} />
         <Card />
-        <Process />
-        <ProcessRes />
+        <Process process={process} />
+        <ProcessRes process={process} />
         <AboutUs aboutus={aboutus} />
         <VideoSwiper />
         <div className="flex xl:flex-row max-xl:py-10 flex-col items-center justify-center gap-x-5 bg-[#121212] text-white">

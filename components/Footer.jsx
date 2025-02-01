@@ -176,7 +176,7 @@ const Footer = ({ setIsHovered }) => {
         </div>
         <div className="w-full h-[1px] bg-black"></div>
         <p className="md:text-base max-lg:text-center text-sm mt-1">
-          ©2024 All Rights Reserved.
+          ©2025 All Rights Reserved.
         </p>
       </div>
     </div>

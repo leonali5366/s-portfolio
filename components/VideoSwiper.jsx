@@ -43,6 +43,9 @@ const VideoSwiper = () => {
 
   return (
     <div className="mx-auto px-5 py-8 bg-[#121212]">
+      <h1 className="xl:text-6xl md:text-5xl text-4xl text-white text-center md:mb-10 mb-5 font-mono">
+        Client&apos;s Success Stories
+      </h1>
       <Swiper
         effect="coverflow"
         grabCursor={true}

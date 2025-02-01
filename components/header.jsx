@@ -11,11 +11,14 @@ export default function Header({
   home,
   testimonial,
   contact,
+  process,
 }) {
   const [isActive, setIsActive] = useState(false);
   return (
     <header className="flex items-center justify-between px-5 h-16 fixed top-0 w-full bg-black/60 backdrop-blur z-[999]">
-      <span className="xl:text-5xl md:text-4xl text-3xl text-white">ShuvoDesign</span>
+      <span className="xl:text-5xl md:text-4xl text-3xl text-white">
+        ShuvoDesign
+      </span>
       <ul className="2xl:flex hidden items-center gap-x-5 text-xl text-white">
         <li
           className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300"
@@ -47,7 +50,15 @@ export default function Header({
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          About us
+          Why me
+        </li>
+        <li
+          className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300"
+          onClick={() => scrollToSection(process)}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          Process
         </li>
 
         <li
@@ -110,6 +121,7 @@ export default function Header({
             testimonial={testimonial}
             contact={contact}
             scrollToSection={scrollToSection}
+            process={process}
           />
         )}
       </AnimatePresence>

@@ -34,8 +34,8 @@ const Projects = () => {
     }
   };
   return (
-    <div>
-      <h1 className="text-2xl text-center mt-5 font-mono">All Projects</h1>
+    <div className="bg-[#121212] min-h-screen">
+      <h1 className="text-2xl text-center pt-5 font-mono text-white">All Projects</h1>
       <div className="mt-5 grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 px-5">
         {isLoading ? (
           <>

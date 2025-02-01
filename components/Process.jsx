@@ -6,7 +6,7 @@ import { useRef, useState } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Process() {
+export default function Process({process}) {
   const [number, setNumber] = useState("01");
   const sec1 = useRef();
   const sec2 = useRef();
@@ -56,7 +56,7 @@ export default function Process() {
     });
   }, []);
   return (
-    <div className="bg-[#121212] pb-32 lg:block hidden text-white">
+    <div className="bg-[#121212] pb-32 lg:block hidden pt-24 text-white" ref={process}>
       <div className="max-w-[1400px] w-full mx-auto flex flex-col gap-y-20">
         <h5 className="text-[84px] font-mono">My web design process</h5>
         <div className="flex w-full relative">

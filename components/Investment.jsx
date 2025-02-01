@@ -91,7 +91,7 @@ const Investment = ({ pricing, setIsHovered, scrollToSection, contact }) => {
       <div className="flex flex-col gap-y-10">
         {/* header */}
         <h1
-          className="xl:text-[84px] md:text-6xl max-xl:text-center text-4xl font-mono mb-10"
+          className="xl:text-[84px] md:text-6xl max-xl:text-center text-4xl font-mono mb-10 pl-5"
           id="text-reveal"
         >
           The Investment

@@ -45,7 +45,7 @@ const Card = () => {
   }
   return (
     <div className="bg-[#121212]">
-      <div className="max-w-[1200px] mx-auto px-5 py-20 flex flex-col justify-between h-screen gap-20">
+      <div className="px-5 py-20 flex flex-col justify-between 2xl:h-screen gap-20">
         <h1 className="text-white xl:text-[84px] md:text-6xl text-4xl font-mono text-center">
           Projects
         </h1>

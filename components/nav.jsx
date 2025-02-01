@@ -17,6 +17,7 @@ export default function Nav({
   testimonial,
   contact,
   scrollToSection,
+  process,
 }) {
   const navItems = [
     {
@@ -32,8 +33,12 @@ export default function Nav({
       href: aboutMe,
     },
     {
-      title: "About us",
+      title: "Why me",
       href: aboutus,
+    },
+    {
+      title: "Process",
+      href: process,
     },
     {
       title: "Testimonial",
