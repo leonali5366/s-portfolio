@@ -42,16 +42,16 @@ const Customer = ({ setIsHovered, scrollToSection, aboutMe }) => {
       {/* 1st 2 components */}
       <div className="max-w-[1550px] mx-auto sm:py-32 py-14 space-y-44 px-5">
         {/* 1st components */}
-        <div className="w-full flex sm:flex-row flex-col justify-center sm:gap-x-28 gap-y-10">
-          <div className="flex w-full h-fit sm:sticky sm:top-10 sm:px-0 px-5">
+        <div className="w-full flex xl:flex-row flex-col justify-center xl:gap-x-28 gap-y-10">
+          <div className="flex w-full h-fit xl:sticky xl:top-10 xl:px-0 px-5">
             <div className="h-auto sm:w-1 w-[2px] mr-5 overflow-hidden">
               <div className="w-full h-full bg-black" id="line" />
             </div>
             <div className="w-full flex flex-col gap-y-10">
-              <div className="w-full lg:text-[68px] sm:text-5xl text-3xl font-mono flex flex-col">
+              <div className="w-full xl:text-[68px] lg:text-6xl sm:text-5xl text-3xl font-mono flex flex-col">
                 <div className="overflow-hidden">
                   <p
-                    className="text-black text-pretty lg:leading-[5rem] sm:leading-[4rem]"
+                    className="text-black text-nowrap lg:leading-[5rem] sm:leading-[4rem]"
                     id="text"
                   >
                     Every Missed Click Is a
@@ -59,7 +59,7 @@ const Customer = ({ setIsHovered, scrollToSection, aboutMe }) => {
                 </div>
                 <div className="overflow-hidden">
                   <p
-                    className="text-black text-pretty lg:leading-[5rem] sm:leading-[4rem]"
+                    className="text-black text-nowrap lg:leading-[5rem] sm:leading-[4rem]"
                     id="text"
                   >
                     Lost Customer – Get a
@@ -67,7 +67,7 @@ const Customer = ({ setIsHovered, scrollToSection, aboutMe }) => {
                 </div>
                 <div className="overflow-hidden">
                   <p
-                    className="text-black text-pretty lg:leading-[5rem] sm:leading-[4rem]"
+                    className="text-black text-nowrap lg:leading-[5rem] sm:leading-[4rem]"
                     id="text"
                   >
                     Website Today!
@@ -75,7 +75,7 @@ const Customer = ({ setIsHovered, scrollToSection, aboutMe }) => {
                 </div>
               </div>
               <p
-                className="lg:text-[34px] sm:text-2xl text-lg text-black sm:leading-10"
+                className="xl:text-[34px] lg:text-3xl sm:text-2xl text-lg text-black sm:leading-10"
                 id="text-rev-1"
               >
                 Don’t let opportunities slip away—invest in a website that

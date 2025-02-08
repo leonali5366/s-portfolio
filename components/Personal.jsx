@@ -77,7 +77,7 @@ const Personal = ({ aboutMe }) => {
           <div className="flex flex-col gap-y-3">
             <div className="overflow-hidden">
               <h6
-                className="sm:text-5xl text-xl font-mono sm:leading-[5rem]"
+                className="sm:text-5xl text-xl font-mono"
                 id="text-3"
               >
                 <small>Hi! I&apos;m</small> Shohanur Reza Shuvo —{" "}
@@ -86,7 +86,7 @@ const Personal = ({ aboutMe }) => {
             </div>
             <div className="overflow-hidden">
               <h1
-                className="sm:text-5xl text-xl font-mono sm:leading-[5rem]"
+                className="sm:text-5xl text-xl font-mono py-2"
                 id="text-4"
               >
                 Website Designer - <small>Owner</small>

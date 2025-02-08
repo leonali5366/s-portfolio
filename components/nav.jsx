@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import { usePathname } from "next/navigation";
 import { menuSlide } from "./anime";
 import Links from "./Links";
 import Curve from "./Curve";
-import Magnet from "./Magnet";
 import { FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
 import { MdAlternateEmail } from "react-icons/md";
 import { CiGlobe } from "react-icons/ci";
