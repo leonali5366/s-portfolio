@@ -102,7 +102,7 @@ export default function Hero({ setIsHovered, home }) {
       ref={home}
     >
       <div className="max-w-[1550px] mx-auto h-full flex lg:flex-row flex-col items-center justify-center relative px-5">
-        <div className="lg:w-full w-[500px] lg:h-full h-[800px] relative overflow-hidden">
+        <div className="lg:w-full md:w-[500px] sm:w-[400px] w-[300px] h-[400px] sm:h-[500px] lg:h-full md:h-[600px] relative overflow-hidden">
           <Image
             src={"/images/profile.png"}
             objectFit="cover"
