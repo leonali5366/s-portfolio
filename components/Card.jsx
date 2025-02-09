@@ -47,7 +47,7 @@ const Card = () => {
     <div className="bg-[#121212]">
       <div className="px-5 py-20 flex flex-col justify-between 2xl:h-screen gap-20">
         <h1 className="text-white xl:text-[84px] md:text-6xl text-4xl font-mono text-center">
-          Projects
+          Recent Projects
         </h1>
         <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10">
           {projects.map((project, i) => {

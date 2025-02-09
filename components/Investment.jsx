@@ -6,6 +6,7 @@ import Magnet from "./Magnet";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import GoogleCalendarScheduler from "./GoogleCalendarScheduler";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -55,7 +56,7 @@ const packageContent = [
   },
 ];
 
-const Investment = ({ pricing, setIsHovered, scrollToSection, contact }) => {
+const Investment = ({ pricing, setIsHovered }) => {
   useGSAP(() => {
     gsap.from("#text-reveal", {
       y: 40,
@@ -91,109 +92,97 @@ const Investment = ({ pricing, setIsHovered, scrollToSection, contact }) => {
       <div className="flex flex-col gap-y-10">
         {/* header */}
         <h1
-          className="xl:text-[84px] md:text-6xl max-xl:text-center text-4xl font-mono mb-10 pl-5"
+          className="xl:text-[84px] md:text-6xl max-xl:text-center text-4xl font-mono md:mb-10 pl-5"
           id="text-reveal"
         >
           The Investment
         </h1>
         {/* packages */}
-        <div className="grid 2xl:grid-cols-3 lg:grid-cols-2 gap-5 px-5 items-center justify-center">
+        <div className="grid 2xl:grid-cols-3 lg:grid-cols-2 gap-5 md:items-center md:justify-center px-5">
           {/* package 1 */}
           <div
-            className="max-w-[700px] mx-auto w-full sm:h-screen bg-[#282828] sm:p-3 p-2"
+            className="max-w-[700px] mx-auto w-full md:h-screen bg-[#282828] sm:p-3 p-2"
             id="reveal-card-1"
           >
             {/* package 1 */}
 
-            <div className="w-full h-full border xl:p-[50px] max-xl:pb-10 p-5 flex flex-col items-center justify-between gap-y-7">
+            <div className="w-full h-full border xl:p-[50px] p-5 flex flex-col items-center justify-between gap-y-7">
               <h1 className="sm:text-[36px] text-2xl font-mono border-b-2 text-nowrap sm:leading-[4rem]">
                 Business Website Design
               </h1>
-              <ul className="flex flex-col gap-y-3">
-                <li className="flex gap-x-5 items-center">
-                  <IoCheckmarkDone className="sm:min-w-6 min-w-5 sm:text-[30px] text-lg" />
-                  <p className="sm:text-[22px] text-lg font-light text-left mt-2">
-                    A complete custom website
-                  </p>
+              <ul className="flex flex-col gap-y-5">
+                <li className="flex sm:gap-x-5 gap-x-3 items-center sm:text-[22px] font-light">
+                  <IoCheckmarkDone className="min-w-fit" />A complete custom
+                  website
                 </li>
-                <li className="flex gap-x-5 items-center">
-                  <IoCheckmarkDone className="sm:min-w-6 min-w-5 sm:text-[30px] text-lg" />
-                  <p className="sm:text-[22px] text-lg font-light text-left mt-2">
-                    Optimized SEO for Google Ranking
-                  </p>
+                <li className="flex sm:gap-x-5 gap-x-3 items-center sm:text-[22px] font-light">
+                  <IoCheckmarkDone className="min-w-fit" />
+                  Optimized SEO for Google Ranking
                 </li>
-                <li className="flex gap-x-5 items-center">
-                  <IoCheckmarkDone className="sm:min-w-6 min-w-5 sm:text-[30px] text-lg" />
-                  <p className="sm:text-[22px] text-lg font-light text-left mt-2">
-                    Responsive design (Desktop & mobile-friendly)
-                  </p>
+                <li className="flex sm:gap-x-5 gap-x-3 items-center sm:text-[22px] font-light">
+                  <IoCheckmarkDone className="min-w-fit" />
+                  Responsive design (Desktop & mobile-friendly)
                 </li>
-                <li className="flex gap-x-5 items-center">
-                  <IoCheckmarkDone className="sm:min-w-6 min-w-5 sm:text-[30px] text-lg" />
-                  <p className="sm:text-[22px] text-lg font-light text-left mt-2">
-                    Custom unlimited page design as your requirements
-                  </p>
+                <li className="flex sm:gap-x-5 gap-x-3 items-center sm:text-[22px] font-light">
+                  <IoCheckmarkDone className="min-w-fit" />
+                  Custom unlimited page design as your requirements
                 </li>
-                <li className="flex gap-x-5 items-center">
-                  <IoCheckmarkDone className="sm:min-w-6 min-w-5 sm:text-[30px] text-lg" />
-                  <p className="sm:text-[22px] text-lg font-light text-left mt-2">
-                    Fast Response and Timely Delivery
-                  </p>
+                <li className="flex sm:gap-x-5 gap-x-3 items-center sm:text-[22px] font-light">
+                  <IoCheckmarkDone className="min-w-fit" />
+                  Fast Response and Timely Delivery
                 </li>
-                <li className="flex gap-x-5 items-center">
-                  <IoCheckmarkDone className="sm:min-w-6 min-w-5 sm:text-[30px] text-lg" />
-                  <p className="sm:text-[22px] text-lg font-light text-left mt-2">
-                    24/7 Support Let&apos;s get started. (1h replay)
-                  </p>
+                <li className="flex sm:gap-x-5 gap-x-3 items-center sm:text-[22px] font-light">
+                  <IoCheckmarkDone className="min-w-fit" />
+                  24/7 Support Let&apos;s get started. (1h replay)
                 </li>
-                <li className="flex gap-x-5 items-center">
-                  <IoCheckmarkDone className="sm:min-w-6 min-w-5 sm:text-[30px] text-lg" />
-                  <p className="sm:text-[22px] text-lg font-light text-left mt-2">
-                    Support 15 Days after complete project
-                  </p>
+                <li className="flex sm:gap-x-5 gap-x-3 items-center sm:text-[22px] font-light">
+                  <IoCheckmarkDone className="min-w-fit" />
+                  Support 15 Days after complete project
                 </li>
               </ul>
               <h1 className="sm:text-xl sm:text-left text-center">
                 Your website must be professional and functional. We create
                 custom websites based on your wishes.
               </h1>
-              <div
-                onClick={() => scrollToSection(contact)}
-                className="flex items-center gap-x-3 justify-center xl:hidden"
-              >
-                <button className="text-lg uppercase">contact us</button>
-                <button className="size-12 rounded-full bg-white flex items-center justify-center">
-                  <BsArrowUpRight className="text-black text-[22px] rotate-45" />
-                </button>
-              </div>
               <Magnet>
-                <div
-                  className="flex items-center gap-x-5 group max-xl:hidden"
-                  style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)", // Center the content inside the element
-                    transition: "transform 0.3s ease-out",
-                  }}
-                  onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}
-                  onClick={() => scrollToSection(contact)}
-                >
-                  <button className="flex gap-x-5 items-center text-2xl font-medium group uppercase w-fit text-nowrap">
-                    Contact Us
-                  </button>
-                  <button className="size-14 rounded-full bg-transparent border-dashed group-hover:bg-white border-2 group-hover:scale-[1.2] transition-all duration-300 flex items-center justify-center relative overflow-hidden">
-                    <FiArrowRight
-                      size={24}
-                      className="group-hover:text-black absolute text-4xl transition-all transform duration-300 ease-out opacity-100 group-hover:translate-y-[-50px] group-hover:opacity-0"
-                    />
-                    <FiArrowRight
-                      size={24}
-                      className="group-hover:text-black absolute text-4xl translate-y-12 opacity-0 transition-all transform duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100"
-                    />
-                  </button>
-                </div>
+                <GoogleCalendarScheduler>
+                  <div className="flex items-center gap-x-3 justify-center xl:hidden">
+                    <button className="text-lg uppercase">
+                      make a shedule
+                    </button>
+                    <button className="size-12 rounded-full bg-white flex items-center justify-center">
+                      <BsArrowUpRight className="text-black text-[22px] rotate-45" />
+                    </button>
+                  </div>
+                </GoogleCalendarScheduler>
+                <GoogleCalendarScheduler>
+                  <div
+                    className="flex items-center gap-x-5 group max-xl:hidden"
+                    style={{
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)", // Center the content inside the element
+                      transition: "transform 0.3s ease-out",
+                    }}
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                  >
+                    <button className="flex gap-x-5 items-center text-2xl font-medium group uppercase w-fit text-nowrap">
+                      make a shedule
+                    </button>
+                    <button className="size-14 rounded-full bg-transparent border-dashed group-hover:bg-white border-2 group-hover:scale-[1.2] transition-all duration-300 flex items-center justify-center relative overflow-hidden">
+                      <FiArrowRight
+                        size={24}
+                        className="group-hover:text-black absolute text-4xl transition-all transform duration-300 ease-out opacity-100 group-hover:translate-y-[-50px] group-hover:opacity-0"
+                      />
+                      <FiArrowRight
+                        size={24}
+                        className="group-hover:text-black absolute text-4xl translate-y-12 opacity-0 transition-all transform duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100"
+                      />
+                    </button>
+                  </div>
+                </GoogleCalendarScheduler>
               </Magnet>
             </div>
           </div>
@@ -204,103 +193,89 @@ const Investment = ({ pricing, setIsHovered, scrollToSection, contact }) => {
             id="reveal-card-2"
           >
             {/* package 2 */}
-            <div className="w-full h-full border xl:p-[50px] max-xl:pb-10 p-5 flex flex-col items-center justify-between gap-y-7">
-              <h1 className="sm:text-[36px] text-2xl font-mono border-b-2 text-nowrap sm:leading-[4rem]">
+            <div className="w-full h-full border xl:p-[50px] p-5 flex flex-col items-center justify-between gap-y-7">
+              <h1 className="sm:text-[36px] text-xl font-mono border-b-2 text-nowrap sm:leading-[4rem]">
                 E-Commerce Website Design
               </h1>
               <ul className="flex flex-col gap-y-3">
-                <li className="flex gap-x-5 items-center">
-                  <IoCheckmarkDone className="sm:min-w-6 min-w-5 sm:text-[30px] text-lg" />
-                  <p className="sm:text-[22px] text-lg font-light text-left mt-2">
-                    You have your dashboard for efficiently managing orders.
-                  </p>
+                <li className="flex sm:gap-x-5 gap-x-3 items-center sm:text-[22px] font-light">
+                  <IoCheckmarkDone className="min-w-fit" />
+                  You have your dashboard for efficiently managing orders.
                 </li>
-                <li className="flex gap-x-5 items-center">
-                  <IoCheckmarkDone className="sm:min-w-6 min-w-5 sm:text-[30px] text-lg" />
-                  <p className="sm:text-[22px] text-lg font-light text-left mt-2">
-                    Links with payment providers like Mollie, Sisow, Stripe etc.
-                  </p>
+                <li className="flex sm:gap-x-5 gap-x-3 items-center sm:text-[22px] font-light">
+                  <IoCheckmarkDone className="min-w-fit" />
+                  Links with payment providers like Mollie, Sisow, Stripe etc.
                 </li>
-                <li className="flex gap-x-5 items-center">
-                  <IoCheckmarkDone className="sm:min-w-6 min-w-5 sm:text-[30px] text-lg" />
-                  <p className="sm:text-[22px] text-lg font-light text-left mt-2">
-                    Responsive design (Desktop & mobile-friendly)
-                  </p>
+                <li className="flex sm:gap-x-5 gap-x-3 items-center sm:text-[22px] font-light">
+                  <IoCheckmarkDone className="min-w-fit" />
+                  Responsive design (Desktop & mobile-friendly)
                 </li>
-                <li className="flex gap-x-5 items-center">
-                  <IoCheckmarkDone className="sm:min-w-6 min-w-5 sm:text-[30px] text-lg" />
-                  <p className="sm:text-[22px] text-lg font-light text-left mt-2">
-                    SEO Setup and marketing tools integration
-                  </p>
+                <li className="flex sm:gap-x-5 gap-x-3 items-center sm:text-[22px] font-light">
+                  <IoCheckmarkDone className="min-w-fit" />
+                  SEO Setup and marketing tools integration
                 </li>
-                <li className="flex gap-x-5 items-center">
-                  <IoCheckmarkDone className="sm:min-w-6 min-w-5 sm:text-[30px] text-lg" />
-                  <p className="sm:text-[22px] text-lg font-light text-left mt-2">
-                    Upload more than 20+ Products with Variation
-                  </p>
+                <li className="flex sm:gap-x-5 gap-x-3 items-center sm:text-[22px] font-light">
+                  <IoCheckmarkDone className="min-w-fit" />
+                  Upload more than 20+ Products with Variation
                 </li>
-                <li className="flex gap-x-5 items-center">
-                  <IoCheckmarkDone className="sm:min-w-6 min-w-5 sm:text-[30px] text-lg" />
-                  <p className="sm:text-[22px] text-lg font-light text-left mt-2">
-                    Fast Response and Timely Delivery
-                  </p>
+                <li className="flex sm:gap-x-5 gap-x-3 items-center sm:text-[22px] font-light">
+                  <IoCheckmarkDone className="min-w-fit" />
+                  Fast Response and Timely Delivery
                 </li>
-                <li className="flex gap-x-5 items-center">
-                  <IoCheckmarkDone className="sm:min-w-6 min-w-5 sm:text-[30px] text-lg" />
-                  <p className="sm:text-[22px] text-lg font-light text-left mt-2">
-                    24/7 Support Let&apos;s get started. (1h replay)
-                  </p>
+                <li className="flex sm:gap-x-5 gap-x-3 items-center sm:text-[22px] font-light">
+                  <IoCheckmarkDone className="min-w-fit" />
+                  24/7 Support Let&apos;s get started. (1h replay)
                 </li>
-                <li className="flex gap-x-5 items-center">
-                  <IoCheckmarkDone className="sm:min-w-6 min-w-5 sm:text-[30px] text-lg" />
-                  <p className="sm:text-[22px] text-lg font-light text-left mt-2">
-                    Support 15 Days after complete project
-                  </p>
+                <li className="flex sm:gap-x-5 gap-x-3 items-center sm:text-[22px] font-light">
+                  <IoCheckmarkDone className="min-w-fit" />
+                  Support 15 Days after complete project
                 </li>
               </ul>
-              <h1 className="sm:text-xl sm:text-left text-center">
+              <h1 className="xl:text-xl md:text-base sm:text-left text-center">
                 Do you want to start an online web store, or is your existing
                 webshop ready for a renewal? (website name) creates rare sites
                 that correspond to your desires. The dashboard makes managing
                 new orders easy.
               </h1>
-              <div
-                onClick={() => scrollToSection(contact)}
-                className="flex items-center gap-x-3 justify-center xl:hidden"
-              >
-                <button className="text-lg uppercase">contact us</button>
-                <button className="size-12 rounded-full bg-white flex items-center justify-center">
-                  <BsArrowUpRight className="text-black text-[22px] rotate-45" />
-                </button>
-              </div>
               <Magnet>
-                <div
-                  className="flex items-center gap-x-5 group max-xl:hidden"
-                  style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)", // Center the content inside the element
-                    transition: "transform 0.3s ease-out",
-                  }}
-                  onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}
-                  onClick={() => scrollToSection(contact)}
-                >
-                  <button className="flex gap-x-5 items-center text-2xl font-medium group uppercase w-fit text-nowrap">
-                    Contact Us
-                  </button>
-                  <button className="size-14 rounded-full bg-transparent border-dashed group-hover:bg-white border-2 group-hover:scale-[1.2] transition-all duration-300 flex items-center justify-center relative overflow-hidden">
-                    <FiArrowRight
-                      size={24}
-                      className="group-hover:text-black absolute text-4xl transition-all transform duration-300 ease-out opacity-100 group-hover:translate-y-[-50px] group-hover:opacity-0"
-                    />
-                    <FiArrowRight
-                      size={24}
-                      className="group-hover:text-black absolute text-4xl translate-y-12 opacity-0 transition-all transform duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100"
-                    />
-                  </button>
-                </div>
+                <GoogleCalendarScheduler>
+                  <div className="flex items-center gap-x-3 justify-center xl:hidden">
+                    <button className="text-lg uppercase">
+                      make a shedule
+                    </button>
+                    <button className="size-12 rounded-full bg-white flex items-center justify-center">
+                      <BsArrowUpRight className="text-black text-[22px] rotate-45" />
+                    </button>
+                  </div>
+                </GoogleCalendarScheduler>
+                <GoogleCalendarScheduler>
+                  <div
+                    className="flex items-center gap-x-5 group max-xl:hidden"
+                    style={{
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)", // Center the content inside the element
+                      transition: "transform 0.3s ease-out",
+                    }}
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                  >
+                    <button className="flex gap-x-5 items-center text-2xl font-medium group uppercase w-fit text-nowrap">
+                      make a shedule
+                    </button>
+                    <button className="size-14 rounded-full bg-transparent border-dashed group-hover:bg-white border-2 group-hover:scale-[1.2] transition-all duration-300 flex items-center justify-center relative overflow-hidden">
+                      <FiArrowRight
+                        size={24}
+                        className="group-hover:text-black absolute text-4xl transition-all transform duration-300 ease-out opacity-100 group-hover:translate-y-[-50px] group-hover:opacity-0"
+                      />
+                      <FiArrowRight
+                        size={24}
+                        className="group-hover:text-black absolute text-4xl translate-y-12 opacity-0 transition-all transform duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100"
+                      />
+                    </button>
+                  </div>
+                </GoogleCalendarScheduler>
               </Magnet>
             </div>
           </div>
@@ -309,52 +284,38 @@ const Investment = ({ pricing, setIsHovered, scrollToSection, contact }) => {
             className="max-w-[700px] mx-auto w-full sm:h-screen bg-[#282828] sm:p-3 p-2"
             id="reveal-card-3"
           >
-            <div className="w-full h-full border xl:p-[50px] max-xl:pb-10 p-5 flex flex-col items-center justify-between gap-y-7">
+            <div className="w-full h-full border xl:p-[50px] p-5 flex flex-col items-center justify-between gap-y-7">
               <h1 className="sm:text-[36px] text-2xl font-mono border-b-2 text-nowrap sm:leading-[4rem]">
                 Redesign Website
               </h1>
               <ul className="flex flex-col gap-y-3">
-                <li className="flex gap-x-5 items-center">
-                  <IoCheckmarkDone className="sm:min-w-6 min-w-5 sm:text-[30px] text-lg" />
-                  <p className="sm:text-[22px] text-lg font-light text-left mt-2">
-                    100% unique custom web design
-                  </p>
+                <li className="flex sm:gap-x-5 gap-x-3 items-center sm:text-[22px] font-light">
+                  <IoCheckmarkDone className="min-w-fit" />
+                  100% unique custom web design
                 </li>
-                <li className="flex gap-x-5 items-center">
-                  <IoCheckmarkDone className="sm:min-w-6 min-w-5 sm:text-[30px] text-lg" />
-                  <p className="sm:text-[22px] text-lg font-light text-left mt-2">
-                    SEO Setup and marketing tools integration
-                  </p>
+                <li className="flex sm:gap-x-5 gap-x-3 items-center sm:text-[22px] font-light">
+                  <IoCheckmarkDone className="min-w-fit" />
+                  SEO Setup and marketing tools integration
                 </li>
-                <li className="flex gap-x-5 items-center">
-                  <IoCheckmarkDone className="sm:min-w-6 min-w-5 sm:text-[30px] text-lg" />
-                  <p className="sm:text-[22px] text-lg font-light text-left mt-2">
-                    Completely your property
-                  </p>
+                <li className="flex sm:gap-x-5 gap-x-3 items-center sm:text-[22px] font-light">
+                  <IoCheckmarkDone className="min-w-fit" />
+                  Completely your property
                 </li>
-                <li className="flex gap-x-5 items-center">
-                  <IoCheckmarkDone className="sm:min-w-6 min-w-5 sm:text-[30px] text-lg" />
-                  <p className="sm:text-[22px] text-lg font-light text-left mt-2">
-                    Fast Response and Timely Delivery
-                  </p>
+                <li className="flex sm:gap-x-5 gap-x-3 items-center sm:text-[22px] font-light">
+                  <IoCheckmarkDone className="min-w-fit" />
+                  Fast Response and Timely Delivery
                 </li>
-                <li className="flex gap-x-5 items-center">
-                  <IoCheckmarkDone className="sm:min-w-6 min-w-5 sm:text-[30px] text-lg" />
-                  <p className="sm:text-[22px] text-lg font-light text-left mt-2">
-                    Including satisfaction guarantee
-                  </p>
+                <li className="flex sm:gap-x-5 gap-x-3 items-center sm:text-[22px] font-light">
+                  <IoCheckmarkDone className="min-w-fit" />
+                  Including satisfaction guarantee
                 </li>
-                <li className="flex gap-x-5 items-center">
-                  <IoCheckmarkDone className="sm:min-w-6 min-w-5 sm:text-[30px] text-lg" />
-                  <p className="sm:text-[22px] text-lg font-light text-left mt-2">
-                    Support 15 Days after complete project
-                  </p>
+                <li className="flex sm:gap-x-5 gap-x-3 items-center sm:text-[22px] font-light">
+                  <IoCheckmarkDone className="min-w-fit" />
+                  Support 15 Days after complete project
                 </li>
-                <li className="flex gap-x-5 items-center">
-                  <IoCheckmarkDone className="sm:min-w-6 min-w-5 sm:text-[30px] text-lg" />
-                  <p className="sm:text-[22px] text-lg font-light text-left mt-2">
-                    24/7 Support Let&apos;s get started. (1h replay)
-                  </p>
+                <li className="flex sm:gap-x-5 gap-x-3 items-center sm:text-[22px] font-light">
+                  <IoCheckmarkDone className="min-w-fit" />
+                  24/7 Support Let&apos;s get started. (1h replay)
                 </li>
               </ul>
               <h1 className="sm:text-xl sm:text-left text-center">
@@ -362,43 +323,45 @@ const Investment = ({ pricing, setIsHovered, scrollToSection, contact }) => {
                 your unique business needs. Transform Your Website with a Fresh
                 Look and Full Support—Message Us to Get Started Today!
               </h1>
-              <div
-                onClick={() => scrollToSection(contact)}
-                className="flex items-center gap-x-3 justify-center xl:hidden"
-              >
-                <button className="text-lg uppercase">contact us</button>
-                <button className="size-12 rounded-full bg-white flex items-center justify-center">
-                  <BsArrowUpRight className="text-black text-[22px] rotate-45" />
-                </button>
-              </div>
               <Magnet>
-                <div
-                  className="flex items-center gap-x-5 group max-xl:hidden"
-                  style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)", // Center the content inside the element
-                    transition: "transform 0.3s ease-out",
-                  }}
-                  onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}
-                  onClick={() => scrollToSection(contact)}
-                >
-                  <button className="flex gap-x-5 items-center text-2xl font-medium group uppercase w-fit text-nowrap">
-                    Contact Us
-                  </button>
-                  <button className="size-14 rounded-full bg-transparent border-dashed group-hover:bg-white border-2 group-hover:scale-[1.2] transition-all duration-300 flex items-center justify-center relative overflow-hidden">
-                    <FiArrowRight
-                      size={24}
-                      className="group-hover:text-black absolute text-4xl transition-all transform duration-300 ease-out opacity-100 group-hover:translate-y-[-50px] group-hover:opacity-0"
-                    />
-                    <FiArrowRight
-                      size={24}
-                      className="group-hover:text-black absolute text-4xl translate-y-12 opacity-0 transition-all transform duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100"
-                    />
-                  </button>
-                </div>
+                <GoogleCalendarScheduler>
+                  <div className="flex items-center gap-x-3 justify-center xl:hidden">
+                    <button className="text-lg uppercase">
+                      make a shedule
+                    </button>
+                    <button className="size-12 rounded-full bg-white flex items-center justify-center">
+                      <BsArrowUpRight className="text-black text-[22px] rotate-45" />
+                    </button>
+                  </div>
+                </GoogleCalendarScheduler>
+                <GoogleCalendarScheduler>
+                  <div
+                    className="flex items-center gap-x-5 group max-xl:hidden"
+                    style={{
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)", // Center the content inside the element
+                      transition: "transform 0.3s ease-out",
+                    }}
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                  >
+                    <button className="flex gap-x-5 items-center text-2xl font-medium group uppercase w-fit text-nowrap">
+                      make a shedule
+                    </button>
+                    <button className="size-14 rounded-full bg-transparent border-dashed group-hover:bg-white border-2 group-hover:scale-[1.2] transition-all duration-300 flex items-center justify-center relative overflow-hidden">
+                      <FiArrowRight
+                        size={24}
+                        className="group-hover:text-black absolute text-4xl transition-all transform duration-300 ease-out opacity-100 group-hover:translate-y-[-50px] group-hover:opacity-0"
+                      />
+                      <FiArrowRight
+                        size={24}
+                        className="group-hover:text-black absolute text-4xl translate-y-12 opacity-0 transition-all transform duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100"
+                      />
+                    </button>
+                  </div>
+                </GoogleCalendarScheduler>
               </Magnet>
             </div>
           </div>

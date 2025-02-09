@@ -43,14 +43,14 @@ const Customer = ({ setIsHovered, scrollToSection, aboutMe }) => {
   return (
     <div className="bg-[#F5F5F5]">
       {/* 1st 2 components */}
-      <div className="max-w-[1550px] mx-auto sm:py-32 py-14 space-y-44 px-5">
+      <div className="max-w-[1550px] mx-auto md:py-32 py-16 space-y-44 px-5">
         {/* 1st components */}
         <div className="w-full flex xl:flex-row flex-col justify-center xl:gap-x-28 gap-y-10">
-          <div className="flex w-full h-fit xl:sticky xl:top-10 xl:px-0 px-5">
-            <div className="h-auto sm:w-1 w-[2px] mr-5 overflow-hidden">
+          <div className="flex w-full h-fit xl:sticky xl:top-10">
+            <div className="h-auto sm:w-1 w-[2px] mr-3 md:mr-4 xl:mr-5 overflow-hidden">
               <div className="w-full h-full bg-black" id="line" />
             </div>
-            <div className="w-full flex flex-col gap-y-10">
+            <div className="w-full flex flex-col md:gap-y-10 gap-y-5">
               <div className="w-full xl:text-[68px] lg:text-6xl sm:text-5xl text-3xl font-mono flex flex-col">
                 <div className="overflow-hidden">
                   <p
@@ -126,16 +126,17 @@ const Customer = ({ setIsHovered, scrollToSection, aboutMe }) => {
               much as you do. We will help you convert your vision into a
               reality.
             </p>
+            <div
+              onClick={() => scrollToSection(aboutMe)}
+              className="flex items-center gap-x-3 justify-center lg:hidden"
+              id="text-reveal-3"
+            >
+              <button className="text-lg uppercase">View Portfolio</button>
+              <button className="size-12 rounded-full bg-black flex items-center justify-center">
+                <BsArrowUpRight className="text-white text-[22px] rotate-45" />
+              </button>
+            </div>
             <Magnet>
-              <div
-                className="flex items-center gap-x-3 justify-center lg:hidden"
-                id="text-reveal-3"
-              >
-                <button className="text-lg uppercase">View Portfolio</button>
-                <button className="size-12 rounded-full bg-black flex items-center justify-center">
-                  <BsArrowUpRight className="text-white text-[22px] rotate-45" />
-                </button>
-              </div>
               <div
                 className="flex items-center gap-x-5 group mt-5 max-lg:hidden"
                 style={{

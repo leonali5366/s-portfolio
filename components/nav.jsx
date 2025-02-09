@@ -16,6 +16,7 @@ export default function Nav({
   contact,
   scrollToSection,
   process,
+  setIsActive,
 }) {
   const navItems = [
     {
@@ -43,7 +44,7 @@ export default function Nav({
       href: testimonial,
     },
     {
-      title: "Contact us",
+      title: "Contact me",
       href: contact,
     },
   ];
@@ -66,6 +67,7 @@ export default function Nav({
           {navItems.map((data, index) => (
             <Links
               scrollToSection={scrollToSection}
+              setIsActive={setIsActive}
               key={index}
               data={{ ...data, index }}
             />
