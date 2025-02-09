@@ -21,18 +21,21 @@ const Customer = ({ setIsHovered, scrollToSection, aboutMe }) => {
       y: 40,
       duration: 1,
       opacity: 0,
+      delay: 0.2,
       scrollTrigger: "#text-rev-2",
     });
     gsap.from("#text-rev-3", {
       y: 40,
       duration: 1,
       opacity: 0,
+      delay: 0.4,
       scrollTrigger: "#text-rev-3",
     });
     gsap.from("#text-rev-4", {
       y: 40,
       duration: 1,
       opacity: 0,
+      delay: 0.6,
       scrollTrigger: "#text-rev-4",
     });
   }, []);

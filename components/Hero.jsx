@@ -77,25 +77,43 @@ export default function Hero({ setIsHovered, home }) {
       opacity: 1,
       scrollTrigger: "#hero-img",
     });
-    gsap.from("#text-reveal-1", {
-      y: 40,
+    gsap.to("#text-reveal-1", {
+      y: 0,
       duration: 1,
-      opacity: 0,
+      opacity: 1,
+      delay: 0.3,
       scrollTrigger: "#text-reveal-1",
     });
-    gsap.from("#text-reveal-2", {
-      y: 40,
+    gsap.to("#text-reveal-2", {
+      y: 0,
       duration: 1,
-      opacity: 0,
+      opacity: 1,
+      delay: 0.5,
       scrollTrigger: "#text-reveal-2",
     });
-    gsap.from("#text-reveal-3", {
-      y: 40,
+    gsap.to("#text-reveal-3", {
+      y: 0,
       duration: 1,
-      opacity: 0,
+      opacity: 1,
+      delay: 0.7,
       scrollTrigger: "#text-reveal-3",
     });
+    gsap.to("#text-reveal-4", {
+      y: 0,
+      duration: 1,
+      opacity: 1,
+      delay: 0.9,
+      scrollTrigger: "#text-reveal-4",
+    });
+    gsap.to("#text-reveal-5", {
+      y: 0,
+      duration: 1,
+      opacity: 1,
+      delay: 1.1,
+      scrollTrigger: "#text-reveal-5",
+    });
   }, []);
+
   return (
     <div
       className="w-full lg:h-screen bg-[#121212] overflow-hidden py-10 text-white"
@@ -115,14 +133,14 @@ export default function Hero({ setIsHovered, home }) {
         </div>
         <div className="w-full h-full flex flex-col justify-center gap-y-10">
           <h1
-            className="sm:text-5xl text-3xl sm:text-left text-center sm:px-0 px-5 font-mono capitalize text-pretty"
+            className="sm:text-5xl text-3xl sm:text-left text-center sm:px-0 px-5 font-mono capitalize text-pretty opacity-0 translate-y-10"
             id="text-reveal-1"
           >
             Get High-End Custom Websites or Online Shops without Breaking the
             Bank.
           </h1>
           <p
-            className="sm:text-[28px] text-xl sm:px-0 px-5 sm:text-left text-center font-light"
+            className="sm:text-[28px] text-xl sm:px-0 px-5 sm:text-left text-center font-light opacity-0 translate-y-10"
             id="text-reveal-2"
           >
             Unleash your brand’s potential with 100% custom-built websites,
@@ -133,7 +151,7 @@ export default function Hero({ setIsHovered, home }) {
           <div className="flex sm:flex-row flex-col items-center justify-center gap-y-5">
             <GoogleCalendarScheduler>
               <div
-                className="flex items-center gap-x-3 justify-center sm:hidden"
+                className="flex items-center gap-x-3 justify-center sm:hidden opacity-0 translate-y-10"
                 id="text-reveal-3"
               >
                 <button className="text-lg uppercase">book a free call</button>
@@ -142,7 +160,11 @@ export default function Hero({ setIsHovered, home }) {
                 </button>
               </div>
             </GoogleCalendarScheduler>
-            <div ref={magnetRef} className="w-[400px] relative sm:block hidden">
+            <div
+              ref={magnetRef}
+              className="w-[400px] relative sm:block hidden opacity-0 translate-y-10"
+              id="text-reveal-4"
+            >
               <GoogleCalendarScheduler>
                 <div
                   className="flex items-center gap-x-5 group"
@@ -176,6 +198,8 @@ export default function Hero({ setIsHovered, home }) {
               href="https://api.whatsapp.com/send/?phone=01714461547&text&type=phone_number&app_absent=0"
               target="_blank" // Opens the link in a new tab
               rel="noopener noreferrer" // Adds security when opening links in new tabs
+              id="text-reveal-5"
+              className="opacity-0 translate-y-10"
             >
               <button
                 className="underline text-lg font-semibold uppercase underline-offset-8 flex items-center gap-x-5"
