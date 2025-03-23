@@ -34,19 +34,21 @@ const Projects = () => {
     }
   };
   return (
-    <div className="bg-[#121212] min-h-screen">
-      <h1 className="text-2xl text-center pt-5 font-mono text-white">All Projects</h1>
+    <div className="bg-[#121212] min-h-screen space-y-14">
+      <h1 className="text-5xl text-center pt-5 font-mono text-white">
+        All Projects
+      </h1>
       <div className="mt-5 grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 px-5">
         {isLoading ? (
           <>
-            <Skeleton className={"w-full h-[400px] rounded-md"}></Skeleton>
-            <Skeleton className={"w-full h-[400px] rounded-md"}></Skeleton>
-            <Skeleton className={"w-full h-[400px] rounded-md"}></Skeleton>
-            <Skeleton className={"w-full h-[400px] rounded-md"}></Skeleton>
-            <Skeleton className={"w-full h-[400px] rounded-md"}></Skeleton>
-            <Skeleton className={"w-full h-[400px] rounded-md"}></Skeleton>
-            <Skeleton className={"w-full h-[400px] rounded-md"}></Skeleton>
-            <Skeleton className={"w-full h-[400px] rounded-md"}></Skeleton>
+            <Skeleton className={"w-full h-[320px] rounded-md"}></Skeleton>
+            <Skeleton className={"w-full h-[320px] rounded-md"}></Skeleton>
+            <Skeleton className={"w-full h-[320px] rounded-md"}></Skeleton>
+            <Skeleton className={"w-full h-[320px] rounded-md"}></Skeleton>
+            <Skeleton className={"w-full h-[320px] rounded-md"}></Skeleton>
+            <Skeleton className={"w-full h-[320px] rounded-md"}></Skeleton>
+            <Skeleton className={"w-full h-[320px] rounded-md"}></Skeleton>
+            <Skeleton className={"w-full h-[320px] rounded-md"}></Skeleton>
           </>
         ) : (
           projects?.map((project) => {

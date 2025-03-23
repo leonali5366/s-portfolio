@@ -16,6 +16,7 @@ export default function Nav({
   contact,
   scrollToSection,
   process,
+  processRes,
   setIsActive,
 }) {
   const navItems = [
@@ -38,6 +39,12 @@ export default function Nav({
     {
       title: "Process",
       href: process,
+      name: "process",
+    },
+    {
+      title: "Process",
+      href: processRes,
+      name: "processRes",
     },
     {
       title: "Testimonial",
@@ -85,7 +92,7 @@ export default function Nav({
             <MdAlternateEmail className="xl:text-3xl md:text-2xl text-xl" />
           </a>
           <a
-            href="https://wa.me/+8801714-461547"
+            href="https://api.whatsapp.com/send/?phone=01714461547&text&type=phone_number&app_absent=0"
             target="_blank" // Opens the link in a new tab
             rel="noopener noreferrer" // Adds security when opening links in new tabs
           >

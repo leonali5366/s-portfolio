@@ -11,10 +11,10 @@ import ProcessRes from "@/components/ProcessRes";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import AboutUs from "@/components/AboutMe";
-import Card from "@/components/Card";
 import Customer from "@/components/Customer";
 import Personal from "@/components/Personal";
 import VideoSwiper from "@/components/VideoSwiper";
+import ProjectCard from "@/components/ProjectCard";
 
 export default function Home() {
   const [isHovered, setIsHovered] = useState(false);
@@ -25,6 +25,7 @@ export default function Home() {
   const home = useRef();
   const testimonial = useRef();
   const process = useRef();
+  const processRes = useRef();
 
   // Function to handle scrolling to a specific section
   const scrollToSection = (ref) => {
@@ -43,6 +44,7 @@ export default function Home() {
           pricing={pricing}
           home={home}
           process={process}
+          processRes={processRes}
           contact={contact}
           testimonial={testimonial}
           setIsHovered={setIsHovered}
@@ -61,9 +63,10 @@ export default function Home() {
           contact={contact}
         />
         <Personal aboutMe={aboutMe} />
-        <Card />
+        <ProjectCard setIsHovered={setIsHovered} />
+        {/* <ImageSlider /> */}
         <Process process={process} />
-        <ProcessRes process={process} />
+        <ProcessRes processRes={processRes} />
         <AboutUs aboutus={aboutus} />
         <VideoSwiper />
         <div className="flex xl:flex-row max-xl:py-10 flex-col items-center justify-center gap-x-5 bg-[#121212] text-white">

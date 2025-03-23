@@ -49,8 +49,9 @@ const VideoSwiper = () => {
       <Swiper
         effect="coverflow"
         grabCursor={true}
-        centeredSlides={true}
-        slidesPerView={1}
+        centeredSlides={false} // Disable centered slides
+        slidesPerView={1} // Default to 1 slide on small screens
+        spaceBetween={20} // Add space between slides
         coverflowEffect={{
           rotate: 50,
           stretch: 0,
@@ -74,11 +75,7 @@ const VideoSwiper = () => {
       >
         {videos.map((video, index) => (
           <SwiperSlide key={video.id}>
-            <div
-              className={`relative ${
-                index === 1 ? "scale-100" : "scale-75"
-              } transition-transform duration-300 ease-in-out`}
-            >
+            <div className="relative">
               <iframe
                 className="w-full h-64 rounded-lg shadow-lg"
                 src={`https://www.youtube.com/embed/${video.videoId}`}

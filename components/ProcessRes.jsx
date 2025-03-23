@@ -7,7 +7,7 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ProcessRes = ({process}) => {
+const ProcessRes = ({processRes}) => {
   useGSAP(() => {
     // sec 1
     gsap.to("#line-p-1", {
@@ -124,7 +124,7 @@ const ProcessRes = ({process}) => {
   }, []);
 
   return (
-    <div className="bg-[#121212] lg:hidden px-5 flex flex-col gap-y-10 pb-32 text-white" ref={process}>
+    <div className="bg-[#121212] lg:hidden px-5 flex flex-col gap-y-10 pb-32 text-white" ref={processRes}>
       <h1 className="text-4xl font-mono">My web design process</h1>
       <OpacityComponent>
         <div className="flex flex-col gap-y-5" id="reveal-trg-1">

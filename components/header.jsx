@@ -12,6 +12,7 @@ export default function Header({
   testimonial,
   contact,
   process,
+  processRes,
 }) {
   const [isActive, setIsActive] = useState(false);
   return (
@@ -53,8 +54,16 @@ export default function Header({
           Why me
         </li>
         <li
-          className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300"
+          className="hover:border-b-2 border-b-2 lg:block hidden border-transparent hover:border-white transition-[border] duration-300"
           onClick={() => scrollToSection(process)}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          Process
+        </li>
+        <li
+          className="hover:border-b-2 lg:hidden border-b-2 border-transparent hover:border-white transition-[border] duration-300"
+          onClick={() => scrollToSection(processRes)}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -103,6 +112,7 @@ export default function Header({
             contact={contact}
             scrollToSection={scrollToSection}
             process={process}
+            processRes={processRes}
             setIsActive={setIsActive}
           />
         )}

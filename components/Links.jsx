@@ -2,11 +2,13 @@ import { motion } from "framer-motion";
 import { scale, slide } from "./anime";
 
 export default function Links({ data, scrollToSection, setIsActive }) {
-  const { title, href, index } = data;
+  const { title, href, index, name } = data;
 
   return (
     <motion.div
-      className="relative flex items-center"
+      className={`relative flex items-center  ${
+        name === "processRef" && "lg:hidden"
+      } ${name === "process" && "max-lg:hidden"}`}
       custom={index}
       variants={slide}
       initial="initial"
@@ -22,7 +24,7 @@ export default function Links({ data, scrollToSection, setIsActive }) {
           scrollToSection(href);
           setIsActive(false);
         }}
-        className="text-white max-md:text-3xl"
+        className={`text-white max-md:text-3xl`}
       >
         {title}
       </button>
