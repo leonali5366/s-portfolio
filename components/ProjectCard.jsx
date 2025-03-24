@@ -38,8 +38,7 @@ export default function ProjectCard({ setIsHovered }) {
     try {
       const response = await axios.get("/api/add-project");
       const allProjects = response.data.data;
-      const limitedProjects = allProjects.slice(0, 6);
-      setProjects(limitedProjects);
+      setProjects(allProjects);
     } catch (error) {
       console.error("Error fetching projects:", error);
       toast.error("Failed to fetch projects");
@@ -65,7 +64,7 @@ export default function ProjectCard({ setIsHovered }) {
   };
 
   return (
-    <div className="bg-[#121212] min-h-screen">
+    <div className="bg-[#121212] xl:min-h-screen">
       <div className="px-5 py-20 md:space-y-32 space-y-16 max-w-6xl mx-auto">
         <h1 className="text-white xl:text-[84px] md:text-6xl text-4xl font-mono text-center">
           Recent Projects
@@ -124,6 +123,7 @@ export default function ProjectCard({ setIsHovered }) {
                           alt=""
                           objectFit="cover"
                           layout="fill"
+                          objectPosition="top"
                           className="group-hover:scale-105 transition-all duration-500 ease-in-out"
                         />
                       </div>
@@ -161,7 +161,7 @@ export default function ProjectCard({ setIsHovered }) {
               </button>
             </div>
             <div
-              className="flex items-center gap-x-5 group max-lg:hidden"
+              className="flex items-center gap-x-5 group max-xl:hidden"
               style={{
                 position: "absolute",
                 top: "50%",

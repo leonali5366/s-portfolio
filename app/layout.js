@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { EdgeStoreProvider } from "@/lib/edgestore";
 import { Toaster } from "sonner";
+import { ClerkProvider } from "@clerk/nextjs";
 
 // Local fonts
 const JosefinSans = localFont({
@@ -68,22 +69,24 @@ const jsonLd = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <head>
-        {/* Structured Data */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-      </head>
-      <body
-        className={`${JosefinSans.variable} ${MarcellusMono.variable} font-sans antialiased`}
-      >
-        <EdgeStoreProvider>
-          <Toaster richColors />
-          {children}
-        </EdgeStoreProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <head>
+          {/* Structured Data */}
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
+        </head>
+        <body
+          className={`${JosefinSans.variable} ${MarcellusMono.variable} font-sans antialiased`}
+        >
+          <EdgeStoreProvider>
+            <Toaster richColors />
+            {children}
+          </EdgeStoreProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

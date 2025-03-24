@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
@@ -6,7 +6,7 @@ import { useRef, useState } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Process({process}) {
+export default function Process({ process }) {
   const [number, setNumber] = useState("01");
   const sec1 = useRef();
   const sec2 = useRef();
@@ -56,21 +56,28 @@ export default function Process({process}) {
     });
   }, []);
   return (
-    <div className="bg-[#121212] pb-32 lg:block hidden pt-24 text-white" ref={process}>
+    <div
+      className="bg-[#121212] pb-32 lg:block hidden pt-24 text-white px-5"
+      ref={process}
+    >
       <div className="max-w-[1400px] w-full mx-auto flex flex-col gap-y-20">
-        <h5 className="text-[84px] font-mono">My web design process</h5>
+        <h5 className="xl:text-[84px] text-6xl font-mono">
+          My web design process
+        </h5>
         <div className="flex w-full relative">
           <div className="w-[50%] sticky top-[60%] h-fit">
-            <h1 className="text-[180px] text-white font-mono">{number}</h1>
+            <h1 className="xl:text-[180px] text-[150px] text-white font-mono">
+              {number}
+            </h1>
           </div>
           <div className="w-full flex flex-col gap-y-24">
             <div className="flex flex-col gap-y-10 opacity-50" ref={sec1}>
               <div className="w-full h-[3px] bg-white" />
               <div className="flex justify-between">
-                <h1 className="text-[50px] font-mono text-nowrap leading-9 w-full min-w-[300px]">
+                <h1 className="xl:text-[50px] text-4xl font-mono text-nowrap leading-9 w-full min-w-[300px]">
                   Setting goals
                 </h1>
-                <p className="text-[24px] ml-20">
+                <p className="xl:text-[24px] text-lg ml-20">
                   First, (15 mins) we have a conversation about your goals for
                   the business, who your audiences are and what you’re looking
                   to achieve. With clear goals, your website is aligned with
@@ -83,10 +90,10 @@ export default function Process({process}) {
             <div className="flex flex-col gap-y-10 opacity-50" ref={sec2}>
               <div className="w-full h-[3px] bg-white" />
               <div className="flex justify-between">
-                <h1 className="text-[50px] font-mono text-nowrap leading-9 w-full min-w-[300px]">
+                <h1 className="xl:text-[50px] text-4xl font-mono text-nowrap leading-9 w-full min-w-[300px]">
                   Visual design
                 </h1>
-                <p className="text-[24px] ml-20">
+                <p className="xl:text-[24px] text-lg ml-20">
                   Expert designers at Gloriousenthemes take care of visually
                   stunning layouts as per your brand identity. We build your
                   website with focus on aesthetics and user experience,
@@ -99,10 +106,10 @@ export default function Process({process}) {
             <div className="flex flex-col gap-y-10 opacity-50" ref={sec3}>
               <div className="w-full h-[3px] bg-white" />
               <div className="flex justify-between">
-                <h1 className="text-[50px] font-mono text-nowrap leading-9 w-full min-w-[300px]">
+                <h1 className="xl:text-[50px] text-4xl font-mono text-nowrap leading-9 w-full min-w-[300px]">
                   Development
                 </h1>
-                <p className="text-[24px] ml-20">
+                <p className="xl:text-[24px] text-lg ml-20">
                   Using what is available now, we bring the designs to life with
                   a fully responsive and working website. Our objective is to
                   deliver your site with speed, top performance, and effortless
@@ -114,10 +121,10 @@ export default function Process({process}) {
             <div className="flex flex-col gap-y-10 opacity-50" ref={sec4}>
               <div className="w-full h-[3px] bg-white" />
               <div className="flex justify-between">
-                <h1 className="text-[50px] font-mono text-nowrap leading-9 w-full min-w-[300px]">
+                <h1 className="xl:text-[50px] text-4xl font-mono text-nowrap leading-9 w-full min-w-[300px]">
                   Launch
                 </h1>
-                <p className="text-[24px] ml-20">
+                <p className="xl:text-[24px] text-lg ml-20">
                   Our testing for quality & functionality is rigorous, and we
                   launch your website with precision. We’ll get the ball
                   rolling, ensure it all runs smoothly, and get your site out

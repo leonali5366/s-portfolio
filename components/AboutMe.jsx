@@ -71,41 +71,60 @@ const AboutUs = ({ aboutus }) => {
       delay: 1,
       scrollTrigger: "#trigger-4",
     });
-    gsap.to("#image-wrappper", {
-      y: "-100%",
-      duration: 1,
+    gsap.from("#image-wrappper", {
+      translateY: "0%",
+      duration: 2,
+      delay: 1,
+      scrollTrigger: "#img-trg",
+    });
+    gsap.to("#img", {
+      opacity: 1,
+      scale: 1,
+      duration: 2,
       scrollTrigger: "#img-trg",
     });
   }, []);
   return (
-    <div
-      className="bg-[#121212] lg:pb-[150px] lg:px-0 px-5 text-white"
-      ref={aboutus}
-    >
+    <div className="bg-[#121212] lg:pb-[150px] px-5 text-white" ref={aboutus}>
       <div className="max-w-[1400px] mx-auto sm:space-y-20 space-y-10">
-        <h1 className="lg:text-[84px] text-5xl font-mono">
+        <h1 className="xl:text-[84px] md:text-6xl sm:text-5xl text-4xl font-mono">
           What makes us different
         </h1>
-        <div className="flex lg:flex-row flex-col lg:justify-between lg:gap-x-20 gap-y-10">
+        <div className="flex flex-col gap-y-10">
           <div className="w-full h-full overflow-hidden relative" id="img-trg">
-            <Image src={'/images/work.webp'} alt="" width={1000} height={1200} className="" />
+            <div className="relative w-full lg:h-[500px] md:h-[400px] sm:h-[350px] h-[300px]">
+              <Image
+                src={"/images/work.webp"}
+                alt=""
+                objectFit="cover"
+                layout="fill"
+                className="rounded-md opacity-0 scale-105"
+                id="img"
+              />
+            </div>
             <div
-              className="absolute top-0 left-0 w-full h-1/2 bg-[#121212]"
+              className="absolute inset-0 translate-y-full bg-[#121212]"
               id="image-wrappper"
             />
           </div>
           <div className="flex flex-col justify-center gap-y-16">
             <div className="flex flex-col" id="trigger-1">
-              <span className="text-white opacity-50 uppercase text-[16px] tracking-widest">
+              <span className="text-white opacity-50 uppercase md:text-[16px] text-sm tracking-widest">
                 One
               </span>
               <div className="flex flex-col gap-y-7">
                 <div className="overflow-hidden">
-                  <header className="text-4xl font-mono" id="textH-1">
+                  <header
+                    className="md:text-4xl text-3xl font-mono"
+                    id="textH-1"
+                  >
                     Affordable Price
                   </header>
                 </div>
-                <description className="text-2xl font-light" id="textD-1">
+                <description
+                  className="md:text-2xl text-xl font-light"
+                  id="textD-1"
+                >
                   At a price that fits your budget, I provide high quality web
                   design services. My vision is to deliver world class
                   experience without sacrificing design or results.
@@ -119,16 +138,22 @@ const AboutUs = ({ aboutus }) => {
               </div>
             </div>
             <div className="flex flex-col" id="trigger-2">
-              <span className="text-white opacity-50 uppercase text-[16px] tracking-widest">
+              <span className="text-white opacity-50 uppercase md:text-[16px] text-sm tracking-widest">
                 two
               </span>
               <div className="flex flex-col gap-y-7">
                 <div className="overflow-hidden">
-                  <header className="text-4xl font-mono" id="textH-2">
+                  <header
+                    className="md:text-4xl text-3xl font-mono"
+                    id="textH-2"
+                  >
                     Premier Experience (7 Years)
                   </header>
                 </div>
-                <description className="text-2xl font-light" id="textD-2">
+                <description
+                  className="md:text-2xl text-xl font-light"
+                  id="textD-2"
+                >
                   I have over 7 years of experience and can combine expertise,
                   creativity and industry knowledge on every project. We know
                   your website will not only look great, but it will do the real
@@ -143,16 +168,22 @@ const AboutUs = ({ aboutus }) => {
               </div>
             </div>
             <div className="flex flex-col" id="trigger-3">
-              <span className="text-white opacity-50 uppercase text-[16px] tracking-widest">
+              <span className="text-white opacity-50 uppercase md:text-[16px] text-sm tracking-widest">
                 three
               </span>
               <div className="flex flex-col gap-y-7">
                 <div className="overflow-hidden">
-                  <header className="text-4xl font-mono" id="textH-3">
+                  <header
+                    className="md:text-4xl text-3xl font-mono"
+                    id="textH-3"
+                  >
                     Honesty You Can Trust
                   </header>
                 </div>
-                <description className="text-2xl font-light" id="textD-2">
+                <description
+                  className="md:text-2xl text-xl font-light"
+                  id="textD-2"
+                >
                   My work is based on transparency and trust. Throughout the
                   process, I tell you how it’s going to be, with no surprises,
                   no hidden costs.
@@ -166,16 +197,22 @@ const AboutUs = ({ aboutus }) => {
               </div>
             </div>
             <div className="flex flex-col" id="trigger-4">
-              <span className="text-white opacity-50 uppercase text-[16px] tracking-widest">
+              <span className="text-white opacity-50 uppercase md:text-[16px] text-sm tracking-widest">
                 four
               </span>
               <div className="flex flex-col gap-y-7">
                 <div className="overflow-hidden">
-                  <header className="text-4xl font-mono" id="textH-4">
+                  <header
+                    className="md:text-4xl text-3xl font-mono"
+                    id="textH-4"
+                  >
                     On-Time Delivery & Support
                   </header>
                 </div>
-                <description className="text-2xl font-light" id="textD-2">
+                <description
+                  className="md:text-2xl text-xl font-light"
+                  id="textD-2"
+                >
                   I am conscious of deadlines. timely delivery and reliable
                   support on the website after we completed the project.
                 </description>

@@ -47,6 +47,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import Link from "next/link";
+import { UserButton } from "@clerk/nextjs";
 
 function Admin() {
   const [projects, setProjects] = useState([null]); // Local state for projects
@@ -212,9 +213,13 @@ function Admin() {
 
   return (
     <div className="relative">
-      <div className="sticky top-0 left-0 h-[3rem] shadow flex items-center justify-center gap-5 bg-white z-50">
-        <Link href={"/admin"}>Images</Link>
-        <Link href={"/admin/video"}>Videos</Link>
+      <div className="sticky top-0 left-0 h-[3rem] shadow flex items-center justify-between gap-5 bg-white z-50 px-10">
+        <span className="text-4xl font-semibold">ShuvoDesign</span>
+        <div className="flex items-center gap-5">
+          <Link href={"/admin"}>Images</Link>
+          <Link href={"/admin/video"}>Videos</Link>
+        </div>
+        <UserButton showName />
       </div>
       <div className="w-full flex items-center justify-between mt-5 px-5">
         <Dialog>
@@ -458,7 +463,7 @@ function Admin() {
                           <div className="flex justify-end space-x-3">
                             <Button
                               type="submit" // Standard form submission
-                              disabled={isSubmitDisabled || isUpdating}
+                              disabled={isUpdating}
                             >
                               {isUpdating ? (
                                 <div className="flex items-center justify-center">
