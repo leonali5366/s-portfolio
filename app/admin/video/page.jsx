@@ -43,6 +43,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import Link from "next/link";
+import { UserButton } from "@clerk/nextjs";
 
 function Video() {
   const [projects, setProjects] = useState([null]); // Local state for projects
@@ -169,93 +170,117 @@ function Video() {
 
   return (
     <div className="relative">
-      <div className="sticky top-0 left-0 h-[3rem] shadow flex items-center justify-center gap-5 bg-white z-50">
-        <Link href={"/admin"}>Images</Link>
-        <Link href={"/admin/video"}>Videos</Link>
+      <div className="sticky top-0 left-0 h-[3rem] shadow flex items-center justify-between gap-5 bg-white z-50 px-10">
+        <Link href={"/"}>
+          <span className="text-4xl font-semibold">ShuvoDesign</span>
+        </Link>
+        <div className="flex items-center gap-5">
+          <Link href={"/admin"}>Images</Link>
+          <Link href={"/admin/video"}>Videos</Link>
+        </div>
+        <UserButton showName />
       </div>
       <div className="w-full flex items-center justify-between mt-5 px-5">
-        <Dialog>
-          <DialogTrigger
-            onClick={() => {
-              reset({
-                title: "",
-                videoId: "",
-              }); // Reset the form with existing data
-            }}
-            className="bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2 rounded-md text-sm"
-          >
-            Add Video
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Add a New Video</DialogTitle>
-              <DialogDescription>
-                Fill in the video details to add a new video.
-              </DialogDescription>
-            </DialogHeader>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-              <div>
-                <label className="block text-sm font-semibold">Title</label>
-                <Input
-                  type="text"
-                  {...register("title", {
-                    required: "video title is required",
-                  })}
-                />
-                {errors.title && (
-                  <span className="text-red-500">{errors.title.message}</span>
-                )}
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold">VideoId</label>
-                <Input
-                  {...register("videoId", {
-                    required: "VideoId is required",
-                  })}
-                />
-                {errors.videoId && (
-                  <span className="text-red-500">{errors.videoId.message}</span>
-                )}
-              </div>
-
-              <div className="flex justify-end space-x-3">
-                <Button
-                  type="submit" // Standard form submission
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? (
-                    <div className="flex items-center justify-center">
-                      <Loader className="animate-spin mr-2 w-5 h-5" /> Adding...
-                    </div>
-                  ) : (
-                    "Add Video"
+        {isLoading ? (
+          <Skeleton className="h-9 w-32 rounded-md" />
+        ) : (
+          <Dialog>
+            <DialogTrigger
+              onClick={() => {
+                reset({
+                  title: "",
+                  videoId: "",
+                }); // Reset the form with existing data
+              }}
+              className="bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2 rounded-md text-sm"
+            >
+              Add Video
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Add a New Video</DialogTitle>
+                <DialogDescription>
+                  Fill in the video details to add a new video.
+                </DialogDescription>
+              </DialogHeader>
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-semibold">Title</label>
+                  <Input
+                    type="text"
+                    {...register("title", {
+                      required: "video title is required",
+                    })}
+                  />
+                  {errors.title && (
+                    <span className="text-red-500">{errors.title.message}</span>
                   )}
-                </Button>
-              </div>
-            </form>
-          </DialogContent>
-        </Dialog>
-        <Input
-          type="text"
-          placeholder="Search by video title..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-64"
-        />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold">VideoId</label>
+                  <Input
+                    {...register("videoId", {
+                      required: "VideoId is required",
+                    })}
+                  />
+                  {errors.videoId && (
+                    <span className="text-red-500">
+                      {errors.videoId.message}
+                    </span>
+                  )}
+                </div>
+
+                <div className="flex justify-end space-x-3">
+                  <Button
+                    type="submit" // Standard form submission
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <div className="flex items-center justify-center">
+                        <Loader className="animate-spin mr-2 w-5 h-5" />{" "}
+                        Adding...
+                      </div>
+                    ) : (
+                      "Add Video"
+                    )}
+                  </Button>
+                </div>
+              </form>
+            </DialogContent>
+          </Dialog>
+        )}
+
+        {isLoading ? (
+          <Skeleton className="h-9 w-64 rounded-md" />
+        ) : (
+          <Input
+            type="text"
+            placeholder="Search by video title..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-64"
+          />
+        )}
       </div>
 
       <div className="mt-5 grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 px-5">
         {isLoading ? (
           <>
-            <Skeleton className={"w-full h-[400px] rounded-md"}></Skeleton>
-            <Skeleton className={"w-full h-[400px] rounded-md"}></Skeleton>
-            <Skeleton className={"w-full h-[400px] rounded-md"}></Skeleton>
-            <Skeleton className={"w-full h-[400px] rounded-md"}></Skeleton>
-            <Skeleton className={"w-full h-[400px] rounded-md"}></Skeleton>
-            <Skeleton className={"w-full h-[400px] rounded-md"}></Skeleton>
-            <Skeleton className={"w-full h-[400px] rounded-md"}></Skeleton>
-            <Skeleton className={"w-full h-[400px] rounded-md"}></Skeleton>
+            {[...Array(8)].map((_, index) => (
+              <Card key={`skeleton-${index}`}>
+                <CardHeader>
+                  <Skeleton className="h-6 w-3/4 rounded-md" />
+                </CardHeader>
+                <CardContent>
+                  <Skeleton className="w-full h-[15rem] rounded-md" />
+                </CardContent>
+                <CardFooter className="flex justify-end gap-2">
+                  <Skeleton className="h-9 w-24 rounded-md" />
+                  <Skeleton className="h-9 w-24 rounded-md" />
+                </CardFooter>
+              </Card>
+            ))}
           </>
         ) : (
           filteredProjects?.map((project) => {

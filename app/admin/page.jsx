@@ -214,7 +214,9 @@ function Admin() {
   return (
     <div className="relative">
       <div className="sticky top-0 left-0 h-[3rem] shadow flex items-center justify-between gap-5 bg-white z-50 px-10">
-        <span className="text-4xl font-semibold">ShuvoDesign</span>
+        <Link href={"/"}>
+          <span className="text-4xl font-semibold">ShuvoDesign</span>
+        </Link>
         <div className="flex items-center gap-5">
           <Link href={"/admin"}>Images</Link>
           <Link href={"/admin/video"}>Videos</Link>
@@ -222,122 +224,139 @@ function Admin() {
         <UserButton showName />
       </div>
       <div className="w-full flex items-center justify-between mt-5 px-5">
-        <Dialog>
-          <DialogTrigger
-            onClick={() => {
-              reset({
-                name: "",
-                websiteUrl: "",
-              }); // Reset the form with existing data
-            }}
-            className="bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2 rounded-md text-sm"
-          >
-            Add Project
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Add a New Project</DialogTitle>
-              <DialogDescription>
-                Fill in the project details to add a new project.
-              </DialogDescription>
-            </DialogHeader>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-              <div>
-                <label className="block text-sm font-semibold">Name</label>
-                <Input
-                  type="text"
-                  {...register("name", {
-                    required: "Project name is required",
-                  })}
-                />
-                {errors.name && (
-                  <span className="text-red-500">{errors.name.message}</span>
-                )}
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold">
-                  Website URL
-                </label>
-                <Input
-                  {...register("websiteUrl", {
-                    required: "Project websiteUrl is required",
-                  })}
-                />
-                {errors.websiteUrl && (
-                  <span className="text-red-500">
-                    {errors.websiteUrl.message}
-                  </span>
-                )}
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold">
-                  Project Image
-                </label>
-                <SingleImageDropzone
-                  onChange={handleImageChange}
-                  disabled={false}
-                  value={file}
-                  className="border"
-                />
-                {errors.image && (
-                  <span className="text-red-500">{errors.image.message}</span>
-                )}
-              </div>
-
-              {/* Progress Bar */}
-              {progress > 0 && progress < 100 && (
-                <div className="mt-4">
-                  <div className="w-full bg-gray-300 rounded-full h-2">
-                    <div
-                      className="bg-blue-600 h-2 rounded-full"
-                      style={{ width: `${progress}%` }}
-                    ></div>
-                  </div>
-                  <div className="text-sm text-gray-600 mt-1 text-center">
-                    {progress}% Uploading...
-                  </div>
-                </div>
-              )}
-
-              <div className="flex justify-end space-x-3">
-                <Button
-                  type="submit" // Standard form submission
-                  disabled={isSubmitDisabled || isSubmitting}
-                >
-                  {isSubmitting ? (
-                    <div className="flex items-center justify-center">
-                      <Loader className="animate-spin mr-2 w-5 h-5" /> Adding...
-                    </div>
-                  ) : (
-                    "Add Project"
+        {isLoading ? (
+          <Skeleton className="h-9 w-32 rounded-md" />
+        ) : (
+          <Dialog>
+            <DialogTrigger
+              onClick={() => {
+                reset({
+                  name: "",
+                  websiteUrl: "",
+                }); // Reset the form with existing data
+              }}
+              className="bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2 rounded-md text-sm"
+            >
+              Add Project
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Add a New Project</DialogTitle>
+                <DialogDescription>
+                  Fill in the project details to add a new project.
+                </DialogDescription>
+              </DialogHeader>
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-semibold">Name</label>
+                  <Input
+                    type="text"
+                    {...register("name", {
+                      required: "Project name is required",
+                    })}
+                  />
+                  {errors.name && (
+                    <span className="text-red-500">{errors.name.message}</span>
                   )}
-                </Button>
-              </div>
-            </form>
-          </DialogContent>
-        </Dialog>
-        <Input
-          type="text"
-          placeholder="Search by project name..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-64"
-        />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold">
+                    Website URL
+                  </label>
+                  <Input
+                    {...register("websiteUrl", {
+                      required: "Project websiteUrl is required",
+                    })}
+                  />
+                  {errors.websiteUrl && (
+                    <span className="text-red-500">
+                      {errors.websiteUrl.message}
+                    </span>
+                  )}
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold">
+                    Project Image
+                  </label>
+                  <SingleImageDropzone
+                    onChange={handleImageChange}
+                    disabled={false}
+                    value={file}
+                    className="border"
+                  />
+                  {errors.image && (
+                    <span className="text-red-500">{errors.image.message}</span>
+                  )}
+                </div>
+
+                {/* Progress Bar */}
+                {progress > 0 && progress < 100 && (
+                  <div className="mt-4">
+                    <div className="w-full bg-gray-300 rounded-full h-2">
+                      <div
+                        className="bg-blue-600 h-2 rounded-full"
+                        style={{ width: `${progress}%` }}
+                      ></div>
+                    </div>
+                    <div className="text-sm text-gray-600 mt-1 text-center">
+                      {progress}% Uploading...
+                    </div>
+                  </div>
+                )}
+
+                <div className="flex justify-end space-x-3">
+                  <Button
+                    type="submit" // Standard form submission
+                    disabled={isSubmitDisabled || isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <div className="flex items-center justify-center">
+                        <Loader className="animate-spin mr-2 w-5 h-5" />{" "}
+                        Adding...
+                      </div>
+                    ) : (
+                      "Add Project"
+                    )}
+                  </Button>
+                </div>
+              </form>
+            </DialogContent>
+          </Dialog>
+        )}
+
+        {isLoading ? (
+          <Skeleton className="h-9 w-64 rounded-md" />
+        ) : (
+          <Input
+            type="text"
+            placeholder="Search by project name..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-64"
+          />
+        )}
       </div>
 
       <div className="mt-5 grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 px-5">
         {isLoading ? (
           <>
-            <Skeleton className={"w-full h-[400px] rounded-md"}></Skeleton>
-            <Skeleton className={"w-full h-[400px] rounded-md"}></Skeleton>
-            <Skeleton className={"w-full h-[400px] rounded-md"}></Skeleton>
-            <Skeleton className={"w-full h-[400px] rounded-md"}></Skeleton>
-            <Skeleton className={"w-full h-[400px] rounded-md"}></Skeleton>
-            <Skeleton className={"w-full h-[400px] rounded-md"}></Skeleton>
-            <Skeleton className={"w-full h-[400px] rounded-md"}></Skeleton>
-            <Skeleton className={"w-full h-[400px] rounded-md"}></Skeleton>
+            {[...Array(8)].map((_, index) => (
+              <Card key={`skeleton-${index}`}>
+                <CardHeader>
+                  <Skeleton className="h-6 w-3/4 rounded-md" />
+                  <Skeleton className="h-4 w-full rounded-md mt-2" />
+                </CardHeader>
+                <CardContent>
+                  <Skeleton className="w-full h-[15rem] rounded-md" />
+                </CardContent>
+                <CardFooter className="flex justify-end gap-2">
+                  <Skeleton className="h-9 w-24 rounded-md" />
+                  <Skeleton className="h-9 w-24 rounded-md" />
+                </CardFooter>
+              </Card>
+            ))}
           </>
         ) : (
           filteredProjects?.map((project) => {
