@@ -1,10 +1,11 @@
 "use client";
 import gsap from "gsap";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Cursor({ isHovered }) {
   const size = isHovered ? 70 : 15;
   const circle = useRef();
+  const [isVisible, setIsVisible] = useState(true);
   const mouse = useRef({
     x: 0,
     y: 0,
@@ -21,6 +22,16 @@ export default function Cursor({ isHovered }) {
       x: clientX,
       y: clientY,
     };
+    // Make cursor visible when moving
+    if (!isVisible) setIsVisible(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsVisible(false);
+  };
+
+  const handleMouseEnter = () => {
+    setIsVisible(true);
   };
 
   const lerp = (x, y, a) => x * (1 - a) + y * a;
@@ -43,17 +54,24 @@ export default function Cursor({ isHovered }) {
   useEffect(() => {
     animate();
     window.addEventListener("mousemove", mouseMove);
-    return () => window.addEventListener("mousemove", mouseMove);
+    document.addEventListener("mouseleave", handleMouseLeave);
+    document.addEventListener("mouseenter", handleMouseEnter);
+    
+    return () => {
+      window.removeEventListener("mousemove", mouseMove);
+      document.removeEventListener("mouseleave", handleMouseLeave);
+      document.removeEventListener("mouseenter", handleMouseEnter);
+    };
   }, []);
 
   return (
     <div
       ref={circle}
-      className={`fixed top-0 left-0 rounded-full mix-blend-difference pointer-events-none transition-[width,height,border,background-color] duration-300 z-[9999] xl:block hidden`}
+      className={`fixed top-0 left-0 rounded-full mix-blend-difference pointer-events-none transition-[width,height,border,background-color,opacity] duration-300 z-[9999] xl:block hidden`}
       style={{
         width: size,
         height: size,
-        // filter: `blur(${isHovered ? 30 : 0}px)`,
+        opacity: isVisible ? 1 : 0,
         border: `${isHovered && "1px solid white"}`,
         backgroundColor: `${isHovered ? "" : "white"}`,
       }}
