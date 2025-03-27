@@ -9,6 +9,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import { BsArrowUpRight } from "react-icons/bs";
 import { CiGlobe } from "react-icons/ci";
 import GoogleCalendarScheduler from "./GoogleCalendarScheduler";
+import { AtSign, Globe, Instagram, Linkedin } from "lucide-react";
 
 const Footer = ({ setIsHovered }) => {
   const magnetRef = useRef(null);
@@ -138,7 +139,7 @@ const Footer = ({ setIsHovered }) => {
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
               >
-                <FaLinkedinIn className="xl:text-3xl md:text-2xl text-xl" />
+                <Linkedin className="xl:text-3xl md:text-2xl text-xl" />
               </a>
             </Magnet>
             <Magnet>
@@ -147,7 +148,7 @@ const Footer = ({ setIsHovered }) => {
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
               >
-                <MdAlternateEmail className="xl:text-3xl md:text-2xl text-xl" />
+                <AtSign className="xl:text-3xl md:text-2xl text-xl" />
               </a>
             </Magnet>
             <Magnet>
@@ -158,7 +159,7 @@ const Footer = ({ setIsHovered }) => {
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
               >
-                <FaWhatsapp className="xl:text-3xl md:text-2xl text-xl" />
+                <FaWhatsapp className="xl:text-2xl md:text-xl text-lg" />
               </a>
             </Magnet>
             <Magnet>
@@ -169,7 +170,18 @@ const Footer = ({ setIsHovered }) => {
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
               >
-                <CiGlobe className="xl:text-3xl md:text-2xl text-xl" />
+                <Globe className="xl:text-3xl md:text-2xl text-xl" />
+              </a>
+            </Magnet>
+            <Magnet>
+              <a
+                href="https://www.instagram.com/shohanur_reza_shuvo/"
+                target="_blank" // Opens the link in a new tab
+                rel="noopener noreferrer" // Adds security when opening links in new tabs
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+              >
+                <Instagram className="xl:text-3xl md:text-2xl text-xl" />
               </a>
             </Magnet>
           </div>

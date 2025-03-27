@@ -92,13 +92,13 @@ const AboutUs = ({ aboutus }) => {
         </h1>
         <div className="flex flex-col gap-y-10">
           <div className="w-full h-full overflow-hidden relative" id="img-trg">
-            <div className="relative w-full lg:h-[500px] md:h-[400px] sm:h-[350px] h-[300px]">
+            <div className="relative w-full lg:h-[800px] md:h-[400px] sm:h-[350px] h-[300px]">
               <Image
                 src={"/images/work.webp"}
                 alt=""
                 objectFit="cover"
                 layout="fill"
-                className="rounded-md opacity-0 scale-105"
+                className="rounded-md opacity-0 scale-110"
                 id="img"
               />
             </div>
