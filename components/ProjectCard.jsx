@@ -65,7 +65,7 @@ export default function ProjectCard({ setIsHovered }) {
 
   return (
     <div className="bg-[#121212] xl:min-h-screen">
-      <div className="px-5 py-20 md:space-y-32 space-y-16 max-w-6xl mx-auto">
+      <div className="px-5 py-20 md:space-y-32 space-y-16 max-w-7xl mx-auto">
         <h1 className="text-white xl:text-[84px] md:text-6xl text-4xl font-mono text-center">
           Recent Projects
         </h1>

@@ -15,6 +15,7 @@ import Customer from "@/components/Customer";
 import Personal from "@/components/Personal";
 import VideoSwiper from "@/components/VideoSwiper";
 import ProjectCard from "@/components/ProjectCard";
+import Tilt from "@/components/Tilt";
 
 export default function Home() {
   const [isHovered, setIsHovered] = useState(false);
@@ -51,6 +52,7 @@ export default function Home() {
         />
         <Cursor isHovered={isHovered} />
         <Hero setIsHovered={setIsHovered} home={home} />
+        <Tilt setIsHovered={setIsHovered} />
         <Customer
           setIsHovered={setIsHovered}
           scrollToSection={scrollToSection}
