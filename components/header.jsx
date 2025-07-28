@@ -22,7 +22,7 @@ export default function Header({
       </span>
       <ul className="2xl:flex hidden items-center gap-x-5 text-xl text-white">
         <li
-          className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300"
+          className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300 cursor-pointer"
           onClick={() => scrollToSection(home)}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
@@ -30,7 +30,7 @@ export default function Header({
           Home
         </li>
         <li
-          className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300"
+          className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300 cursor-pointer"
           onClick={() => scrollToSection(pricing)}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
@@ -38,7 +38,7 @@ export default function Header({
           Pricing
         </li>
         <li
-          className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300"
+          className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300 cursor-pointer"
           onClick={() => scrollToSection(aboutMe)}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
@@ -46,7 +46,7 @@ export default function Header({
           About me
         </li>
         <li
-          className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300"
+          className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300 cursor-pointer"
           onClick={() => scrollToSection(aboutus)}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
@@ -54,7 +54,7 @@ export default function Header({
           Why me
         </li>
         <li
-          className="hover:border-b-2 border-b-2 lg:block hidden border-transparent hover:border-white transition-[border] duration-300"
+          className="hover:border-b-2 border-b-2 lg:block hidden border-transparent hover:border-white transition-[border] duration-300 cursor-pointer"
           onClick={() => scrollToSection(process)}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
@@ -62,7 +62,7 @@ export default function Header({
           Process
         </li>
         <li
-          className="hover:border-b-2 lg:hidden border-b-2 border-transparent hover:border-white transition-[border] duration-300"
+          className="hover:border-b-2 lg:hidden border-b-2 border-transparent hover:border-white transition-[border] duration-300 cursor-pointer"
           onClick={() => scrollToSection(processRes)}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
@@ -71,7 +71,7 @@ export default function Header({
         </li>
 
         <li
-          className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300"
+          className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300 cursor-pointer"
           onClick={() => scrollToSection(testimonial)}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
@@ -79,7 +79,7 @@ export default function Header({
           Testimonial
         </li>
         <li
-          className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300"
+          className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300 cursor-pointer"
           onClick={() => scrollToSection(contact)}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}

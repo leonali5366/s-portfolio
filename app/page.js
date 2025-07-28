@@ -54,6 +54,7 @@ const [isVisible, setIsVisible] = useState(true);
         {/* <Hero setIsHovered={setIsHovered} home={home} /> */}
         <Tilt
           setIsHovered={setIsHovered}
+          home={home}
           aboutMe={aboutMe}
           scrollToSection={scrollToSection}
           setIsVisible={setIsVisible}

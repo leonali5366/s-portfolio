@@ -1,6 +1,6 @@
 "use client";
 import gsap from "gsap";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export default function Cursor({ isHovered, setIsVisible, isVisible }) {
   const size = isHovered ? 70 : 15;

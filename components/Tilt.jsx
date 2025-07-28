@@ -4,7 +4,13 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { BsStarFill, BsX } from "react-icons/bs";
 
-const Tilt = ({ setIsHovered, aboutMe, scrollToSection,setIsVisible }) => {
+const Tilt = ({
+  setIsHovered,
+  aboutMe,
+  scrollToSection,
+  setIsVisible,
+  home,
+}) => {
   const [Hovered, setHovered] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isMobile, setIsMobile] = useState(false);
@@ -92,7 +98,7 @@ const Tilt = ({ setIsHovered, aboutMe, scrollToSection,setIsVisible }) => {
   const toggleVideo = () => {
     setShowVideo(!showVideo);
     setIsHovered(!showVideo);
-    setIsVisible(false)
+    setIsVisible(false);
   };
 
   return (
@@ -100,6 +106,7 @@ const Tilt = ({ setIsHovered, aboutMe, scrollToSection,setIsVisible }) => {
       initial="hidden"
       animate="visible"
       variants={containerVariants}
+      ref={home}
       className="grid lg:grid-cols-2 place-items-center min-h-screen bg-[#121212] p-4 gap-10 max-lg:pt-20"
     >
       {/* Video Modal */}
@@ -176,7 +183,7 @@ const Tilt = ({ setIsHovered, aboutMe, scrollToSection,setIsVisible }) => {
             className="flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-10"
           >
             {/* ... About Me button ... */}
-             <button
+            <button
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
               onClick={() => scrollToSection(aboutMe)}
