@@ -153,7 +153,7 @@ const Footer = ({ setIsHovered }) => {
             </Magnet>
             <Magnet>
               <a
-                href="https://wa.me/+8801714-461547"
+                href="https://api.whatsapp.com/send/?phone=01771674511&text&type=phone_number&app_absent=0"
                 target="_blank" // Opens the link in a new tab
                 rel="noopener noreferrer" // Adds security when opening links in new tabs
                 onMouseEnter={() => setIsHovered(true)}

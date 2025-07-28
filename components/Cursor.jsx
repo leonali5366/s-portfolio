@@ -2,10 +2,9 @@
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 
-export default function Cursor({ isHovered }) {
+export default function Cursor({ isHovered, setIsVisible, isVisible }) {
   const size = isHovered ? 70 : 15;
   const circle = useRef();
-  const [isVisible, setIsVisible] = useState(true);
   const mouse = useRef({
     x: 0,
     y: 0,
@@ -56,7 +55,7 @@ export default function Cursor({ isHovered }) {
     window.addEventListener("mousemove", mouseMove);
     document.addEventListener("mouseleave", handleMouseLeave);
     document.addEventListener("mouseenter", handleMouseEnter);
-    
+
     return () => {
       window.removeEventListener("mousemove", mouseMove);
       document.removeEventListener("mouseleave", handleMouseLeave);

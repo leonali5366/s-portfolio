@@ -195,7 +195,7 @@ export default function Hero({ setIsHovered, home }) {
               </GoogleCalendarScheduler>
             </div>
             <a
-              href="https://api.whatsapp.com/send/?phone=01714461547&text&type=phone_number&app_absent=0"
+              href="https://api.whatsapp.com/send/?phone=01771674511&text&type=phone_number&app_absent=0"
               target="_blank" // Opens the link in a new tab
               rel="noopener noreferrer" // Adds security when opening links in new tabs
               id="text-reveal-5"

@@ -1,7 +1,7 @@
 "use client";
 import Cursor from "@/components/Cursor";
 import Header from "@/components/header";
-import Hero from "@/components/Hero";
+// import Hero from "@/components/Hero";
 import Investment from "@/components/Investment";
 import Process from "@/components/Process";
 import Testimonial from "@/components/Testimonial";
@@ -34,7 +34,7 @@ export default function Home() {
       behavior: "smooth", // Smooth scrolling
     });
   };
-
+const [isVisible, setIsVisible] = useState(true);
   return (
     <ReactLenis root options={{ lerp: 0.1, duration: 1, smoothTouch: true }}>
       <main className="relative">
@@ -50,9 +50,14 @@ export default function Home() {
           testimonial={testimonial}
           setIsHovered={setIsHovered}
         />
-        <Cursor isHovered={isHovered} />
-        <Hero setIsHovered={setIsHovered} home={home} />
-        <Tilt setIsHovered={setIsHovered} />
+        <Cursor isHovered={isHovered} setIsVisible={setIsVisible} isVisible={isVisible} />
+        {/* <Hero setIsHovered={setIsHovered} home={home} /> */}
+        <Tilt
+          setIsHovered={setIsHovered}
+          aboutMe={aboutMe}
+          scrollToSection={scrollToSection}
+          setIsVisible={setIsVisible}
+        />
         <Customer
           setIsHovered={setIsHovered}
           scrollToSection={scrollToSection}
