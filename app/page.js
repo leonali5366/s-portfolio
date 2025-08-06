@@ -1,7 +1,7 @@
 "use client";
 import Cursor from "@/components/Cursor";
 import Header from "@/components/header";
-// import Hero from "@/components/Hero";
+import Hero from "@/components/Hero";
 import Investment from "@/components/Investment";
 import Process from "@/components/Process";
 import Testimonial from "@/components/Testimonial";
@@ -15,7 +15,7 @@ import Customer from "@/components/Customer";
 import Personal from "@/components/Personal";
 import VideoSwiper from "@/components/VideoSwiper";
 import ProjectCard from "@/components/ProjectCard";
-import Tilt from "@/components/Tilt";
+// import Tilt from "@/components/Tilt";
 
 export default function Home() {
   const [isHovered, setIsHovered] = useState(false);
@@ -51,14 +51,14 @@ const [isVisible, setIsVisible] = useState(true);
           setIsHovered={setIsHovered}
         />
         <Cursor isHovered={isHovered} setIsVisible={setIsVisible} isVisible={isVisible} />
-        {/* <Hero setIsHovered={setIsHovered} home={home} /> */}
-        <Tilt
+        <Hero setIsHovered={setIsHovered} home={home} />
+        {/* <Tilt
           setIsHovered={setIsHovered}
           home={home}
           aboutMe={aboutMe}
           scrollToSection={scrollToSection}
           setIsVisible={setIsVisible}
-        />
+        /> */}
         <Customer
           setIsHovered={setIsHovered}
           scrollToSection={scrollToSection}

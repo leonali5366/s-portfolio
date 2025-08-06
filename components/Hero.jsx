@@ -2,13 +2,14 @@
 import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import profile from "../app/images/profile.jpg";
 import { ScrollTrigger } from "gsap/all";
 import { FiArrowRight } from "react-icons/fi";
 import { BsArrowUpRight } from "react-icons/bs";
 import GoogleCalendarScheduler from "./GoogleCalendarScheduler";
 import { FaSquareWhatsapp } from "react-icons/fa6";
+import { motion } from "framer-motion";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -114,33 +115,100 @@ export default function Hero({ setIsHovered, home }) {
     });
   }, []);
 
+  const [Hovered, setHovered] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Check if window is defined (client-side)
+    if (typeof window !== "undefined") {
+      const handleResize = () => {
+        setIsMobile(window.innerWidth < 768); // 768px is typically the breakpoint for md in Tailwind
+      };
+
+      // Set initial value
+      handleResize();
+
+      // Add event listener
+      window.addEventListener("resize", handleResize);
+
+      // Clean up
+      return () => window.removeEventListener("resize", handleResize);
+    }
+  }, []);
+
+  const handleMouseMove = (e) => {
+    if (isMobile) return;
+
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const angleY = (x - centerX) / 100;
+    const angleX = (centerY - y) / 100;
+
+    setMousePosition({ x: x / rect.width, y: y / rect.height });
+    card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+  };
+
+  const handleMouseEnter = () => {
+    if (isMobile) return;
+    setHovered(true);
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = (e) => {
+    if (isMobile) return;
+    setHovered(false);
+    setIsHovered(false);
+    e.currentTarget.style.transform =
+      "perspective(1000px) rotateX(0) rotateY(0)";
+  };
+
   return (
     <div
       className="w-full lg:h-screen bg-[#121212] overflow-hidden py-10 text-white"
       ref={home}
     >
-      <div className="max-w-[1550px] mx-auto h-full flex lg:flex-row flex-col items-center justify-center relative px-5">
-        <div className="lg:w-full md:w-[500px] sm:w-[400px] w-[300px] h-[400px] sm:h-[500px] lg:h-full md:h-[600px] relative overflow-hidden">
-          <Image
-            src={"/images/profile.png"}
-            objectFit="cover"
-            layout="fill"
-            alt=""
-            id="hero-img"
-            className="scale-150 opacity-0"
-          />
-          <div className="absolute inset-x-0 bottom-0 h-2/4 bg-gradient-to-t from-[#121212] opacity-100"></div>
-        </div>
+      <div className="w-full xl:px-20 md:px-10 px-5 flex items-center lg:flex-row flex-col justify-between lg:mt-32 mt-12 xl:gap-32 md:gap-16 gap-10">
+        <motion.div
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, ease: "easeInOut" }}
+          className="w-full"
+        >
+          <div
+            className="w-full h-full bg-black/50 rounded-md shadow-lg overflow-hidden relative cursor-pointer p-3 sm:p-5"
+            onMouseMove={handleMouseMove}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            style={{
+              transformStyle: `${isMobile ? "none" : "preserve-3d"}`,
+              transition: "transform 0.1s ease-out",
+            }}
+          >
+            {/* Card content */}
+
+            <img
+              src="/images/ShohanurFiverr.png"
+              alt="fiverr"
+              className="w-full h-auto rounded-md"
+            />
+          </div>
+        </motion.div>
+
         <div className="w-full h-full flex flex-col justify-center gap-y-10">
           <h1
-            className="sm:text-5xl text-3xl sm:text-left text-center sm:px-0 px-5 font-mono capitalize text-pretty opacity-0 translate-y-10"
+            className="sm:text-5xl text-3xl lg:text-left text-center sm:px-0 px-5 font-mono capitalize text-pretty opacity-0 translate-y-10"
             id="text-reveal-1"
           >
             Get High-End Custom Websites or Online Shops without Breaking the
             Bank.
           </h1>
           <p
-            className="sm:text-[28px] text-xl sm:px-0 px-5 sm:text-left text-center font-light opacity-0 translate-y-10"
+            className="sm:text-[28px] text-xl sm:px-0 px-5 lg:text-left text-center font-light opacity-0 translate-y-10"
             id="text-reveal-2"
           >
             Unleash your brand’s potential with 100% custom-built websites,
@@ -148,7 +216,7 @@ export default function Hero({ setIsHovered, home }) {
             and mobile platforms.
           </p>
 
-          <div className="flex sm:flex-row flex-col items-center justify-center gap-y-5">
+          <div className="flex sm:flex-row flex-wrap flex-col items-center justify-center gap-y-5">
             <GoogleCalendarScheduler>
               <div
                 className="flex items-center gap-x-3 justify-center sm:hidden opacity-0 translate-y-10"
