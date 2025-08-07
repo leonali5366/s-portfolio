@@ -3,12 +3,8 @@ import { IoCheckmarkDone } from "react-icons/io5";
 import { BsArrowUpRight } from "react-icons/bs";
 import { FiArrowRight } from "react-icons/fi";
 import Magnet from "./Magnet";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/dist/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
 import GoogleCalendarScheduler from "./GoogleCalendarScheduler";
-
-gsap.registerPlugin(ScrollTrigger);
+import { motion } from "framer-motion";
 
 const packageContent = [
   {
@@ -57,52 +53,27 @@ const packageContent = [
 ];
 
 const Investment = ({ pricing, setIsHovered }) => {
-  useGSAP(() => {
-    gsap.from("#text-reveal", {
-      y: 40,
-      duration: 1,
-      opacity: 0,
-      scrollTrigger: "#text-reveal",
-    });
-    gsap.from("#reveal-card-1", {
-      y: 40,
-      duration: 1,
-      opacity: 0,
-      delay: 0.5,
-      scrollTrigger: "#reveal-card-1",
-    });
-    gsap.from("#reveal-card-2", {
-      y: 40,
-      duration: 1,
-      opacity: 0,
-      delay: 0.5,
-      scrollTrigger: "#reveal-card-2",
-    });
-    gsap.from("#reveal-card-3", {
-      y: 40,
-      duration: 1,
-      opacity: 0,
-      delay: 1,
-      scrollTrigger: "#reveal-card-3",
-    });
-  }, []);
-
   return (
     <div className="bg-[#121212] xl:py-[150px] py-10 text-white" ref={pricing}>
       <div className="flex flex-col gap-y-10">
         {/* header */}
-        <h1
+        <motion.h1
+          initial={{ opacity: 0, x: -40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
           className="xl:text-[84px] md:text-6xl max-xl:text-center text-4xl font-mono md:mb-10 pl-5"
-          id="text-reveal"
         >
           The Investment
-        </h1>
+        </motion.h1>
         {/* packages */}
         <div className="grid 2xl:grid-cols-3 lg:grid-cols-2 gap-5 md:items-center md:justify-center px-5">
           {/* package 1 */}
-          <div
+          <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1 }}
             className="max-w-[700px] mx-auto w-full md:h-screen bg-[#282828] sm:p-3 p-2"
-            id="reveal-card-1"
+            // id="reveal-card-1"
           >
             {/* package 1 */}
 
@@ -185,12 +156,15 @@ const Investment = ({ pricing, setIsHovered }) => {
                 </GoogleCalendarScheduler>
               </Magnet>
             </div>
-          </div>
+          </motion.div>
           {/* package 2 */}
 
-          <div
+          <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
             className="max-w-[700px] mx-auto w-full sm:h-screen bg-[#282828] sm:p-3 p-2"
-            id="reveal-card-2"
+            // id="reveal-card-2"
           >
             {/* package 2 */}
             <div className="w-full h-full border xl:p-[50px] p-5 flex flex-col items-center justify-between gap-y-7">
@@ -278,11 +252,14 @@ const Investment = ({ pricing, setIsHovered }) => {
                 </GoogleCalendarScheduler>
               </Magnet>
             </div>
-          </div>
+          </motion.div>
           {/* package 3 */}
-          <div
+          <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 1 }}
             className="max-w-[700px] mx-auto w-full sm:h-screen bg-[#282828] sm:p-3 p-2"
-            id="reveal-card-3"
+            // id="reveal-card-3"
           >
             <div className="w-full h-full border xl:p-[50px] p-5 flex flex-col items-center justify-between gap-y-7">
               <h1 className="sm:text-[36px] text-2xl font-mono border-b-2 text-nowrap sm:leading-[4rem]">
@@ -364,7 +341,7 @@ const Investment = ({ pricing, setIsHovered }) => {
                 </GoogleCalendarScheduler>
               </Magnet>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>

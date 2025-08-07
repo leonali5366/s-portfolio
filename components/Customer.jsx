@@ -46,7 +46,7 @@ const Customer = ({ setIsHovered, scrollToSection, aboutMe }) => {
       <div className="max-w-[1550px] mx-auto md:py-32 py-16 space-y-44 px-5">
         {/* 1st components */}
         <div className="w-full flex xl:flex-row flex-col justify-center xl:gap-x-28 gap-y-10">
-          <div className="flex w-full h-fit xl:sticky xl:top-10">
+          <div className="flex w-full h-fit xl:sticky xl:top-14">
             <div className="h-auto sm:w-1 w-[2px] mr-3 md:mr-4 xl:mr-5 overflow-hidden">
               <div className="w-full h-full bg-black" id="line" />
             </div>
