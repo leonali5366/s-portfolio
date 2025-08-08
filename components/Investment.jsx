@@ -67,13 +67,12 @@ const Investment = ({ pricing, setIsHovered }) => {
         </motion.h1>
         {/* packages */}
         <div className="grid 2xl:grid-cols-3 lg:grid-cols-2 gap-5 md:items-center md:justify-center px-5">
-          {/* package 1 */}
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
             transition={{ duration: 1 }}
             className="max-w-[700px] mx-auto w-full md:h-screen bg-[#282828] sm:p-3 p-2"
-            // id="reveal-card-1"
           >
             {/* package 1 */}
 
@@ -161,7 +160,8 @@ const Investment = ({ pricing, setIsHovered }) => {
 
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.5 }}
             className="max-w-[700px] mx-auto w-full sm:h-screen bg-[#282828] sm:p-3 p-2"
             // id="reveal-card-2"
@@ -256,7 +256,8 @@ const Investment = ({ pricing, setIsHovered }) => {
           {/* package 3 */}
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
             transition={{ duration: 1, delay: 1 }}
             className="max-w-[700px] mx-auto w-full sm:h-screen bg-[#282828] sm:p-3 p-2"
             // id="reveal-card-3"

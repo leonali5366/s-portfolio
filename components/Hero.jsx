@@ -1,20 +1,38 @@
 "use client";
-import Image from "next/image";
 import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import { useEffect, useRef, useState } from "react";
-import profile from "../app/images/profile.jpg";
-import { ScrollTrigger } from "gsap/all";
 import { FiArrowRight } from "react-icons/fi";
 import { BsArrowUpRight } from "react-icons/bs";
 import GoogleCalendarScheduler from "./GoogleCalendarScheduler";
 import { FaSquareWhatsapp } from "react-icons/fa6";
 import { motion } from "framer-motion";
 
-gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero({ setIsHovered, home }) {
   const magnetRef = useRef(null);
+
+  const words =
+    "Get High-End Custom Websites or Online Shops without Breaking the Bank.".split(
+      " "
+    );
+  const [highlighted, setHighlighted] = useState([]);
+
+  // After initial reveal, pick random words to spin every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const randomIndexes = [];
+      while (randomIndexes.length < 2) {
+        const rand = Math.floor(Math.random() * words.length);
+        if (!randomIndexes.includes(rand)) randomIndexes.push(rand);
+      }
+      setHighlighted(randomIndexes);
+
+      // Remove highlight after animation ends
+      setTimeout(() => setHighlighted([]), 1200);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [words.length]);
 
   useEffect(() => {
     const magnetElement = magnetRef.current;
@@ -69,50 +87,6 @@ export default function Hero({ setIsHovered, home }) {
       magnetElement.removeEventListener("mouseenter", handleMouseEnter);
       magnetElement.removeEventListener("mouseleave", handleMouseLeave);
     };
-  }, []);
-
-  useGSAP(() => {
-    gsap.to("#hero-img", {
-      scale: 1,
-      duration: 1,
-      opacity: 1,
-      scrollTrigger: "#hero-img",
-    });
-    gsap.to("#text-reveal-1", {
-      y: 0,
-      duration: 1,
-      opacity: 1,
-      delay: 0.3,
-      scrollTrigger: "#text-reveal-1",
-    });
-    gsap.to("#text-reveal-2", {
-      y: 0,
-      duration: 1,
-      opacity: 1,
-      delay: 0.5,
-      scrollTrigger: "#text-reveal-2",
-    });
-    gsap.to("#text-reveal-3", {
-      y: 0,
-      duration: 1,
-      opacity: 1,
-      delay: 0.7,
-      scrollTrigger: "#text-reveal-3",
-    });
-    gsap.to("#text-reveal-4", {
-      y: 0,
-      duration: 1,
-      opacity: 1,
-      delay: 0.9,
-      scrollTrigger: "#text-reveal-4",
-    });
-    gsap.to("#text-reveal-5", {
-      y: 0,
-      duration: 1,
-      opacity: 1,
-      delay: 1.1,
-      scrollTrigger: "#text-reveal-5",
-    });
   }, []);
 
   const [Hovered, setHovered] = useState(false);
@@ -175,7 +149,8 @@ export default function Hero({ setIsHovered, home }) {
       <div className="w-full xl:px-20 md:px-10 px-5 flex items-center lg:flex-row flex-col justify-between lg:mt-32 mt-12 xl:gap-32 md:gap-16 gap-10">
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.7, ease: "easeInOut" }}
           className="w-full"
         >
@@ -200,38 +175,106 @@ export default function Hero({ setIsHovered, home }) {
         </motion.div>
 
         <div className="w-full h-full flex flex-col justify-center gap-y-10">
-          <h1
-            className="sm:text-5xl text-3xl lg:text-left text-center sm:px-0 px-5 font-mono capitalize text-pretty opacity-0 translate-y-10"
-            id="text-reveal-1"
+          {/* Animated headline with word flip and random animation */}
+          <motion.div
+            className="sm:text-5xl text-3xl lg:text-left text-center sm:px-0 px-5 font-mono capitalize flex flex-wrap gap-2"
+            style={{ lineHeight: "1.2" }}
           >
-            Get High-End Custom Websites or Online Shops without Breaking the
-            Bank.
-          </h1>
-          <p
-            className="sm:text-[28px] text-xl sm:px-0 px-5 lg:text-left text-center font-light opacity-0 translate-y-10"
-            id="text-reveal-2"
+            {words.map((word, wordIdx) => (
+              <span key={wordIdx} className="inline-flex">
+                {word.split("").map((char, letterIdx) => (
+                  <motion.span
+                    key={letterIdx}
+                    initial={{
+                      opacity: 0,
+                      rotateY: 90,
+                      y: Math.random() * 40 - 20,
+                      scale: 0.8 + Math.random() * 0.4,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      rotateY: 0,
+                      y: 0,
+                      scale: 1,
+                      rotateX: highlighted.includes(wordIdx) ? 360 : 0,
+                      color: highlighted.includes(wordIdx) ? "#22c55e" : "#fff",
+                    }}
+                    transition={{
+                      duration: highlighted.includes(wordIdx) ? 0.6 : 0.6,
+                      ease: "easeInOut",
+                      delay: highlighted.includes(wordIdx)
+                        ? letterIdx * 0.05 // sequential spin in word
+                        : wordIdx * 0.03, // initial reveal delay
+                    }}
+                    style={{
+                      display: "inline-block",
+                      transformOrigin: "center",
+                    }}
+                  >
+                    {char}
+                  </motion.span>
+                ))}
+              </span>
+            ))}
+          </motion.div>
+
+          {/* Animated paragraph with word flip and random animation */}
+          <motion.div
+            className="sm:text-[28px] text-xl sm:px-0 px-5 lg:text-left text-center font-light flex flex-wrap gap-2"
+            style={{ lineHeight: "1.3" }}
           >
-            Unleash your brand’s potential with 100% custom-built websites,
-            offering speed and seamless performance across all desktop, tablet,
-            and mobile platforms.
-          </p>
+            {`Unleash your brand’s potential with 100% custom-built websites, offering speed and seamless performance across all desktop, tablet, and mobile platforms.`
+              .split(" ")
+              .map((word, idx) => (
+                <motion.span
+                  key={idx}
+                  initial={{
+                    opacity: 0,
+                    rotateY: 90,
+                    y: Math.random() * 30 - 15,
+                    scale: 0.8 + Math.random() * 0.4,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    rotateY: 0,
+                    y: 0,
+                    scale: 1,
+                  }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.6,
+                    ease: "easeInOut",
+                    delay: 0.2 + Math.random() * 0.4,
+                  }}
+                  style={{ display: "inline-block", marginRight: "6px" }}
+                >
+                  {word}
+                </motion.span>
+              ))}
+          </motion.div>
 
           <div className="flex sm:flex-row flex-wrap flex-col items-center justify-center gap-y-5">
             <GoogleCalendarScheduler>
-              <div
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.8, ease: "easeInOut" }}
                 className="flex items-center gap-x-3 justify-center sm:hidden opacity-0 translate-y-10"
-                id="text-reveal-3"
               >
                 <button className="text-lg uppercase">book a free call</button>
                 <button className="size-12 rounded-full bg-white flex items-center justify-center">
                   <BsArrowUpRight className="text-black text-[22px] rotate-45" />
                 </button>
-              </div>
+              </motion.div>
             </GoogleCalendarScheduler>
-            <div
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.8, ease: "easeInOut" }}
               ref={magnetRef}
               className="w-[400px] relative sm:block hidden opacity-0 translate-y-10"
-              id="text-reveal-4"
             >
               <GoogleCalendarScheduler>
                 <div
@@ -261,12 +304,15 @@ export default function Hero({ setIsHovered, home }) {
                   </button>
                 </div>
               </GoogleCalendarScheduler>
-            </div>
-            <a
+            </motion.div>
+            <motion.a
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.8, ease: "easeInOut" }}
               href="https://api.whatsapp.com/send/?phone=01771674511&text&type=phone_number&app_absent=0"
               target="_blank" // Opens the link in a new tab
               rel="noopener noreferrer" // Adds security when opening links in new tabs
-              id="text-reveal-5"
               className="opacity-0 translate-y-10"
             >
               <button
@@ -277,7 +323,7 @@ export default function Hero({ setIsHovered, home }) {
                 or whatsapp me
                 <FaSquareWhatsapp className="text-green-500 text-3xl" />
               </button>
-            </a>
+            </motion.a>
           </div>
         </div>
       </div>
