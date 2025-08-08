@@ -7,7 +7,6 @@ import GoogleCalendarScheduler from "./GoogleCalendarScheduler";
 import { FaSquareWhatsapp } from "react-icons/fa6";
 import { motion } from "framer-motion";
 
-
 export default function Hero({ setIsHovered, home }) {
   const magnetRef = useRef(null);
 
@@ -166,11 +165,17 @@ export default function Hero({ setIsHovered, home }) {
           >
             {/* Card content */}
 
-            <img
-              src="/images/ShohanurFiverr.png"
-              alt="fiverr"
-              className="w-full h-auto rounded-md"
-            />
+            <a
+              href="https://bit.ly/41AXLZx"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="/images/ShohanurFiverr.png"
+                alt="fiverr"
+                className="w-full h-auto rounded-md"
+              />
+            </a>
           </div>
         </motion.div>
 

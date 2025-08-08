@@ -3,6 +3,7 @@ import "./globals.css";
 import { EdgeStoreProvider } from "@/lib/edgestore";
 import { Toaster } from "sonner";
 import { ClerkProvider } from "@clerk/nextjs";
+import Script from "next/script";
 
 // Local fonts
 const JosefinSans = localFont({
@@ -76,6 +77,23 @@ export default function RootLayout({ children }) {
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
+
+          <Script
+            src="https://www.googletagmanager.com/gtag/js?id=G-Z24Q925T3N"
+            strategy="afterInteractive"
+          />
+          <Script
+            id="google-analytics"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-Z24Q925T3N');
+          `,
+            }}
           />
         </head>
         <body
