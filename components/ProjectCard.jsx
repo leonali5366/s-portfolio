@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import axios from "axios";
 import { toast } from "sonner";
@@ -8,28 +8,26 @@ import { Card } from "./ui/card";
 import { BsArrowRight, BsArrowUpRight } from "react-icons/bs";
 import { Skeleton } from "./ui/skeleton";
 import { FiArrowRight } from "react-icons/fi";
-import { motion, useAnimation } from "framer-motion"; // Import Framer Motion
+import { motion, useAnimation } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import { Grid, Navigation, Pagination } from "swiper";
+import { Grid } from "swiper";
 import Magnet from "./Magnet";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-export default function ProjectCard({ setIsHovered }) {
+export default function ProjectCard({ setIsHovered, project }) {
   const [projects, setProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const controls = useAnimation(); // Framer Motion animation controls
+  const controls = useAnimation();
+  const swiperRef = useRef(null); // store swiper instance
 
-  // Fetch projects on mount
   useEffect(() => {
     fetchProjects();
   }, []);
 
-  // Animate projects when they are loaded
   useEffect(() => {
     if (!isLoading && projects.length > 0) {
-      controls.start("visible"); // Start the animation
+      controls.start("visible");
     }
   }, [isLoading, projects, controls]);
 
@@ -37,8 +35,7 @@ export default function ProjectCard({ setIsHovered }) {
     setIsLoading(true);
     try {
       const response = await axios.get("/api/add-project");
-      const allProjects = response.data.data;
-      setProjects(allProjects);
+      setProjects(response.data.data);
     } catch (error) {
       console.error("Error fetching projects:", error);
       toast.error("Failed to fetch projects");
@@ -47,111 +44,116 @@ export default function ProjectCard({ setIsHovered }) {
     }
   };
 
-  // Framer Motion variants for stagger animation
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1, // Stagger effect with 0.2s delay between children
-      },
+      transition: { staggerChildren: 0.1 },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 50 }, // Start hidden and slightly below
-    visible: { opacity: 1, y: 0 }, // Animate to visible and original position
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0 },
   };
 
   return (
-    <div className="bg-[#121212] xl:min-h-screen">
-      <div className="px-5 py-20 md:space-y-32 space-y-16 max-w-7xl mx-auto">
+    <div ref={project} className="bg-[#121212] xl:min-h-screen">
+      <div className="px-5 py-20 md:space-y-32 space-y-16 max-w-[90rem] mx-auto">
         <h1 className="text-white xl:text-[84px] md:text-6xl text-4xl font-mono text-center">
           Recent Projects
         </h1>
 
         {isLoading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <Skeleton className="w-full h-[285px] rounded-xl" />
-            <Skeleton className="w-full h-[285px] rounded-xl" />
-            <Skeleton className="w-full h-[285px] rounded-xl" />
-            <Skeleton className="w-full h-[285px] rounded-xl" />
+            {[...Array(4)].map((_, idx) => (
+              <Skeleton key={idx} className="w-full h-[285px] rounded-xl" />
+            ))}
           </div>
         ) : (
           <motion.div
-            variants={containerVariants} // Container variants for stagger
-            initial="hidden" // Initial state
-            animate={controls} // Control the animation
+            variants={containerVariants}
+            initial="hidden"
+            animate={controls}
           >
-            <Swiper
-              navigation={true}
-              pagination={{
-                clickable: true,
-              }}
-              slidesPerView={1}
-              spaceBetween={20}
-              breakpoints={{
-                640: {
-                  slidesPerView: 2,
-                  grid: {
-                    rows: 1,
-                  },
-                },
-                768: {
-                  slidesPerView: 2,
-                  grid: {
-                    rows: 2,
-                  },
-                },
-              }}
-              grid={{
-                rows: 1,
-                fill: "row",
-              }}
-              modules={[Navigation, Pagination, Grid]}
-              className=""
-            >
-              {projects.map((project, i) => (
-                <SwiperSlide key={i}>
-                  <motion.div variants={itemVariants}>
-                    {" "}
-                    {/* Item variants for individual animation */}
-                    <Card className="h-[285px] overflow-hidden group relative border-none">
-                      <div className="w-full h-full relative">
-                        <Image
-                          src={project.imageUrl}
-                          alt=""
-                          objectFit="cover"
-                          layout="fill"
-                          objectPosition="top"
-                          className="group-hover:scale-105 transition-all duration-500 ease-in-out"
-                        />
-                      </div>
-                      <div className="absolute inset-0 bg-gradient-to-l from-sky-300 via-red-400 to-blue-400 opacity-0 group-hover:opacity-80 text-white transition-all duration-700 flex items-center justify-center">
-                        <a
-                          href={project.websiteUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="absolute bottom-0 translate-y-full group-hover:-translate-y-10 group-hover:xl:-translate-y-28 transition-all duration-300"
+            <div className="relative">
+              {/* Swiper carousel */}
+              <Swiper
+                onSwiper={(swiper) => (swiperRef.current = swiper)}
+                slidesPerView={1}
+                spaceBetween={20}
+                breakpoints={{
+                  640: { slidesPerView: 2, grid: { rows: 1 } },
+                  768: { slidesPerView: 2, grid: { rows: 2 } },
+                }}
+                grid={{ rows: 1, fill: "row" }}
+                modules={[Grid]}
+                className="pb-10"
+              >
+                {projects.map((project, i) => (
+                  <SwiperSlide key={i}>
+                    <motion.div variants={itemVariants}>
+                      <Card className="h-[285px] overflow-hidden group relative border-none">
+                        <div className="w-full h-full relative">
+                          <Image
+                            src={project.imageUrl}
+                            alt=""
+                            fill
+                            className="object-cover object-top group-hover:scale-105 transition-all duration-500 ease-in-out"
+                          />
+                        </div>
+                        <div
+                          onMouseEnter={() => setIsHovered(true)}
+                          onMouseLeave={() => setIsHovered(false)}
+                          className="absolute inset-0 bg-gradient-to-l from-sky-300 via-red-400 to-blue-400 opacity-0 lg:group-hover:opacity-80 max-lg:opacity-80 text-white transition-all duration-700 flex items-center justify-center"
                         >
-                          <div className="flex items-center gap-x-2 text-[13px] tracking-[0.2em]">
-                            <div className="delay-100">LIVE</div>
-                            <div className="translate-y-[500%] group-hover:translate-y-0 transition-all duration-300 delay-150">
-                              PROJECT
+                          <a
+                            href={project.websiteUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="absolute bottom-0 translate-y-full lg:group-hover:-translate-y-10 max-lg:-translate-y-28 group-hover:xl:-translate-y-28 transition-all duration-300"
+                          >
+                            <div className="flex items-center gap-x-2 text-[13px] tracking-[0.2em]">
+                              <div className="delay-100">LIVE</div>
+                              <div className="translate-y-[500%] lg:group-hover:translate-y-0 max-lg:translate-y-0 transition-all duration-300 delay-150">
+                                PROJECT
+                              </div>
+                              <div className="text-xl translate-y-[500%] lg:group-hover:translate-y-0 max-lg:translate-y-0 transition-all duration-300 delay-200">
+                                <BsArrowRight />
+                              </div>
                             </div>
-                            <div className="text-xl translate-y-[500%] group-hover:translate-y-0 transition-all duration-300 delay-200">
-                              <BsArrowRight />
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                    </Card>
-                  </motion.div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+                          </a>
+                        </div>
+                      </Card>
+                    </motion.div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+
+              {/* Custom Navigation Buttons - OUTSIDE carousel */}
+              <div className="flex justify-end items-center mt-8 gap-3">
+                <button
+                  onClick={() => swiperRef.current?.slidePrev()}
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
+                  className="p-3 bg-white text-black rounded-full shadow-lg hover:scale-105 transition"
+                >
+                  <ChevronLeft />
+                </button>
+                <button
+                  onClick={() => swiperRef.current?.slideNext()}
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
+                  className="p-3 bg-white text-black rounded-full shadow-lg hover:scale-105 transition"
+                >
+                  <ChevronRight />
+                </button>
+              </div>
+            </div>
           </motion.div>
         )}
+
+        {/* View all button */}
         <Link href={"/projects"} className="flex items-center justify-center">
           <Magnet>
             <div className="flex items-center gap-x-3 justify-center xl:hidden">

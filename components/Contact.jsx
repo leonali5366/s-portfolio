@@ -2,6 +2,7 @@ import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
 import { toast } from "sonner";
 import { BsArrowRight } from "react-icons/bs";
+import ReCAPTCHA from "react-google-recaptcha"; // ⬅️ new
 import {
   Select,
   SelectContent,
@@ -16,8 +17,13 @@ const Contact = ({ contact }) => {
     handleSubmit,
     reset,
     control,
+    watch,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm();
+
+  const redesignValue = watch("redesign");
+  const referenceValue = watch("reference");
 
   const onSubmit = async (data) => {
     try {
@@ -36,18 +42,23 @@ const Contact = ({ contact }) => {
 
   return (
     <div className="h-full bg-[#121212] px-5 w-full" ref={contact}>
-      <div className="container mx-auto sm:py-32 py-10 text-center xl:text-left flex items-center justify-center h-full">
+      <div className="container mx-auto sm:py-32 py-10 flex items-center justify-center h-full">
         <div className="flex flex-col w-full max-w-[700px]">
           <h2 className="xl:text-6xl md:text-5xl text-4xl text-center mb-12 font-bold">
             Let&apos;s <span className="text-red-600">connect.</span>
           </h2>
+
           <form
             className="flex-1 flex flex-col gap-6 w-full mx-auto"
             onSubmit={handleSubmit(onSubmit)}
           >
+            {/* --- Your existing name/email fields remain here --- */}
             <div className="flex gap-x-6 w-full">
               <div className="w-full">
-                <label htmlFor="name" className="block text-left mb-2 text-white/80">
+                <label
+                  htmlFor="name"
+                  className="block text-left mb-2 text-white/80"
+                >
                   Name *
                 </label>
                 <input
@@ -58,11 +69,16 @@ const Contact = ({ contact }) => {
                   className="w-full h-[52px] rounded-lg pl-6 bg-transparent outline-none focus:ring-1 focus:ring-red-600 border border-white/20 placeholder:text-white/30 placeholder:font-light"
                 />
                 {errors.name && (
-                  <p className="text-red-600 text-sm text-left">{errors.name.message}</p>
+                  <p className="text-red-600 text-sm text-left">
+                    {errors.name.message}
+                  </p>
                 )}
               </div>
               <div className="w-full">
-                <label htmlFor="email" className="block text-left mb-2 text-white/80">
+                <label
+                  htmlFor="email"
+                  className="block text-left mb-2 text-white/80"
+                >
                   Email *
                 </label>
                 <input
@@ -79,13 +95,18 @@ const Contact = ({ contact }) => {
                   className="w-full h-[52px] rounded-lg pl-6 bg-transparent outline-none focus:ring-1 focus:ring-red-600 border border-white/20 placeholder:text-white/30 placeholder:font-light"
                 />
                 {errors.email && (
-                  <p className="text-red-600 text-sm text-left">{errors.email.message}</p>
+                  <p className="text-red-600 text-sm text-left">
+                    {errors.email.message}
+                  </p>
                 )}
               </div>
             </div>
-            
+
             <div>
-              <label htmlFor="subject" className="block text-left mb-2 text-white/80">
+              <label
+                htmlFor="subject"
+                className="block text-left mb-2 text-white/80"
+              >
                 Subject *
               </label>
               <input
@@ -96,10 +117,13 @@ const Contact = ({ contact }) => {
                 className="w-full h-[52px] rounded-lg pl-6 bg-transparent outline-none focus:ring-1 focus:ring-red-600 border border-white/20 placeholder:text-white/30 placeholder:font-light"
               />
               {errors.subject && (
-                <p className="text-red-600 text-sm text-left">{errors.subject.message}</p>
+                <p className="text-red-600 text-sm text-left">
+                  {errors.subject.message}
+                </p>
               )}
             </div>
-            
+
+            {/* Question 1 */}
             <div>
               <label className="block text-left mb-2 text-white/80">
                 Do you want to redesign an existing website? *
@@ -121,13 +145,48 @@ const Contact = ({ contact }) => {
                 )}
               />
               {errors.redesign && (
-                <p className="text-red-600 text-sm text-left">{errors.redesign.message}</p>
+                <p className="text-red-600 text-sm text-left">
+                  {errors.redesign.message}
+                </p>
+              )}
+
+              {/* Show link input if YES */}
+              {redesignValue === "yes" && (
+                <div className="mt-3">
+                  <label
+                    htmlFor="redesignLink"
+                    className="block text-left mb-2 text-white/80"
+                  >
+                    Provide the link *
+                  </label>
+                  <input
+                    id="redesignLink"
+                    type="url"
+                    {...register("redesignLink", {
+                      required: "Link is required if redesigning",
+                      pattern: {
+                        value:
+                          /^(https?:\/\/)?([\w\d-]+\.){1,}([a-zA-Z]{2,})(\/.*)?$/,
+                        message: "Invalid URL",
+                      },
+                    })}
+                    placeholder="https://example.com"
+                    className="w-full h-[52px] rounded-lg pl-6 bg-transparent outline-none focus:ring-1 focus:ring-red-600 border border-white/20 placeholder:text-white/30 placeholder:font-light"
+                  />
+                  {errors.redesignLink && (
+                    <p className="text-red-600 text-sm text-left">
+                      {errors.redesignLink.message}
+                    </p>
+                  )}
+                </div>
               )}
             </div>
-            
+
+            {/* Question 2 */}
             <div>
               <label className="block text-left mb-2 text-white/80">
-                Any Figma design, ready design or competitor URL for reference? *
+                Any Figma design, ready design or competitor URL for reference?
+                *
               </label>
               <Controller
                 name="reference"
@@ -146,12 +205,49 @@ const Contact = ({ contact }) => {
                 )}
               />
               {errors.reference && (
-                <p className="text-red-600 text-sm text-left">{errors.reference.message}</p>
+                <p className="text-red-600 text-sm text-left">
+                  {errors.reference.message}
+                </p>
+              )}
+
+              {/* Show link input if YES */}
+              {referenceValue === "yes" && (
+                <div className="mt-3">
+                  <label
+                    htmlFor="referenceLink"
+                    className="block text-left mb-2 text-white/80"
+                  >
+                    Provide the reference link *
+                  </label>
+                  <input
+                    id="referenceLink"
+                    type="url"
+                    {...register("referenceLink", {
+                      required: "Link is required if you have a reference",
+                      pattern: {
+                        value:
+                          /^(https?:\/\/)?([\w\d-]+\.){1,}([a-zA-Z]{2,})(\/.*)?$/,
+                        message: "Invalid URL",
+                      },
+                    })}
+                    placeholder="https://example.com"
+                    className="w-full h-[52px] rounded-lg pl-6 bg-transparent outline-none focus:ring-1 focus:ring-red-600 border border-white/20 placeholder:text-white/30 placeholder:font-light"
+                  />
+                  {errors.referenceLink && (
+                    <p className="text-red-600 text-sm text-left">
+                      {errors.referenceLink.message}
+                    </p>
+                  )}
+                </div>
               )}
             </div>
-            
+
+            {/* --- Rest of your message and submit button --- */}
             <div>
-              <label htmlFor="message" className="block text-left mb-2 text-white/80">
+              <label
+                htmlFor="message"
+                className="block text-left mb-2 text-white/80"
+              >
                 Message *
               </label>
               <textarea
@@ -161,10 +257,32 @@ const Contact = ({ contact }) => {
                 className="w-full h-[180px] p-6 rounded-lg resize-none bg-transparent outline-none focus:ring-1 focus:ring-red-600 border border-white/20 placeholder:text-white/30 placeholder:font-light"
               ></textarea>
               {errors.message && (
-                <p className="text-red-600 text-sm text-left">{errors.message.message}</p>
+                <p className="text-red-600 text-sm text-left">
+                  {errors.message.message}
+                </p>
               )}
             </div>
-            
+
+            {/* reCAPTCHA */}
+            <div>
+              <Controller
+                name="recaptcha"
+                control={control}
+                rules={{ required: "Please verify that you are not a robot" }}
+                render={({ field }) => (
+                  <ReCAPTCHA
+                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                    onChange={(value) => setValue("recaptcha", value)}
+                  />
+                )}
+              />
+              {errors.recaptcha && (
+                <p className="text-red-600 text-sm text-left">
+                  {errors.recaptcha.message}
+                </p>
+              )}
+            </div>
+
             <button
               type="submit"
               disabled={isSubmitting}

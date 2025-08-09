@@ -3,15 +3,12 @@ import { FiArrowRight } from "react-icons/fi";
 import Magnet from "./Magnet";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { FaLinkedinIn } from "react-icons/fa";
-import { MdAlternateEmail } from "react-icons/md";
 import { FaWhatsapp } from "react-icons/fa";
 import { BsArrowUpRight } from "react-icons/bs";
-import { CiGlobe } from "react-icons/ci";
 import GoogleCalendarScheduler from "./GoogleCalendarScheduler";
 import { AtSign, Globe, Instagram, Linkedin } from "lucide-react";
 
-const Footer = ({ setIsHovered }) => {
+const Footer = ({ setIsHovered, scrollToSection, contact }) => {
   const magnetRef = useRef(null);
 
   useEffect(() => {
@@ -121,6 +118,7 @@ const Footer = ({ setIsHovered }) => {
         </div>
         <button
           className="underline text-lg font-semibold uppercase underline-offset-8"
+          onClick={() => scrollToSection(contact)}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -144,7 +142,7 @@ const Footer = ({ setIsHovered }) => {
             </Magnet>
             <Magnet>
               <a
-                href="mailto:shohanurrezashuvo20@gmail.com"
+                href="mailto:rezaclick2022@gmail.com"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
               >
@@ -175,7 +173,7 @@ const Footer = ({ setIsHovered }) => {
             </Magnet>
             <Magnet>
               <a
-                href="https://www.instagram.com/shohanur_reza_shuvo/"
+                href="https://www.instagram.com/webbyshuvo"
                 target="_blank" // Opens the link in a new tab
                 rel="noopener noreferrer" // Adds security when opening links in new tabs
                 onMouseEnter={() => setIsHovered(true)}

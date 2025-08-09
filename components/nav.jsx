@@ -18,6 +18,7 @@ export default function Nav({
   process,
   processRes,
   setIsActive,
+  project,
 }) {
   const navItems = [
     {
@@ -35,6 +36,10 @@ export default function Nav({
     {
       title: "Why me",
       href: aboutus,
+    },
+    {
+      title: "Projects",
+      href: project,
     },
     {
       title: "Process",
@@ -67,7 +72,7 @@ export default function Nav({
       <Curve />
 
       <div className="box-border h-full md:p-[100px] p-[50px] flex flex-col justify-between">
-        <div className="flex flex-col gap-3 text-5xl md:mt-20 mt-10">
+        <div className="flex flex-col gap-3 text-5xl">
           <div className="text-[rgb(153,153,153)] border-b border-[rgb(153,153,153)] uppercase text-xs mb-10">
             <p>Navigation</p>
           </div>

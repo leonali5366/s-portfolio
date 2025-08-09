@@ -27,6 +27,7 @@ export default function Home() {
   const testimonial = useRef();
   const process = useRef();
   const processRes = useRef();
+  const project = useRef();
 
   // Function to handle scrolling to a specific section
   const scrollToSection = (ref) => {
@@ -34,7 +35,7 @@ export default function Home() {
       behavior: "smooth", // Smooth scrolling
     });
   };
-const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(true);
   return (
     <ReactLenis root options={{ lerp: 0.1, duration: 1, smoothTouch: true }}>
       <main className="relative">
@@ -44,13 +45,18 @@ const [isVisible, setIsVisible] = useState(true);
           aboutus={aboutus}
           pricing={pricing}
           home={home}
+          project={project}
           process={process}
           processRes={processRes}
           contact={contact}
           testimonial={testimonial}
           setIsHovered={setIsHovered}
         />
-        <Cursor isHovered={isHovered} setIsVisible={setIsVisible} isVisible={isVisible} />
+        <Cursor
+          isHovered={isHovered}
+          setIsVisible={setIsVisible}
+          isVisible={isVisible}
+        />
         <Hero setIsHovered={setIsHovered} home={home} />
         {/* <Tilt
           setIsHovered={setIsHovered}
@@ -71,7 +77,7 @@ const [isVisible, setIsVisible] = useState(true);
           contact={contact}
         />
         <Personal aboutMe={aboutMe} />
-        <ProjectCard setIsHovered={setIsHovered} />
+        <ProjectCard setIsHovered={setIsHovered} project={project} />
         {/* <ImageSlider /> */}
         <Process process={process} />
         <ProcessRes processRes={processRes} />
@@ -81,7 +87,11 @@ const [isVisible, setIsVisible] = useState(true);
           <Contact contact={contact} />
           <Testimonial testimonial={testimonial} />
         </div>
-        <Footer setIsHovered={setIsHovered} />
+        <Footer
+          setIsHovered={setIsHovered}
+          scrollToSection={scrollToSection}
+          contact={contact}
+        />
       </main>
     </ReactLenis>
   );

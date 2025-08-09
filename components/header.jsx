@@ -13,6 +13,7 @@ export default function Header({
   contact,
   process,
   processRes,
+  project,
 }) {
   const [isActive, setIsActive] = useState(false);
   return (
@@ -47,12 +48,13 @@ export default function Header({
         </li>
         <li
           className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300 cursor-pointer"
-          onClick={() => scrollToSection(aboutus)}
+          onClick={() => scrollToSection(project)}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          Why me
+          Projects
         </li>
+
         <li
           className="hover:border-b-2 border-b-2 lg:block hidden border-transparent hover:border-white transition-[border] duration-300 cursor-pointer"
           onClick={() => scrollToSection(process)}
@@ -69,7 +71,14 @@ export default function Header({
         >
           Process
         </li>
-
+        <li
+          className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300 cursor-pointer"
+          onClick={() => scrollToSection(aboutus)}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          Why me
+        </li>
         <li
           className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300 cursor-pointer"
           onClick={() => scrollToSection(testimonial)}
@@ -114,6 +123,7 @@ export default function Header({
             process={process}
             processRes={processRes}
             setIsActive={setIsActive}
+            project={project}
           />
         )}
       </AnimatePresence>
