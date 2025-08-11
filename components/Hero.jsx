@@ -146,7 +146,7 @@ export default function Hero({ setIsHovered, home }) {
       ref={home}
     >
       <div className="w-full xl:px-20 md:px-10 px-5 flex items-center lg:flex-row flex-col justify-between lg:mt-32 mt-12 xl:gap-32 md:gap-16 gap-10">
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, scale: 0 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -163,7 +163,6 @@ export default function Hero({ setIsHovered, home }) {
               transition: "transform 0.1s ease-out",
             }}
           >
-            {/* Card content */}
 
             <a
               href="https://bit.ly/41AXLZx"
@@ -177,6 +176,24 @@ export default function Hero({ setIsHovered, home }) {
               />
             </a>
           </div>
+        </motion.div> */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: "easeInOut" }}
+          className="w-full lg:h-[500px] sm:h-[400px] h-[300px]"
+        >
+          <iframe
+            width="100%"
+            height="100%"
+            src="https://www.youtube.com/embed/oXr_k1xNvoA?si=CwVInlEUaB_7D_jn"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
         </motion.div>
 
         <div className="w-full h-full flex flex-col justify-center gap-y-10">

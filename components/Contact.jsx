@@ -2,7 +2,6 @@ import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
 import { toast } from "sonner";
 import { BsArrowRight } from "react-icons/bs";
-import ReCAPTCHA from "react-google-recaptcha"; // ⬅️ new
 import {
   Select,
   SelectContent,
@@ -27,7 +26,24 @@ const Contact = ({ contact }) => {
 
   const onSubmit = async (data) => {
     try {
+      // Check if reCAPTCHA is loaded
+      if (!window.grecaptcha) {
+        toast.error("reCAPTCHA not loaded");
+        return;
+      }
+
+      // Get the token from reCAPTCHA v3
+      const token = await window.grecaptcha.execute(
+        process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
+        { action: "contact_form" }
+      );
+
+      // Attach token to the form data
+      data.recaptchaToken = token;
+
+      // Send data to backend
       const res = await axios.post("/api/send-email", data);
+
       if (res.status === 200) {
         toast.success("Message sent successfully!");
         reset();
@@ -259,26 +275,6 @@ const Contact = ({ contact }) => {
               {errors.message && (
                 <p className="text-red-600 text-sm text-left">
                   {errors.message.message}
-                </p>
-              )}
-            </div>
-
-            {/* reCAPTCHA */}
-            <div>
-              <Controller
-                name="recaptcha"
-                control={control}
-                rules={{ required: "Please verify that you are not a robot" }}
-                render={({ field }) => (
-                  <ReCAPTCHA
-                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-                    onChange={(value) => setValue("recaptcha", value)}
-                  />
-                )}
-              />
-              {errors.recaptcha && (
-                <p className="text-red-600 text-sm text-left">
-                  {errors.recaptcha.message}
                 </p>
               )}
             </div>
