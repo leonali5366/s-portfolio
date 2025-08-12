@@ -283,7 +283,7 @@ export default function Hero({ setIsHovered, home }) {
                 transition={{ duration: 0.7, delay: 0.8, ease: "easeInOut" }}
                 className="flex items-center gap-x-3 justify-center sm:hidden opacity-0 translate-y-10"
               >
-                <button className="text-lg uppercase">book a free call</button>
+                <button className="text-lg uppercase">book a 30 min free call</button>
                 <button className="size-12 rounded-full bg-white flex items-center justify-center">
                   <BsArrowUpRight className="text-black text-[22px] rotate-45" />
                 </button>
@@ -295,7 +295,7 @@ export default function Hero({ setIsHovered, home }) {
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.8, ease: "easeInOut" }}
               ref={magnetRef}
-              className="w-[400px] relative sm:block hidden opacity-0 translate-y-10"
+              className="w-[500px] relative sm:block hidden opacity-0 translate-y-10"
             >
               <GoogleCalendarScheduler>
                 <div
@@ -311,7 +311,7 @@ export default function Hero({ setIsHovered, home }) {
                   onMouseLeave={() => setIsHovered(false)}
                 >
                   <button className="flex gap-x-5 items-center text-2xl font-medium group uppercase w-fit text-nowrap">
-                    Book a free call
+                    Book a 30 min free call
                   </button>
                   <button className="size-14 rounded-full bg-transparent border-dashed group-hover:bg-white border-white border-2 group-hover:scale-[1.2] transition-all duration-300 flex items-center justify-center relative overflow-hidden">
                     <FiArrowRight

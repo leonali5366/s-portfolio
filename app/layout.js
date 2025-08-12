@@ -4,6 +4,7 @@ import { EdgeStoreProvider } from "@/lib/edgestore";
 import { Toaster } from "sonner";
 import { ClerkProvider } from "@clerk/nextjs";
 import Script from "next/script";
+import RecaptchaLoader from "@/components/RecaptchaLoader";
 
 // Local fonts
 const JosefinSans = localFont({
@@ -115,12 +116,7 @@ export default function RootLayout({ children }) {
         >
           <EdgeStoreProvider>
             <Toaster richColors />
-            <Script
-              src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
-              async
-              defer
-            />
-
+            <RecaptchaLoader />
             {children}
           </EdgeStoreProvider>
         </body>

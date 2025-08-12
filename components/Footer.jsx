@@ -79,7 +79,7 @@ const Footer = ({ setIsHovered, scrollToSection, contact }) => {
         <GoogleCalendarScheduler>
           <div className="flex items-center gap-x-3 justify-center xl:hidden">
             <button className="text-lg uppercase font-semibold">
-              book a free call
+              book a 30 min free call
             </button>
             <button className="size-12 rounded-full bg-black flex items-center justify-center">
               <BsArrowUpRight className="text-white text-[22px] rotate-45" />
@@ -101,7 +101,7 @@ const Footer = ({ setIsHovered, scrollToSection, contact }) => {
               onMouseLeave={() => setIsHovered(false)}
             >
               <button className="flex gap-x-5 items-center text-2xl font-medium group uppercase w-fit text-nowrap">
-                Book a free call
+                Book a 30 min free call
               </button>
               <button className="size-14 rounded-full bg-transparent border-dashed group-hover:bg-black border-black border-2 group-hover:scale-[1.2] transition-all duration-300 flex items-center justify-center relative overflow-hidden">
                 <FiArrowRight
@@ -116,14 +116,14 @@ const Footer = ({ setIsHovered, scrollToSection, contact }) => {
             </div>
           </GoogleCalendarScheduler>
         </div>
-        <button
+        {/* <button
           className="underline text-lg font-semibold uppercase underline-offset-8"
           onClick={() => scrollToSection(contact)}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
           or sent me an email
-        </button>
+        </button> */}
       </div>
       <div className="flex flex-col xl:gap-y-5 md:gap-y-3 gap-y-1 mb-5">
         <div className="flex items-center justify-between">
@@ -157,7 +157,7 @@ const Footer = ({ setIsHovered, scrollToSection, contact }) => {
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
               >
-                <FaWhatsapp className="xl:text-2xl md:text-xl text-lg" />
+                <FaWhatsapp className="text-2xl" />
               </a>
             </Magnet>
             <Magnet>

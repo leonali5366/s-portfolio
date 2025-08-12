@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
 import { toast } from "sonner";
@@ -24,35 +25,49 @@ const Contact = ({ contact }) => {
   const redesignValue = watch("redesign");
   const referenceValue = watch("reference");
 
-  const onSubmit = async (data) => {
+
+
+   const onSubmit = async (data) => {
     try {
-      // Check if reCAPTCHA is loaded
+      // Verify reCAPTCHA is loaded
       if (!window.grecaptcha) {
-        toast.error("reCAPTCHA not loaded");
+        toast.error("Security verification is initializing. Please try again in a moment.");
         return;
       }
 
-      // Get the token from reCAPTCHA v3
-      const token = await window.grecaptcha.execute(
-        process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
-        { action: "contact_form" }
-      );
-
-      // Attach token to the form data
-      data.recaptchaToken = token;
+      // Get reCAPTCHA token
+      let token;
+      try {
+        token = await window.grecaptcha.execute(
+          process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
+          { action: "contact_form" }
+        );
+      } catch (error) {
+        console.error("reCAPTCHA execution error:", error);
+        toast.error("Security verification failed. Please try again.");
+        return;
+      }
 
       // Send data to backend
-      const res = await axios.post("/api/send-email", data);
+      try {
+        const res = await axios.post("/api/send-email", {
+          ...data,
+          recaptchaToken: token,
+        });
 
-      if (res.status === 200) {
-        toast.success("Message sent successfully!");
-        reset();
-      } else {
-        toast.error(res.data.message || "Something went wrong.");
+        if (res.status === 200) {
+          toast.success("Message sent successfully!");
+          reset();
+        } else {
+          throw new Error(res.data.message || "Something went wrong.");
+        }
+      } catch (error) {
+        console.error("Submission error:", error);
+        toast.error(error.message || "Error sending message. Please try again.");
       }
     } catch (error) {
-      toast.error("Error sending message.");
-      console.error("Error:", error);
+      console.error("Form error:", error);
+      toast.error("An unexpected error occurred. Please try again later.");
     }
   };
 
@@ -67,8 +82,8 @@ const Contact = ({ contact }) => {
           <form
             className="flex-1 flex flex-col gap-6 w-full mx-auto"
             onSubmit={handleSubmit(onSubmit)}
+            noValidate
           >
-            {/* --- Your existing name/email fields remain here --- */}
             <div className="flex gap-x-6 w-full">
               <div className="w-full">
                 <label
@@ -80,12 +95,18 @@ const Contact = ({ contact }) => {
                 <input
                   id="name"
                   type="text"
-                  {...register("name", { required: "Name is required" })}
+                  {...register("name", { 
+                    required: "Name is required",
+                    minLength: {
+                      value: 2,
+                      message: "Name must be at least 2 characters"
+                    }
+                  })}
                   placeholder="Your name"
                   className="w-full h-[52px] rounded-lg pl-6 bg-transparent outline-none focus:ring-1 focus:ring-red-600 border border-white/20 placeholder:text-white/30 placeholder:font-light"
                 />
                 {errors.name && (
-                  <p className="text-red-600 text-sm text-left">
+                  <p className="text-red-600 text-sm text-left mt-1">
                     {errors.name.message}
                   </p>
                 )}
@@ -111,7 +132,7 @@ const Contact = ({ contact }) => {
                   className="w-full h-[52px] rounded-lg pl-6 bg-transparent outline-none focus:ring-1 focus:ring-red-600 border border-white/20 placeholder:text-white/30 placeholder:font-light"
                 />
                 {errors.email && (
-                  <p className="text-red-600 text-sm text-left">
+                  <p className="text-red-600 text-sm text-left mt-1">
                     {errors.email.message}
                   </p>
                 )}
@@ -128,18 +149,23 @@ const Contact = ({ contact }) => {
               <input
                 id="subject"
                 type="text"
-                {...register("subject", { required: "Subject is required" })}
+                {...register("subject", { 
+                  required: "Subject is required",
+                  minLength: {
+                    value: 5,
+                    message: "Subject must be at least 5 characters"
+                  }
+                })}
                 placeholder="Subject of your message"
                 className="w-full h-[52px] rounded-lg pl-6 bg-transparent outline-none focus:ring-1 focus:ring-red-600 border border-white/20 placeholder:text-white/30 placeholder:font-light"
               />
               {errors.subject && (
-                <p className="text-red-600 text-sm text-left">
+                <p className="text-red-600 text-sm text-left mt-1">
                   {errors.subject.message}
                 </p>
               )}
             </div>
 
-            {/* Question 1 */}
             <div>
               <label className="block text-left mb-2 text-white/80">
                 Do you want to redesign an existing website? *
@@ -161,12 +187,11 @@ const Contact = ({ contact }) => {
                 )}
               />
               {errors.redesign && (
-                <p className="text-red-600 text-sm text-left">
+                <p className="text-red-600 text-sm text-left mt-1">
                   {errors.redesign.message}
                 </p>
               )}
 
-              {/* Show link input if YES */}
               {redesignValue === "yes" && (
                 <div className="mt-3">
                   <label
@@ -183,14 +208,14 @@ const Contact = ({ contact }) => {
                       pattern: {
                         value:
                           /^(https?:\/\/)?([\w\d-]+\.){1,}([a-zA-Z]{2,})(\/.*)?$/,
-                        message: "Invalid URL",
+                        message: "Please enter a valid URL (include http:// or https://)",
                       },
                     })}
                     placeholder="https://example.com"
                     className="w-full h-[52px] rounded-lg pl-6 bg-transparent outline-none focus:ring-1 focus:ring-red-600 border border-white/20 placeholder:text-white/30 placeholder:font-light"
                   />
                   {errors.redesignLink && (
-                    <p className="text-red-600 text-sm text-left">
+                    <p className="text-red-600 text-sm text-left mt-1">
                       {errors.redesignLink.message}
                     </p>
                   )}
@@ -198,7 +223,6 @@ const Contact = ({ contact }) => {
               )}
             </div>
 
-            {/* Question 2 */}
             <div>
               <label className="block text-left mb-2 text-white/80">
                 Any Figma design, ready design or competitor URL for reference?
@@ -221,12 +245,11 @@ const Contact = ({ contact }) => {
                 )}
               />
               {errors.reference && (
-                <p className="text-red-600 text-sm text-left">
+                <p className="text-red-600 text-sm text-left mt-1">
                   {errors.reference.message}
                 </p>
               )}
 
-              {/* Show link input if YES */}
               {referenceValue === "yes" && (
                 <div className="mt-3">
                   <label
@@ -243,14 +266,14 @@ const Contact = ({ contact }) => {
                       pattern: {
                         value:
                           /^(https?:\/\/)?([\w\d-]+\.){1,}([a-zA-Z]{2,})(\/.*)?$/,
-                        message: "Invalid URL",
+                        message: "Please enter a valid URL (include http:// or https://)",
                       },
                     })}
                     placeholder="https://example.com"
                     className="w-full h-[52px] rounded-lg pl-6 bg-transparent outline-none focus:ring-1 focus:ring-red-600 border border-white/20 placeholder:text-white/30 placeholder:font-light"
                   />
                   {errors.referenceLink && (
-                    <p className="text-red-600 text-sm text-left">
+                    <p className="text-red-600 text-sm text-left mt-1">
                       {errors.referenceLink.message}
                     </p>
                   )}
@@ -258,7 +281,6 @@ const Contact = ({ contact }) => {
               )}
             </div>
 
-            {/* --- Rest of your message and submit button --- */}
             <div>
               <label
                 htmlFor="message"
@@ -268,12 +290,18 @@ const Contact = ({ contact }) => {
               </label>
               <textarea
                 id="message"
-                {...register("message", { required: "Message is required" })}
+                {...register("message", { 
+                  required: "Message is required",
+                  minLength: {
+                    value: 10,
+                    message: "Message must be at least 10 characters"
+                  }
+                })}
                 placeholder="Your message"
                 className="w-full h-[180px] p-6 rounded-lg resize-none bg-transparent outline-none focus:ring-1 focus:ring-red-600 border border-white/20 placeholder:text-white/30 placeholder:font-light"
               ></textarea>
               {errors.message && (
-                <p className="text-red-600 text-sm text-left">
+                <p className="text-red-600 text-sm text-left mt-1">
                   {errors.message.message}
                 </p>
               )}
