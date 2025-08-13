@@ -72,9 +72,9 @@ const Personal = ({ aboutMe }) => {
       className="w-full xl:py-36 bg-[#121212] sm:px-0 px-5 text-white"
       ref={aboutMe}
     >
-      <div className="max-w-[1450px] mx-auto flex lg:flex-row flex-col-reverse sm:justify-between lg:gap-x-20 gap-y-10 px-5">
-        <div className="w-full flex flex-col gap-y-10">
-          <div className="flex flex-col gap-y-3">
+      <div className="max-w-[1600px] mx-auto flex lg:flex-row flex-col-reverse sm:justify-between lg:gap-x-20 gap-y-10">
+        <div className="w-full flex flex-col sm:gap-y-10 gap-5">
+          <div className="flex flex-col sm:gap-y-3">
             <div className="overflow-hidden">
               <h6
                 className="sm:text-5xl text-xl font-mono"
@@ -93,7 +93,7 @@ const Personal = ({ aboutMe }) => {
               </h1>
             </div>
             <div
-              className="opacity-90 sm:text-2xl font-light text-lg"
+              className="opacity-90 sm:text-2xl font-light text-lg max-sm:mt-3"
               id="reveal-trg"
             >
               <p id="text-reveal">Some guidance is offered personally</p>
@@ -105,7 +105,7 @@ const Personal = ({ aboutMe }) => {
               <p id="text-reveal">Good accessibility</p>
             </div>
           </div>
-          <div className="flex flex-col gap-y-10">
+          <div className="flex flex-col sm:gap-y-10 gap-y-3">
             <p
               className="sm:text-[26px] text-lg font-light text-slate-300"
               id="text-5"
@@ -131,8 +131,8 @@ const Personal = ({ aboutMe }) => {
         </div>
         <div className="overflow-hidden relative" id="img-trg-1">
           <Image
-            src={"/images/about.webp"}
-            width={1000}
+            src={"/images/ShohanurFiverr.png"}
+            width={1200}
             height={1200}
             alt=""
             className="opacity-0"

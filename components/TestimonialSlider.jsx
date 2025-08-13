@@ -26,37 +26,46 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // import swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
-import "swiper/css/pagination";
 
 // import required modules
-import { Navigation, Pagination } from "swiper";
+import { Navigation } from "swiper";
 
 // icons
-import { FaQuoteLeft } from "react-icons/fa";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 // next image
 import Image from "next/image";
 
 const TestimonialSlider = () => {
   return (
-    <Swiper
-      navigation={true}
-      pagination={{
-        clickable: true,
-      }}
-      modules={[Navigation, Pagination]}
-      className="xl:h-[400px] h-[200px] xl:w-[800px]"
-    >
-      {testimonialData.map((review, index) => {
-        return (
+    <div className="relative xl:w-[800px] w-full">
+      <Swiper
+        navigation={{
+          prevEl: ".custom-prev",
+          nextEl: ".custom-next",
+        }}
+        modules={[Navigation]}
+        className="xl:h-[400px] h-[200px]"
+      >
+        {testimonialData.map((review, index) => (
           <SwiperSlide key={index}>
             <div className="h-full flex items-center justify-center">
-              <Image src={review.image} alt="" className="rounded-lg"/>
+              <Image src={review.image} alt="" className="rounded-lg" />
             </div>
           </SwiperSlide>
-        );
-      })}
-    </Swiper>
+        ))}
+      </Swiper>
+
+      {/* Custom Navigation Buttons */}
+      <div className="absolute -bottom-6 right-6 flex gap-2 z-10">
+        <button className="custom-prev bg-white text-black sm:p-3 p-2 rounded-full">
+          <ChevronLeft />
+        </button>
+        <button className="custom-next bg-white text-black sm:p-3 p-2 rounded-full">
+          <ChevronRight />
+        </button>
+      </div>
+    </div>
   );
 };
 
