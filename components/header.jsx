@@ -1,6 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 import { AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import Nav from "./nav";
+import Link from "next/link";
 
 export default function Header({
   setIsHovered,
@@ -18,9 +20,19 @@ export default function Header({
   const [isActive, setIsActive] = useState(false);
   return (
     <header className="flex items-center justify-between px-5 h-16 fixed top-0 w-full bg-black/60 backdrop-blur z-[999]">
-      <span className="xl:text-5xl md:text-4xl text-3xl text-white">
+      {/* <span className="xl:text-5xl md:text-4xl text-3xl text-white">
         ShuvoDesign
-      </span>
+      </span> */}
+      <Link
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        href={"/"}
+        className="w-auto h-full"
+      >
+        <abbr title="Home">
+          <img src="/images/logo.png" alt="logo" className="w-auto h-full" />
+        </abbr>
+      </Link>
       <ul className="2xl:flex hidden items-center gap-x-5 text-xl text-white">
         <li
           className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300 cursor-pointer"
@@ -30,6 +42,42 @@ export default function Header({
         >
           Home
         </li>
+        <Link href={"/services"}>
+          <li
+            onClick={() => scrollToSection(home)}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            className="relative group cursor-pointer hover:border-b-2 border-b-2 border-transparent hover:border-indigo-400 transition-all duration-300"
+          >
+            <span className="text-white font-medium">Services</span>
+
+            <div className="absolute left-0 mt-1 w-max rounded-lg bg-gray-900/95 backdrop-blur-lg shadow-lg border border-gray-800 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-10">
+              <ul className="p-2">
+                <Link href={"/services/web-design-development"}>
+                  <li className="whitespace-nowrap py-2 px-4 rounded-md text-gray-200 hover:text-white hover:bg-gradient-to-r from-indigo-500/30 to-purple-500/30 transition-all duration-300">
+                    Website design and development
+                  </li>
+                </Link>
+                <Link href={"/services/search-engine-optimization"}>
+                  <li className="py-2 px-4 rounded-md text-gray-200 hover:text-white hover:bg-gradient-to-r from-indigo-500/30 to-purple-500/30 transition-all duration-300">
+                    Search Engine Optimization
+                  </li>
+                </Link>
+                <Link href={"/services/google-ads-management"}>
+                  <li className="py-2 px-4 rounded-md text-gray-200 hover:text-white hover:bg-gradient-to-r from-indigo-500/30 to-purple-500/30 transition-all duration-300">
+                    Google Ads Management
+                  </li>
+                </Link>
+                <Link href={"/services/social-media-ads-management"}>
+                  <li className="py-2 px-4 rounded-md text-gray-200 hover:text-white hover:bg-gradient-to-r from-indigo-500/30 to-purple-500/30 transition-all duration-300">
+                    Social Media Ads Management
+                  </li>
+                </Link>
+              </ul>
+            </div>
+          </li>
+        </Link>
+
         <li
           className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300 cursor-pointer"
           onClick={() => scrollToSection(pricing)}

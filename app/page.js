@@ -15,6 +15,7 @@ import Customer from "@/components/Customer";
 import Personal from "@/components/Personal";
 import VideoSwiper from "@/components/VideoSwiper";
 import ProjectCard from "@/components/ProjectCard";
+import Services from "@/components/Services";
 // import Tilt from "@/components/Tilt";
 
 export default function Home() {
@@ -78,6 +79,7 @@ export default function Home() {
         />
         <Personal aboutMe={aboutMe} />
         <ProjectCard setIsHovered={setIsHovered} project={project} />
+        <Services setIsHovered={setIsHovered} />
         {/* <ImageSlider /> */}
         <Process process={process} />
         <ProcessRes processRes={processRes} />
