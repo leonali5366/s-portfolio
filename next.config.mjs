@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["files.edgestore.dev"], // Add the Edge Store domain here
+    domains: ["files.edgestore.dev", "res.cloudinary.com"], // Add the Edge Store domain here
   },
 };
 

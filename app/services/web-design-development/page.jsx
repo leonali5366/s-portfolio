@@ -1,10 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
+import Contact from "@/components/Contact";
 import Cursor from "@/components/Cursor";
+import Footer from "@/components/Footer";
+import PhotoGallery from "@/components/PhotoGallery";
+import ServiceNav from "@/components/ServiceNav";
+import Testimonial from "@/components/Testimonial";
+import VideoSwiper from "@/components/VideoSwiper";
 import ReactLenis from "@studio-freight/react-lenis";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   FiCode,
   FiLayers,
@@ -16,6 +22,15 @@ import {
 const WebDesignPage = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+  const contact = useRef();
+  const testimonial = useRef();
+  // Function to handle scrolling to a specific section
+  const scrollToSection = (ref) => {
+    ref.current.scrollIntoView({
+      behavior: "smooth", // Smooth scrolling
+    });
+  };
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
@@ -47,6 +62,80 @@ const WebDesignPage = () => {
               />
             </abbr>
           </Link>
+          <ul className="2xl:flex hidden items-center gap-x-5 text-xl text-white">
+            <Link href={"/"}>
+              <li className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300 cursor-pointer">
+                Home
+              </li>
+            </Link>
+            <Link href={"/services"}>
+              <li
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                className="relative group cursor-pointer hover:border-b-2 border-b-2 border-transparent hover:border-indigo-400 transition-all duration-300"
+              >
+                <span className="text-white font-medium">Services</span>
+
+                <div className="absolute right-0 mt-1 w-max rounded-lg bg-gray-900/95 backdrop-blur-lg shadow-lg border border-gray-800 opacity-0 -translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-10">
+                  <ul className="p-2">
+                    <Link href={"/services/web-design-development"}>
+                      <li className="whitespace-nowrap py-2 px-4 rounded-md text-gray-200 hover:text-white hover:bg-gradient-to-r from-indigo-500/30 to-purple-500/30 transition-all duration-300">
+                        Website design and development
+                      </li>
+                    </Link>
+                    <Link href={"/services/search-engine-optimization"}>
+                      <li className="py-2 px-4 rounded-md text-gray-200 hover:text-white hover:bg-gradient-to-r from-indigo-500/30 to-purple-500/30 transition-all duration-300">
+                        Search Engine Optimization
+                      </li>
+                    </Link>
+                    <Link href={"/services/google-ads-management"}>
+                      <li className="py-2 px-4 rounded-md text-gray-200 hover:text-white hover:bg-gradient-to-r from-indigo-500/30 to-purple-500/30 transition-all duration-300">
+                        Google Ads Management
+                      </li>
+                    </Link>
+                    <Link href={"/services/social-media-ads-management"}>
+                      <li className="py-2 px-4 rounded-md text-gray-200 hover:text-white hover:bg-gradient-to-r from-indigo-500/30 to-purple-500/30 transition-all duration-300">
+                        Social Media Ads Management
+                      </li>
+                    </Link>
+                  </ul>
+                </div>
+              </li>
+            </Link>
+            <li
+              className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300 cursor-pointer"
+              onClick={() => scrollToSection(testimonial)}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              Testimonial
+            </li>
+            <li
+              className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300 cursor-pointer"
+              onClick={() => scrollToSection(contact)}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              Contact me
+            </li>
+          </ul>
+          <div
+            onClick={() => {
+              setIsActive(!isActive);
+            }}
+            className="size-[50px] rounded-full bg-[#455CE9] cursor-pointer flex items-center justify-center z-10 2xl:hidden"
+          >
+            <div
+              className={`w-full before:content-[''] before:block before:h-px before:w-2/5 before:top-[5px] after:top-[-5px] before:mx-auto before:bg-white before:relative before:transition-transform before:duration-300 after:content-[''] after:block after:h-px after:w-2/5 after:mx-auto after:bg-white after:relative after:transition-transform after:duration-300 ${
+                isActive
+                  ? "before:transform before:-rotate-45 after:transform after:rotate-45 after:mt-2"
+                  : ""
+              }`}
+            ></div>
+          </div>
+          <AnimatePresence mode="wait">
+            {isActive && <ServiceNav />}
+          </AnimatePresence>
         </header>
         <Cursor
           isHovered={isHovered}
@@ -283,6 +372,8 @@ const WebDesignPage = () => {
           </div>
         </section>
 
+        <PhotoGallery />
+
         {/* Process Section */}
         <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           <motion.h2
@@ -362,6 +453,16 @@ const WebDesignPage = () => {
             </motion.button>
           </motion.div>
         </section>
+        <VideoSwiper />
+        <div className="flex xl:flex-row max-xl:py-10 flex-col items-center justify-center gap-x-5 bg-[#121212] text-white">
+          <Contact contact={contact} />
+          <Testimonial testimonial={testimonial} />
+        </div>
+        <Footer
+          setIsHovered={setIsHovered}
+          scrollToSection={scrollToSection}
+          contact={contact}
+        />
       </div>
     </ReactLenis>
   );

@@ -20,9 +20,6 @@ export default function Header({
   const [isActive, setIsActive] = useState(false);
   return (
     <header className="flex items-center justify-between px-5 h-16 fixed top-0 w-full bg-black/60 backdrop-blur z-[999]">
-      {/* <span className="xl:text-5xl md:text-4xl text-3xl text-white">
-        ShuvoDesign
-      </span> */}
       <Link
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -44,14 +41,13 @@ export default function Header({
         </li>
         <Link href={"/services"}>
           <li
-            onClick={() => scrollToSection(home)}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             className="relative group cursor-pointer hover:border-b-2 border-b-2 border-transparent hover:border-indigo-400 transition-all duration-300"
           >
             <span className="text-white font-medium">Services</span>
 
-            <div className="absolute left-0 mt-1 w-max rounded-lg bg-gray-900/95 backdrop-blur-lg shadow-lg border border-gray-800 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-10">
+            <div className="absolute left-0 mt-1 w-max rounded-lg bg-gray-900/95 backdrop-blur-lg shadow-lg border border-gray-800 opacity-0 -translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-10">
               <ul className="p-2">
                 <Link href={"/services/web-design-development"}>
                   <li className="whitespace-nowrap py-2 px-4 rounded-md text-gray-200 hover:text-white hover:bg-gradient-to-r from-indigo-500/30 to-purple-500/30 transition-all duration-300">
