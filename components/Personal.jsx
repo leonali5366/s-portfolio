@@ -9,7 +9,7 @@ import ScrollTrigger from "gsap/dist/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Personal = ({ aboutMe }) => {
+const Personal = ({ aboutMe, setIsHovered }) => {
   useGSAP(() => {
     gsap.from("#text", {
       y: 100,
@@ -76,19 +76,13 @@ const Personal = ({ aboutMe }) => {
         <div className="w-full flex flex-col sm:gap-y-10 gap-5">
           <div className="flex flex-col sm:gap-y-3">
             <div className="overflow-hidden">
-              <h6
-                className="sm:text-5xl text-xl font-mono"
-                id="text-3"
-              >
+              <h6 className="sm:text-5xl text-xl font-mono" id="text-3">
                 <small>Hi! I&apos;m</small> Shohanur Reza Shuvo —{" "}
                 <small>your</small>
               </h6>
             </div>
             <div className="overflow-hidden">
-              <h1
-                className="sm:text-5xl text-xl font-mono py-2"
-                id="text-4"
-              >
+              <h1 className="sm:text-5xl text-xl font-mono py-2" id="text-4">
                 Website Designer - <small>Owner</small>
               </h1>
             </div>
@@ -129,15 +123,26 @@ const Personal = ({ aboutMe }) => {
             </p>
           </div>
         </div>
-        <div className="overflow-hidden relative" id="img-trg-1">
-          <Image
-            src={"/images/ShohanurFiverr.png"}
-            width={1200}
-            height={1200}
-            alt=""
-            className="opacity-0"
-            id="image-wrapper-1-o"
-          />
+        <div
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          className="overflow-hidden relative"
+          id="img-trg-1"
+        >
+          <a
+            href="https://bit.ly/41AXLZx"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              src={"/images/ShohanurFiverr.png"}
+              width={1200}
+              height={1200}
+              alt=""
+              className="opacity-0"
+              id="image-wrapper-1-o"
+            />
+          </a>
           <div
             className="absolute top-0 left-0 w-full h-1/2 bg-[#121212]"
             id="image-wrappper-1"

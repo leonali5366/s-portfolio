@@ -77,7 +77,7 @@ export default function Home() {
           setIsHovered={setIsHovered}
           contact={contact}
         />
-        <Personal aboutMe={aboutMe} />
+        <Personal aboutMe={aboutMe} setIsHovered={setIsHovered} />
         <ProjectCard setIsHovered={setIsHovered} project={project} />
         <Services setIsHovered={setIsHovered} />
         {/* <ImageSlider /> */}

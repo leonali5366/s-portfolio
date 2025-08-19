@@ -26,6 +26,7 @@ const WebDesignPage = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
   const [isActive, setIsActive] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(null);
   const contact = useRef();
   const testimonial = useRef();
   // Function to handle scrolling to a specific section
@@ -46,7 +47,6 @@ const WebDesignPage = () => {
       },
     },
   };
-  const [activeIndex, setActiveIndex] = useState(null);
 
   const faqs = [
     {
