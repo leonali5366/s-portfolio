@@ -10,6 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
+import { event } from "@/lib/fbpixel";
 
 const Contact = ({ contact }) => {
   const {
@@ -25,13 +26,13 @@ const Contact = ({ contact }) => {
   const redesignValue = watch("redesign");
   const referenceValue = watch("reference");
 
-
-
-   const onSubmit = async (data) => {
+  const onSubmit = async (data) => {
     try {
       // Verify reCAPTCHA is loaded
       if (!window.grecaptcha) {
-        toast.error("Security verification is initializing. Please try again in a moment.");
+        toast.error(
+          "Security verification is initializing. Please try again in a moment."
+        );
         return;
       }
 
@@ -56,6 +57,10 @@ const Contact = ({ contact }) => {
         });
 
         if (res.status === 200) {
+          event("Lead", {
+            content_name: "Contact Form",
+            method: "Email",
+          });
           toast.success("Message sent successfully!");
           reset();
         } else {
@@ -63,7 +68,9 @@ const Contact = ({ contact }) => {
         }
       } catch (error) {
         console.error("Submission error:", error);
-        toast.error(error.message || "Error sending message. Please try again.");
+        toast.error(
+          error.message || "Error sending message. Please try again."
+        );
       }
     } catch (error) {
       console.error("Form error:", error);
@@ -95,12 +102,12 @@ const Contact = ({ contact }) => {
                 <input
                   id="name"
                   type="text"
-                  {...register("name", { 
+                  {...register("name", {
                     required: "Name is required",
                     minLength: {
                       value: 2,
-                      message: "Name must be at least 2 characters"
-                    }
+                      message: "Name must be at least 2 characters",
+                    },
                   })}
                   placeholder="Your name"
                   className="w-full h-[52px] rounded-lg pl-6 bg-transparent outline-none focus:ring-1 focus:ring-red-600 border border-white/20 placeholder:text-white/30 placeholder:font-light"
@@ -149,12 +156,12 @@ const Contact = ({ contact }) => {
               <input
                 id="subject"
                 type="text"
-                {...register("subject", { 
+                {...register("subject", {
                   required: "Subject is required",
                   minLength: {
                     value: 5,
-                    message: "Subject must be at least 5 characters"
-                  }
+                    message: "Subject must be at least 5 characters",
+                  },
                 })}
                 placeholder="Subject of your message"
                 className="w-full h-[52px] rounded-lg pl-6 bg-transparent outline-none focus:ring-1 focus:ring-red-600 border border-white/20 placeholder:text-white/30 placeholder:font-light"
@@ -208,7 +215,8 @@ const Contact = ({ contact }) => {
                       pattern: {
                         value:
                           /^(https?:\/\/)?([\w\d-]+\.){1,}([a-zA-Z]{2,})(\/.*)?$/,
-                        message: "Please enter a valid URL (include http:// or https://)",
+                        message:
+                          "Please enter a valid URL (include http:// or https://)",
                       },
                     })}
                     placeholder="https://example.com"
@@ -266,7 +274,8 @@ const Contact = ({ contact }) => {
                       pattern: {
                         value:
                           /^(https?:\/\/)?([\w\d-]+\.){1,}([a-zA-Z]{2,})(\/.*)?$/,
-                        message: "Please enter a valid URL (include http:// or https://)",
+                        message:
+                          "Please enter a valid URL (include http:// or https://)",
                       },
                     })}
                     placeholder="https://example.com"
@@ -290,12 +299,12 @@ const Contact = ({ contact }) => {
               </label>
               <textarea
                 id="message"
-                {...register("message", { 
+                {...register("message", {
                   required: "Message is required",
                   minLength: {
                     value: 10,
-                    message: "Message must be at least 10 characters"
-                  }
+                    message: "Message must be at least 10 characters",
+                  },
                 })}
                 placeholder="Your message"
                 className="w-full h-[180px] p-6 rounded-lg resize-none bg-transparent outline-none focus:ring-1 focus:ring-red-600 border border-white/20 placeholder:text-white/30 placeholder:font-light"

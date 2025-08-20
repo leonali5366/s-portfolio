@@ -14,6 +14,7 @@ import "swiper/css";
 import { Grid } from "swiper";
 import Magnet from "./Magnet";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { event } from "@/lib/fbpixel";
 
 export default function ProjectCard({ setIsHovered, project }) {
   const [projects, setProjects] = useState([]);
@@ -108,6 +109,11 @@ export default function ProjectCard({ setIsHovered, project }) {
                           className="absolute inset-0 bg-gradient-to-l from-sky-300 via-red-400 to-blue-400 opacity-0 lg:group-hover:opacity-80 max-lg:opacity-80 text-white transition-all duration-700 flex items-center justify-center"
                         >
                           <a
+                            onClick={() =>
+                              event("ViewContent", {
+                                content_name: "Project Visit",
+                              })
+                            }
                             href={project.websiteUrl}
                             target="_blank"
                             rel="noopener noreferrer"
@@ -195,6 +201,11 @@ export default function ProjectCard({ setIsHovered, project }) {
           </Magnet>
           <Magnet>
             <a
+              onClick={() =>
+                event("ViewContent", {
+                  content_name: "Behance Profile Visit",
+                })
+              }
               href="https://www.behance.net/pixelwebmakers"
               target="_blank" // Opens the link in a new tab
               rel="noopener noreferrer" // Adds security when opening links in new tabs

@@ -1,5 +1,8 @@
+"use client";
+
 import { useEffect } from "react";
 import Head from "next/head";
+import { event } from "../lib/fbpixel"; // ✅ import Pixel helper
 
 const GoogleCalendarScheduler = ({ children }) => {
   // URL for Google Calendar scheduling
@@ -8,17 +11,14 @@ const GoogleCalendarScheduler = ({ children }) => {
 
   // Client-side effect to initialize the calendar button once the component is mounted
   useEffect(() => {
-    // Ensure the script is executed only on the client-side
     if (typeof window !== "undefined") {
-      // Wait until the page is fully loaded before initializing the calendar button
       window.addEventListener("load", () => {
         const target = document.getElementById(
           "google-calendar-scheduler-button"
         );
-        if (target) {
-          // This assumes the external `calendar` object is available after the script loads
+        if (target && typeof calendar !== "undefined") {
           calendar.schedulingButton.load({
-            url: "https://calendar.google.com/calendar/appointments/schedules/AcZssZ2jlsd2MUFQ-S9uwj0Y0KIRKp2hx7i9hzXpQOlhjWcWqZ8H1tzAqk3NLJEmofRThvJXdU1MER9J?gv=true",
+            url: calendarUrl,
             color: "#039BE5",
             label: "Book an appointment",
             target,
@@ -30,16 +30,22 @@ const GoogleCalendarScheduler = ({ children }) => {
         window.removeEventListener("load", () => {});
       };
     }
-  }, []); // Empty dependency array ensures this runs only once after mount
+  }, []);
 
   // Function to programmatically open the calendar scheduling URL
   const openCalendarScheduling = () => {
+    // ✅ Fire Facebook Pixel "Schedule" event
+    event("Schedule", {
+      content_name: "Google Calendar Appointment",
+      method: "Google Meet",
+    });
+
+    // ✅ Then open the popup
     window.open(calendarUrl, "_blank", "width=800,height=600");
   };
 
   return (
     <div>
-      {/* Injecting external CSS and JS using Next.js Head component */}
       <Head>
         {/* Google Calendar scheduling button CSS */}
         <link
@@ -53,12 +59,10 @@ const GoogleCalendarScheduler = ({ children }) => {
         ></script>
       </Head>
 
-      <div onClick={openCalendarScheduling}>
-        {/* Trigger the calendar scheduling page directly using a custom button */}
-        {children}
-      </div>
+      {/* ✅ Click wrapper triggers Pixel + popup */}
+      <div onClick={openCalendarScheduling}>{children}</div>
 
-      {/* The target div where the Google Calendar button will be rendered */}
+      {/* Google Calendar renders its own button here (optional) */}
       <div
         id="google-calendar-scheduler-button"
         style={{ display: "inline-block" }}

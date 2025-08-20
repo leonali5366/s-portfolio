@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { BsArrowUpRight } from "react-icons/bs";
 import GoogleCalendarScheduler from "./GoogleCalendarScheduler";
+import { event } from "@/lib/fbpixel";
 
 const Footer = ({ setIsHovered, scrollToSection, contact }) => {
   const magnetRef = useRef(null);
@@ -129,6 +130,12 @@ const Footer = ({ setIsHovered, scrollToSection, contact }) => {
           <div className="flex items-center gap-x-3">
             <Magnet>
               <a
+                onClick={() =>
+                  event("ViewContent", {
+                    content_name: "Linkedin Profile",
+                    content_type: "social",
+                  })
+                }
                 href="https://www.linkedin.com/in/shohanur-reza-shuvo/"
                 target="_blank" // Opens the link in a new tab
                 rel="noopener noreferrer" // Adds security when opening links in new tabs
@@ -159,6 +166,12 @@ const Footer = ({ setIsHovered, scrollToSection, contact }) => {
             </Magnet>
             <Magnet>
               <a
+                onClick={() =>
+                  event("ViewContent", {
+                    content_name: "Email",
+                    content_type: "email",
+                  })
+                }
                 href="mailto:rezaclick2022@gmail.com"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
@@ -216,6 +229,12 @@ const Footer = ({ setIsHovered, scrollToSection, contact }) => {
             </Magnet>
             <Magnet>
               <a
+                onClick={() =>
+                  event("ViewContent", {
+                    content_name: "Whatsapp",
+                    content_type: "whatsapp",
+                  })
+                }
                 href="https://api.whatsapp.com/send/?phone=01771674511&text&type=phone_number&app_absent=0"
                 target="_blank" // Opens the link in a new tab
                 rel="noopener noreferrer" // Adds security when opening links in new tabs
@@ -250,6 +269,12 @@ const Footer = ({ setIsHovered, scrollToSection, contact }) => {
             </Magnet>
             <Magnet>
               <a
+                onClick={() =>
+                  event("ViewContent", {
+                    content_name: "Youtube Channel",
+                    content_type: "video platform",
+                  })
+                }
                 href="http://www.youtube.com/@shuvo_design"
                 target="_blank" // Opens the link in a new tab
                 rel="noopener noreferrer" // Adds security when opening links in new tabs
@@ -284,6 +309,12 @@ const Footer = ({ setIsHovered, scrollToSection, contact }) => {
             </Magnet>
             <Magnet>
               <a
+                onClick={() =>
+                  event("ViewContent", {
+                    content_name: "Instagram Profile",
+                    content_type: "social",
+                  })
+                }
                 href="https://www.instagram.com/shuvo_design/"
                 target="_blank" // Opens the link in a new tab
                 rel="noopener noreferrer" // Adds security when opening links in new tabs
@@ -405,6 +436,12 @@ const Footer = ({ setIsHovered, scrollToSection, contact }) => {
             </Magnet>
             <Magnet>
               <a
+                onClick={() =>
+                  event("ViewContent", {
+                    content_name: "facebook Profile",
+                    content_type: "social",
+                  })
+                }
                 href="https://www.facebook.com/profile.php?id=61575314655271"
                 target="_blank" // Opens the link in a new tab
                 rel="noopener noreferrer" // Adds security when opening links in new tabs
@@ -439,6 +476,12 @@ const Footer = ({ setIsHovered, scrollToSection, contact }) => {
             </Magnet>
             <Magnet>
               <a
+                onClick={() =>
+                  event("ViewContent", {
+                    content_name: "Behance Profile",
+                    content_type: "social",
+                  })
+                }
                 href="https://www.behance.net/pixelwebmakers"
                 target="_blank" // Opens the link in a new tab
                 rel="noopener noreferrer" // Adds security when opening links in new tabs

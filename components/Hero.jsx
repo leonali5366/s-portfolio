@@ -6,6 +6,7 @@ import { BsArrowUpRight } from "react-icons/bs";
 import GoogleCalendarScheduler from "./GoogleCalendarScheduler";
 import { FaSquareWhatsapp } from "react-icons/fa6";
 import { motion } from "framer-motion";
+import { event } from "@/lib/fbpixel";
 
 export default function Hero({ setIsHovered, home }) {
   const magnetRef = useRef(null);
@@ -283,7 +284,9 @@ export default function Hero({ setIsHovered, home }) {
                 transition={{ duration: 0.7, delay: 0.8, ease: "easeInOut" }}
                 className="flex items-center gap-x-3 justify-center sm:hidden opacity-0 translate-y-10"
               >
-                <button className="text-lg uppercase">book a 30 min free call</button>
+                <button className="text-lg uppercase">
+                  book a 30 min free call
+                </button>
                 <button className="size-12 rounded-full bg-white flex items-center justify-center">
                   <BsArrowUpRight className="text-black text-[22px] rotate-45" />
                 </button>
@@ -340,6 +343,9 @@ export default function Hero({ setIsHovered, home }) {
                 className="underline text-lg font-semibold uppercase underline-offset-8 flex items-center gap-x-5"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
+                onClick={() =>
+                  event("ViewContent", { content_name: "Whatsapp" })
+                }
               >
                 or whatsapp me
                 <FaSquareWhatsapp className="text-green-500 text-3xl" />

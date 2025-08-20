@@ -16,7 +16,6 @@ import Personal from "@/components/Personal";
 import VideoSwiper from "@/components/VideoSwiper";
 import ProjectCard from "@/components/ProjectCard";
 import Services from "@/components/Services";
-import FacebookPixel from "@/components/FacebookPixel";
 // import Tilt from "@/components/Tilt";
 
 export default function Home() {
@@ -40,7 +39,6 @@ export default function Home() {
   const [isVisible, setIsVisible] = useState(true);
   return (
     <ReactLenis root options={{ lerp: 0.1, duration: 1, smoothTouch: true }}>
-      <FacebookPixel />
       <main className="relative">
         <Header
           scrollToSection={scrollToSection}

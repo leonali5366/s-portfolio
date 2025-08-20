@@ -6,6 +6,8 @@ import img3 from "../app/images/img3.jpg";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
+import { event } from "@/lib/fbpixel";
+import { Button } from "./ui/button";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -123,30 +125,50 @@ const Personal = ({ aboutMe, setIsHovered }) => {
             </p>
           </div>
         </div>
-        <div
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          className="overflow-hidden relative"
-          id="img-trg-1"
-        >
+        <div className="flex flex-col items-center gap-5">
+          <div
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            className="overflow-hidden relative"
+            id="img-trg-1"
+          >
+            <a
+              href="https://bit.ly/41AXLZx"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() =>
+                event("ViewContent", { content_name: "Fiverr Visit" })
+              }
+            >
+              <Image
+                src={"/images/ShohanurFiverr.png"}
+                width={1200}
+                height={1200}
+                alt=""
+                className="opacity-0"
+                id="image-wrapper-1-o"
+              />
+            </a>
+            <div
+              className="absolute top-0 left-0 w-full h-1/2 bg-[#121212]"
+              id="image-wrappper-1"
+            />
+          </div>
           <a
             href="https://bit.ly/41AXLZx"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() =>
+              event("ViewContent", { content_name: "Fiverr Visit" })
+            }
           >
-            <Image
-              src={"/images/ShohanurFiverr.png"}
-              width={1200}
-              height={1200}
-              alt=""
-              className="opacity-0"
-              id="image-wrapper-1-o"
-            />
+            <Button
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              Visit Fiverr Profile
+            </Button>
           </a>
-          <div
-            className="absolute top-0 left-0 w-full h-1/2 bg-[#121212]"
-            id="image-wrappper-1"
-          />
         </div>
       </div>
     </div>
