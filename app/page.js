@@ -40,8 +40,8 @@ export default function Home() {
   const [isVisible, setIsVisible] = useState(true);
   return (
     <ReactLenis root options={{ lerp: 0.1, duration: 1, smoothTouch: true }}>
+      <FacebookPixel />
       <main className="relative">
-        <FacebookPixel />
         <Header
           scrollToSection={scrollToSection}
           aboutMe={aboutMe}
