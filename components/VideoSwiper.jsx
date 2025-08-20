@@ -6,6 +6,7 @@ import "swiper/swiper-bundle.css";
 import { toast } from "sonner";
 import axios from "axios";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 
@@ -81,11 +82,15 @@ const VideoSwiper = () => {
       {isLoading ? (
         <SkeletonLoader />
       ) : (
-        <div className="mx-auto px-5 py-8 bg-[#121212]">
+        <div className="mx-auto px-5 py-8 bg-[#121212] relative">
           <h1 className="xl:text-6xl md:text-5xl text-4xl text-white text-center md:mb-10 mb-5 font-mono">
             Client&apos;s Success Stories
           </h1>
           <Swiper
+            navigation={{
+              prevEl: ".custom-prev",
+              nextEl: ".custom-next",
+            }}
             effect="coverflow"
             grabCursor={true}
             centeredSlides={false}
@@ -99,7 +104,6 @@ const VideoSwiper = () => {
               slideShadows: true,
             }}
             pagination={{ clickable: true }}
-            navigation
             breakpoints={{
               640: { slidesPerView: 2 },
               1024: { slidesPerView: 3 },
@@ -119,6 +123,15 @@ const VideoSwiper = () => {
               </SwiperSlide>
             ))}
           </Swiper>
+          {/* Custom Navigation Buttons */}
+          <div className="absolute -bottom-10 right-6 flex gap-2 z-10">
+            <button className="custom-prev bg-white text-black sm:p-3 p-2 rounded-full">
+              <ChevronLeft />
+            </button>
+            <button className="custom-next bg-white text-black sm:p-3 p-2 rounded-full">
+              <ChevronRight />
+            </button>
+          </div>
         </div>
       )}
     </>

@@ -3,6 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import Nav from "./nav";
 import Link from "next/link";
+import { Button } from "./ui/button";
 
 export default function Header({
   setIsHovered,
@@ -47,26 +48,46 @@ export default function Header({
           >
             <span className="text-white font-medium">Services</span>
 
-            <div className="absolute left-0 mt-1 w-max rounded-lg bg-gray-900/95 backdrop-blur-lg shadow-lg border border-gray-800 opacity-0 -translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-10">
+            <div className="absolute left-0 mt-1 w-max rounded-lg bg-gray-950 backdrop-blur-lg shadow-lg border border-gray-800 opacity-0 -translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-10">
               <ul className="p-2">
                 <Link href={"/services/web-design-development"}>
-                  <li className="whitespace-nowrap py-2 px-4 rounded-md text-gray-200 hover:text-white hover:bg-gradient-to-r from-indigo-500/30 to-purple-500/30 transition-all duration-300">
-                    Website design and development
+                  <li className="mb-2">
+                    <Button
+                      className="w-full rounded flex justify-start"
+                      variant={"secondary"}
+                    >
+                      Website design and development
+                    </Button>
                   </li>
                 </Link>
                 <Link href={"/services/search-engine-optimization"}>
-                  <li className="py-2 px-4 rounded-md text-gray-200 hover:text-white hover:bg-gradient-to-r from-indigo-500/30 to-purple-500/30 transition-all duration-300">
-                    Search Engine Optimization
+                  <li className="mb-2">
+                    <Button
+                      className="w-full rounded flex justify-start"
+                      variant={"secondary"}
+                    >
+                      Search Engine Optimization
+                    </Button>
                   </li>
                 </Link>
                 <Link href={"/services/google-ads-management"}>
-                  <li className="py-2 px-4 rounded-md text-gray-200 hover:text-white hover:bg-gradient-to-r from-indigo-500/30 to-purple-500/30 transition-all duration-300">
-                    Google Ads Management
+                  <li className="mb-2">
+                    <Button
+                      className="w-full rounded flex justify-start"
+                      variant={"secondary"}
+                    >
+                      Google Ads Management
+                    </Button>
                   </li>
                 </Link>
                 <Link href={"/services/social-media-ads-management"}>
-                  <li className="py-2 px-4 rounded-md text-gray-200 hover:text-white hover:bg-gradient-to-r from-indigo-500/30 to-purple-500/30 transition-all duration-300">
-                    Social Media Ads Management
+                  <li>
+                    <Button
+                      className="w-full rounded flex justify-start"
+                      variant={"secondary"}
+                    >
+                      Social Media Ads Management
+                    </Button>
                   </li>
                 </Link>
               </ul>
