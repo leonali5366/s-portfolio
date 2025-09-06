@@ -143,41 +143,10 @@ export default function Hero({ setIsHovered, home }) {
 
   return (
     <div
-      className="w-full lg:h-screen bg-[#121212] overflow-hidden py-10 text-white"
+      className="w-full min-h-screen bg-[#121212] overflow-hidden py-10 text-white flex items-center"
       ref={home}
     >
-      <div className="w-full xl:px-20 md:px-10 px-5 flex items-center lg:flex-row flex-col justify-between lg:mt-32 mt-12 xl:gap-32 md:gap-16 gap-10">
-        {/* <motion.div
-          initial={{ opacity: 0, scale: 0 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: "easeInOut" }}
-          className="w-full"
-        >
-          <div
-            className="w-full h-full bg-black/50 rounded-md shadow-lg overflow-hidden relative cursor-pointer p-3 sm:p-5"
-            onMouseMove={handleMouseMove}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            style={{
-              transformStyle: `${isMobile ? "none" : "preserve-3d"}`,
-              transition: "transform 0.1s ease-out",
-            }}
-          >
-
-            <a
-              href="https://bit.ly/41AXLZx"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src="/images/ShohanurFiverr.png"
-                alt="fiverr"
-                className="w-full h-auto rounded-md"
-              />
-            </a>
-          </div>
-        </motion.div> */}
+      <div className="w-full xl:px-20 md:px-10 px-5 flex items-center xl:flex-row flex-col justify-between xl:mt-32 mt-12 xl:gap-32 md:gap-16 gap-10 max-xl:mb-10">
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -199,7 +168,7 @@ export default function Hero({ setIsHovered, home }) {
         <div className="w-full h-full flex flex-col justify-center gap-y-10">
           {/* Animated headline with word flip and random animation */}
           <motion.div
-            className="sm:text-5xl text-3xl lg:text-left text-center sm:px-0 px-5 font-mono capitalize flex flex-wrap gap-2"
+            className="xl:text-5xl md:text-4xl text-3xl sm:px-0 px-5 font-mono capitalize flex flex-wrap gap-2 max-xl:justify-center"
             style={{ lineHeight: "1.2" }}
           >
             {words.map((word, wordIdx) => (
@@ -242,7 +211,7 @@ export default function Hero({ setIsHovered, home }) {
 
           {/* Animated paragraph with word flip and random animation */}
           <motion.div
-            className="sm:text-[28px] text-xl sm:px-0 px-5 lg:text-left text-center font-light flex flex-wrap gap-2"
+            className="sm:text-[28px] text-xl sm:px-0 px-5 max-xl:justify-center font-light flex flex-wrap gap-2"
             style={{ lineHeight: "1.3" }}
           >
             {`Unleash your brand’s potential with 100% custom-built websites, offering speed and seamless performance across all desktop, tablet, and mobile platforms.`

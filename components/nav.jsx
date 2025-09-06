@@ -21,43 +21,32 @@ export default function Nav({
   project,
 }) {
   const navItems = [
+    { title: "Home", href: home },
+    { title: "Pricing", href: pricing },
+    { title: "About me", href: aboutMe },
+    { title: "Why me", href: aboutus },
+    { title: "Projects", href: project },
+    { title: "Process", href: process, name: "process" },
+    { title: "Process", href: processRes, name: "processRes" },
+    { title: "Services", href: "/services", isParent: true }, // 👈 services main link
+    { title: "Testimonial", href: testimonial },
+    { title: "Contact me", href: contact },
+  ];
+
+  // Submenu for Services
+  const serviceSubItems = [
     {
-      title: "Home",
-      href: home,
+      title: "Web Design & Development",
+      href: "/services/web-design-development",
     },
     {
-      title: "Pricing",
-      href: pricing,
+      title: "Search Engine Optimization",
+      href: "/services/search-engine-optimization",
     },
+    { title: "Google Ads Management", href: "/services/google-ads-management" },
     {
-      title: "About me",
-      href: aboutMe,
-    },
-    {
-      title: "Why me",
-      href: aboutus,
-    },
-    {
-      title: "Projects",
-      href: project,
-    },
-    {
-      title: "Process",
-      href: process,
-      name: "process",
-    },
-    {
-      title: "Process",
-      href: processRes,
-      name: "processRes",
-    },
-    {
-      title: "Testimonial",
-      href: testimonial,
-    },
-    {
-      title: "Contact me",
-      href: contact,
+      title: "Social Media Ads Management",
+      href: "/services/social-media-ads-management",
     },
   ];
 
@@ -71,25 +60,46 @@ export default function Nav({
     >
       <Curve />
 
-      <div className="box-border h-full md:p-[100px] p-[50px] flex flex-col justify-between">
+      <div className="box-border h-full xl:p-[100px] md:px-[80px] p-[60px] flex flex-col justify-between gap-5 overflow-auto">
         <div className="flex flex-col gap-3 text-5xl">
-          <div className="text-[rgb(153,153,153)] border-b border-[rgb(153,153,153)] uppercase text-xs mb-10">
+          <div className="text-[rgb(153,153,153)] border-b border-[rgb(153,153,153)] uppercase text-xs xl:mb-10 mb-5">
             <p>Navigation</p>
           </div>
+
           {navItems.map((data, index) => (
-            <Links
-              scrollToSection={scrollToSection}
-              setIsActive={setIsActive}
-              key={index}
-              data={{ ...data, index }}
-            />
+            <div key={index} className="flex flex-col gap-2">
+              <Links
+                scrollToSection={scrollToSection}
+                setIsActive={setIsActive}
+                data={{ ...data, index }}
+              />
+
+              {/* Always expanded Services submenu */}
+              {data.isParent && (
+                <div className="pl-6 flex flex-col gap-2 text-lg">
+                  {serviceSubItems.map((sub, i) => (
+                    <button
+                      key={i}
+                      onClick={() => {
+                        setIsActive(false);
+                        window.location.href = sub.href; // simple navigation
+                      }}
+                      className="text-white transition text-start"
+                    >
+                      {sub.title}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
         </div>
+
         <div className="flex items-center justify-between">
           <a
             href="https://www.linkedin.com/in/shohanur-reza-shuvo/"
-            target="_blank" // Opens the link in a new tab
-            rel="noopener noreferrer" // Adds security when opening links in new tabs
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <FaLinkedinIn className="xl:text-3xl md:text-2xl text-xl" />
           </a>
@@ -98,15 +108,15 @@ export default function Nav({
           </a>
           <a
             href="https://api.whatsapp.com/send/?phone=01771674511&text&type=phone_number&app_absent=0"
-            target="_blank" // Opens the link in a new tab
-            rel="noopener noreferrer" // Adds security when opening links in new tabs
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <FaWhatsapp className="xl:text-3xl md:text-2xl text-xl" />
           </a>
           <a
             href="https://www.pixelwebmakers.com"
-            target="_blank" // Opens the link in a new tab
-            rel="noopener noreferrer" // Adds security when opening links in new tabs
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <CiGlobe className="xl:text-3xl md:text-2xl text-xl" />
           </a>

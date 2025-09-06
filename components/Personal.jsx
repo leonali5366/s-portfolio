@@ -71,7 +71,7 @@ const Personal = ({ aboutMe, setIsHovered }) => {
   }, []);
   return (
     <div
-      className="w-full xl:py-36 bg-[#121212] sm:px-0 px-5 text-white"
+      className="w-full xl:py-36 bg-[#121212] px-5 text-white"
       ref={aboutMe}
     >
       <div className="max-w-[1600px] mx-auto flex lg:flex-row flex-col-reverse sm:justify-between lg:gap-x-20 gap-y-10">
