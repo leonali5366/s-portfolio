@@ -23,13 +23,13 @@ export default function Nav({
   const navItems = [
     { title: "Home", href: home },
     { title: "Pricing", href: pricing },
-    { title: "About me", href: aboutMe },
-    { title: "Why me", href: aboutus },
+    // { title: "About me", href: aboutMe },
+    // { title: "Why me", href: aboutus },
     { title: "Projects", href: project },
-    { title: "Process", href: process, name: "process" },
-    { title: "Process", href: processRes, name: "processRes" },
+    // { title: "Process", href: process, name: "process" },
+    // { title: "Process", href: processRes, name: "processRes" },
     { title: "Services", href: "/services", isParent: true }, // 👈 services main link
-    { title: "Testimonial", href: testimonial },
+    // { title: "Testimonial", href: testimonial },
     { title: "Contact me", href: contact },
   ];
 

@@ -8,11 +8,12 @@ datasource db {
 }
 
 model projects {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  createdAt  DateTime @default(now()) @db.Date
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt  DateTime  @default(now()) @db.Date
   imageUrl   String
   name       String
   websiteUrl String
+  categories String[]  // ✅ multiple categories stored as array of strings
 }
 
 model video {

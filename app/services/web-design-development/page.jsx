@@ -21,6 +21,10 @@ import {
   BarChart,
   FileText,
 } from "lucide-react";
+import ProjectCard from "@/components/ProjectCard";
+import SpotlightCard from "@/components/SpotlightCard";
+import TextType from "@/components/TextType";
+import ShinyText from "@/components/ShinyText";
 
 const WebDesignPage = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -195,7 +199,7 @@ const WebDesignPage = () => {
           isVisible={isVisible}
         />
         {/* Hero Section */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <section className="pb-20 pt-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           <motion.div
             initial="hidden"
             animate="visible"
@@ -206,29 +210,54 @@ const WebDesignPage = () => {
               variants={fadeIn}
               className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6"
             >
-              Website Design{" "}
+              <TextType
+                text={[
+                  "Website Design & Development",
+                  "Bring Your Vision to Life",
+                  "Build Your Online Presence",
+                ]}
+                typingSpeed={75}
+                pauseDuration={1500}
+                showCursor={true}
+                cursorCharacter="|"
+              />
+              {/* Website Design{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
                 & Development
-              </span>
+              </span> */}
             </motion.h1>
             <motion.p
               variants={fadeIn}
               className="text-xl text-gray-300 max-w-3xl mx-auto mb-10"
             >
-              Bring Your Vision to Life with Shuvo Design
+              <ShinyText
+                text="Bring Your Vision to Life with Shuvo Design"
+                disabled={false}
+                speed={3}
+                className="custom-class"
+              />
+              {/* Bring Your Vision to Life with Shuvo Design */}
             </motion.p>
             <motion.p
               variants={fadeIn}
               className="text-lg text-gray-400 max-w-4xl mx-auto"
             >
-              At Shuvo Design, we craft beautiful, high-performing websites that
+              <ShinyText
+                text="At Shuvo Design, we craft beautiful, high-performing websites that not only look stunning but also deliver real business results. Whether you're a startup or an established brand, our team creates custom solutions that reflect your identity and connect with your audience."
+                disabled={false}
+                speed={3}
+                className="custom-class"
+              />
+              {/* At Shuvo Design, we craft beautiful, high-performing websites that
               not only look stunning but also deliver real business results.
               Whether you&apos;re a startup or an established brand, our team
               creates custom solutions that reflect your identity and connect
-              with your audience.
+              with your audience. */}
             </motion.p>
           </motion.div>
         </section>
+
+        <ProjectCard setIsHovered={setIsHovered} />
 
         {/* Expertise Section */}
         <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
@@ -247,6 +276,7 @@ const WebDesignPage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* WordPress Card */}
+
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -254,7 +284,10 @@ const WebDesignPage = () => {
               viewport={{ once: true }}
               className="bg-[#1a1a1a] rounded-xl overflow-hidden border border-gray-800 hover:border-gray-700 transition-all"
             >
-              <div className="p-8">
+              <SpotlightCard
+                className="border-0 rounded-xl h-full"
+                spotlightColor="rgba(0, 229, 255, 0.2)"
+              >
                 <div className="bg-gradient-to-r from-purple-600 to-blue-500 w-16 h-16 rounded-lg flex items-center justify-center mb-6">
                   <div className="size-10">
                     <svg
@@ -302,7 +335,7 @@ const WebDesignPage = () => {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </SpotlightCard>
             </motion.div>
 
             {/* Webflow Card */}
@@ -313,7 +346,10 @@ const WebDesignPage = () => {
               viewport={{ once: true }}
               className="bg-[#1a1a1a] rounded-xl overflow-hidden border border-gray-800 hover:border-gray-700 transition-all"
             >
-              <div className="p-8">
+              <SpotlightCard
+                className="border-0 rounded-xl h-full"
+                spotlightColor="rgba(0, 229, 255, 0.2)"
+              >
                 <div className="bg-gradient-to-r from-blue-600 to-cyan-500 w-16 h-16 rounded-lg flex items-center justify-center mb-6">
                   <img
                     src="https://dhygzobemt712.cloudfront.net/Logo/Social_Circle_Blue.svg"
@@ -339,7 +375,7 @@ const WebDesignPage = () => {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </SpotlightCard>
             </motion.div>
 
             {/* Next.js Card */}
@@ -350,7 +386,10 @@ const WebDesignPage = () => {
               viewport={{ once: true }}
               className="bg-[#1a1a1a] rounded-xl overflow-hidden border border-gray-800 hover:border-gray-700 transition-all"
             >
-              <div className="p-8">
+              <SpotlightCard
+                className="border-0 rounded-xl h-full"
+                spotlightColor="rgba(0, 229, 255, 0.2)"
+              >
                 <div className="bg-gradient-to-r from-amber-600 to-yellow-500 w-16 h-16 rounded-lg flex items-center justify-center mb-6">
                   <FiCode className="text-2xl text-white" />
                 </div>
@@ -373,7 +412,7 @@ const WebDesignPage = () => {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </SpotlightCard>
             </motion.div>
           </div>
         </section>
@@ -444,8 +483,6 @@ const WebDesignPage = () => {
           </div>
         </section>
 
-        <PhotoGallery />
-
         {/* Process Section */}
         <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           <motion.h2
@@ -487,20 +524,25 @@ const WebDesignPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.15 }}
                 viewport={{ once: true }}
-                className="bg-[#1a1a1a] p-6 rounded-lg border border-gray-800 hover:border-gray-700 transition-all"
+                className="bg-[#1a1a1a] rounded-lg border border-gray-800 hover:border-gray-700 transition-all"
               >
-                <div className="text-blue-400 text-2xl font-bold mb-2">
-                  {index + 1}
-                </div>
-                <h3 className="text-xl font-bold mb-3">{step.title}</h3>
-                <p className="text-gray-400">{step.description}</p>
+                <SpotlightCard
+                  className="border-0 rounded-xl h-full"
+                  spotlightColor="rgba(0, 229, 255, 0.2)"
+                >
+                  <div className="text-blue-400 text-2xl font-bold mb-2">
+                    {index + 1}
+                  </div>
+                  <h3 className="text-xl font-bold mb-3">{step.title}</h3>
+                  <p className="text-gray-400">{step.description}</p>
+                </SpotlightCard>
               </motion.div>
             ))}
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
+        {/* <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -524,7 +566,7 @@ const WebDesignPage = () => {
               📞 Contact Us Today
             </motion.button>
           </motion.div>
-        </section>
+        </section> */}
         <VideoSwiper />
         <div className="flex xl:flex-row max-xl:py-10 flex-col items-center justify-center gap-x-5 bg-[#121212] text-white">
           <Contact contact={contact} />

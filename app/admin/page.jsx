@@ -2,6 +2,13 @@
 
 import React, { useEffect, useState } from "react";
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
   Dialog,
   DialogContent,
   DialogDescription,
@@ -15,7 +22,7 @@ import { SingleImageDropzone } from "@/components/SingleImageDropzone"; // Image
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useEdgeStore } from "@/lib/edgestore";
-import { Loader } from "lucide-react";
+import { Loader, X } from "lucide-react";
 import { toast } from "sonner";
 import {
   Card,
@@ -61,6 +68,15 @@ function Admin() {
   const [searchTerm, setSearchTerm] = useState(""); // State for search term
   const [currentPage, setCurrentPage] = useState(1); // State for current page
   const [itemsPerPage] = useState(20); // Number of items per page
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [categories, setCategories] = useState([]);
+  const [allCategories, setAllCategories] = useState([
+    "business",
+    "roofer",
+    "medical",
+    "portfolio",
+    "blog",
+  ]);
   const {
     register,
     handleSubmit,
@@ -68,6 +84,11 @@ function Admin() {
     reset,
     watch,
   } = useForm();
+
+  const uniqueCategories = [
+    "all",
+    ...new Set(projects.flatMap((p) => p?.categories || []).filter(Boolean)),
+  ];
 
   const watchFields = watch(["name", "websiteUrl"]); // Watch the required fields
 
@@ -111,6 +132,7 @@ function Admin() {
         const newProject = {
           name: data.name,
           websiteUrl: data.websiteUrl,
+          categories,
           imageUrl,
         };
 
@@ -181,6 +203,7 @@ function Admin() {
         id: editingProject.id,
         name: data.name,
         websiteUrl: data.websiteUrl,
+        categories,
         imageUrl,
       };
 
@@ -201,10 +224,20 @@ function Admin() {
     }
   };
 
-  // Filter projects based on the search term
-  const filteredProjects = projects.filter((project) =>
-    project?.name?.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Filter projects based on search term AND category
+  const filteredProjects = projects.filter((project) => {
+    if (!project) return false;
+
+    const matchesSearch = project.name
+      ?.toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    const matchesCategory =
+      selectedCategory === "all"
+        ? true
+        : project.categories?.includes(selectedCategory);
+
+    return matchesSearch && matchesCategory;
+  });
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -276,6 +309,13 @@ function Admin() {
                   )}
                 </div>
 
+                <CategorySelector
+                  categories={categories}
+                  setCategories={setCategories}
+                  allCategories={allCategories}
+                  setAllCategories={setAllCategories}
+                />
+
                 <div>
                   <label className="block text-sm font-semibold">
                     Project Image
@@ -326,17 +366,32 @@ function Admin() {
           </Dialog>
         )}
 
-        {isLoading ? (
-          <Skeleton className="h-9 w-64 rounded-md" />
-        ) : (
-          <Input
-            type="text"
-            placeholder="Search by project name..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-64"
-          />
-        )}
+        <div className="flex items-center gap-3">
+          {isLoading ? (
+            <Skeleton className="h-9 w-64 rounded-md" />
+          ) : (
+            <Input
+              type="text"
+              placeholder="Search by project name..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-64"
+            />
+          )}
+
+          <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+            <SelectTrigger className="w-40">
+              <SelectValue placeholder="Filter by category" />
+            </SelectTrigger>
+            <SelectContent>
+              {uniqueCategories.map((cat) => (
+                <SelectItem key={cat} value={cat}>
+                  {cat === "all" ? "All Categories" : cat}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
       </div>
 
       <div className="mt-5 grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 px-5">
@@ -394,6 +449,7 @@ function Admin() {
                           reset({
                             name: project.name,
                             websiteUrl: project.websiteUrl,
+                            category: project.category,
                           }); // Reset the form with existing data
                           setFile(null); // Clear the image file state
                         }}
@@ -446,6 +502,13 @@ function Admin() {
                               </span>
                             )}
                           </div>
+
+                          <CategorySelector
+                            categories={categories}
+                            setCategories={setCategories}
+                            allCategories={allCategories}
+                            setAllCategories={setAllCategories}
+                          />
 
                           <div>
                             <label className="block text-sm font-semibold">
@@ -611,3 +674,78 @@ function Admin() {
 }
 
 export default Admin;
+
+function CategorySelector({
+  categories,
+  setCategories,
+  allCategories,
+  setAllCategories,
+}) {
+  const [newCategory, setNewCategory] = useState("");
+
+  const addCategory = (cat) => {
+    if (!categories.includes(cat)) {
+      setCategories([...categories, cat]);
+    }
+  };
+
+  const removeCategory = (cat) => {
+    setCategories(categories.filter((c) => c !== cat));
+  };
+
+  const handleAddNew = () => {
+    if (newCategory && !allCategories.includes(newCategory)) {
+      setAllCategories([...allCategories, newCategory]);
+      addCategory(newCategory);
+      setNewCategory("");
+    }
+  };
+
+  return (
+    <div className="space-y-2">
+      <label className="block text-sm font-semibold">Categories</label>
+
+      {/* Selected categories */}
+      <div className="flex flex-wrap gap-2">
+        {categories.map((cat) => (
+          <span
+            key={cat}
+            className="flex items-center gap-1 px-2 py-1 bg-gray-200 rounded-md text-sm"
+          >
+            {cat}
+            <X
+              className="w-4 h-4 cursor-pointer"
+              onClick={() => removeCategory(cat)}
+            />
+          </span>
+        ))}
+      </div>
+
+      {/* Category dropdown */}
+      <Select onValueChange={(val) => addCategory(val)}>
+        <SelectTrigger>
+          <SelectValue placeholder="Select category" />
+        </SelectTrigger>
+        <SelectContent>
+          {allCategories.map((cat) => (
+            <SelectItem key={cat} value={cat}>
+              {cat}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+
+      {/* Add new category */}
+      <div className="flex gap-2 mt-2">
+        <Input
+          placeholder="New category"
+          value={newCategory}
+          onChange={(e) => setNewCategory(e.target.value)}
+        />
+        <Button type="button" onClick={handleAddNew}>
+          Add
+        </Button>
+      </div>
+    </div>
+  );
+}

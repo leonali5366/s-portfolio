@@ -103,14 +103,14 @@ export default function Header({
         >
           Pricing
         </li>
-        <li
+        {/* <li
           className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300 cursor-pointer"
           onClick={() => scrollToSection(aboutMe)}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
           About me
-        </li>
+        </li> */}
         <li
           className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300 cursor-pointer"
           onClick={() => scrollToSection(project)}
@@ -120,7 +120,7 @@ export default function Header({
           Projects
         </li>
 
-        <li
+        {/* <li
           className="hover:border-b-2 border-b-2 lg:block hidden border-transparent hover:border-white transition-[border] duration-300 cursor-pointer"
           onClick={() => scrollToSection(process)}
           onMouseEnter={() => setIsHovered(true)}
@@ -135,7 +135,7 @@ export default function Header({
           onMouseLeave={() => setIsHovered(false)}
         >
           Process
-        </li>
+        </li> */}
         <li
           className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300 cursor-pointer"
           onClick={() => scrollToSection(aboutus)}
@@ -144,14 +144,14 @@ export default function Header({
         >
           Why me
         </li>
-        <li
+        {/* <li
           className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300 cursor-pointer"
           onClick={() => scrollToSection(testimonial)}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
           Testimonial
-        </li>
+        </li> */}
         <li
           className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300 cursor-pointer"
           onClick={() => scrollToSection(contact)}
