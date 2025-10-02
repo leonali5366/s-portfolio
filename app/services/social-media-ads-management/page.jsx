@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { motion, useInView } from "framer-motion";
+import { AnimatePresence, motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import {
   FiFacebook,
@@ -12,12 +12,20 @@ import {
 import Cursor from "@/components/Cursor";
 import Link from "next/link";
 import ReactLenis from "@studio-freight/react-lenis";
+import ServiceNav from "@/components/ServiceNav";
+import { Button } from "@/components/ui/button";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
 
 const SocialMediaAdsPage = () => {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, amount: 0.1 });
   const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const [isActive, setIsActive] = useState(false);
 
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
@@ -50,6 +58,100 @@ const SocialMediaAdsPage = () => {
               />
             </abbr>
           </Link>
+          <ul className="2xl:flex hidden items-center gap-x-5 text-xl text-white">
+            <Link href={"/"}>
+              <li className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300 cursor-pointer">
+                Home
+              </li>
+            </Link>
+            <HoverCard>
+              <HoverCardTrigger
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+              >
+                <Link
+                  href={"/services"}
+                  className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-all duration-300"
+                >
+                  Services
+                </Link>
+              </HoverCardTrigger>
+              <HoverCardContent
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                className="p-0 bg-black/60 backdrop-blur border border-gray-800"
+              >
+                <ul className="flex flex-col gap-y-1">
+                  <Link href={"/services/web-design-development"}>
+                    <li>
+                      <Button
+                        className="w-full rounded flex justify-start"
+                        variant={"secondary"}
+                      >
+                        Website design and development
+                      </Button>
+                    </li>
+                  </Link>
+                  <Link href={"/services/search-engine-optimization"}>
+                    <li>
+                      <Button
+                        className="w-full rounded flex justify-start"
+                        variant={"secondary"}
+                      >
+                        Search Engine Optimization
+                      </Button>
+                    </li>
+                  </Link>
+                  <Link href={"/services/google-ads-management"}>
+                    <li>
+                      <Button
+                        className="w-full rounded flex justify-start"
+                        variant={"secondary"}
+                      >
+                        Google Ads Management
+                      </Button>
+                    </li>
+                  </Link>
+                  <Link href={"/services/social-media-ads-management"}>
+                    <li>
+                      <Button
+                        className="w-full rounded flex justify-start"
+                        variant={"secondary"}
+                      >
+                        Social Media Ads Management
+                      </Button>
+                    </li>
+                  </Link>
+                </ul>
+              </HoverCardContent>
+            </HoverCard>
+
+            <li
+              className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300 cursor-pointer"
+              onClick={() => scrollToSection(contact)}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              Contact me
+            </li>
+          </ul>
+          <div
+            onClick={() => {
+              setIsActive(!isActive);
+            }}
+            className="size-[50px] rounded-full bg-[#455CE9] cursor-pointer flex items-center justify-center z-10 2xl:hidden"
+          >
+            <div
+              className={`w-full before:content-[''] before:block before:h-px before:w-2/5 before:top-[5px] after:top-[-5px] before:mx-auto before:bg-white before:relative before:transition-transform before:duration-300 after:content-[''] after:block after:h-px after:w-2/5 after:mx-auto after:bg-white after:relative after:transition-transform after:duration-300 ${
+                isActive
+                  ? "before:transform before:-rotate-45 after:transform after:rotate-45 after:mt-2"
+                  : ""
+              }`}
+            ></div>
+          </div>
+          <AnimatePresence mode="wait">
+            {isActive && <ServiceNav />}
+          </AnimatePresence>
         </header>
         <Cursor
           isHovered={isHovered}

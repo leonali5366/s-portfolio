@@ -4,6 +4,8 @@ import { useState } from "react";
 import Nav from "./nav";
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card";
+import { Card } from "./ui/card";
 
 export default function Header({
   setIsHovered,
@@ -40,7 +42,63 @@ export default function Header({
         >
           Home
         </li>
-        <Link href={"/services"}>
+
+        <HoverCard>
+          <HoverCardTrigger>
+            <Link
+              href={"/services"}
+              className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-all duration-300"
+            >
+              Services
+            </Link>
+          </HoverCardTrigger>
+          <HoverCardContent className="p-0 bg-black/60 backdrop-blur border border-gray-800">
+            <ul className="flex flex-col gap-y-1">
+              <Link href={"/services/web-design-development"}>
+                <li>
+                  <Button
+                    className="w-full rounded flex justify-start"
+                    variant={"secondary"}
+                  >
+                    Website design and development
+                  </Button>
+                </li>
+              </Link>
+              <Link href={"/services/search-engine-optimization"}>
+                <li>
+                  <Button
+                    className="w-full rounded flex justify-start"
+                    variant={"secondary"}
+                  >
+                    Search Engine Optimization
+                  </Button>
+                </li>
+              </Link>
+              <Link href={"/services/google-ads-management"}>
+                <li>
+                  <Button
+                    className="w-full rounded flex justify-start"
+                    variant={"secondary"}
+                  >
+                    Google Ads Management
+                  </Button>
+                </li>
+              </Link>
+              <Link href={"/services/social-media-ads-management"}>
+                <li>
+                  <Button
+                    className="w-full rounded flex justify-start"
+                    variant={"secondary"}
+                  >
+                    Social Media Ads Management
+                  </Button>
+                </li>
+              </Link>
+            </ul>
+          </HoverCardContent>
+        </HoverCard>
+
+        {/* <Link href={"/services"}>
           <li
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
@@ -93,7 +151,7 @@ export default function Header({
               </ul>
             </div>
           </li>
-        </Link>
+        </Link> */}
 
         <li
           className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300 cursor-pointer"

@@ -9,11 +9,24 @@ import {
   FiMapPin,
   FiChevronRight,
   FiBarChart2,
+  FiChevronDown,
 } from "react-icons/fi";
 import Cursor from "@/components/Cursor";
 import Link from "next/link";
 import ReactLenis from "@studio-freight/react-lenis";
 import ServiceNav from "@/components/ServiceNav";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
+import { Button } from "@/components/ui/button";
+import TextType from "@/components/TextType";
+import ShinyText from "@/components/ShinyText";
+import SpotlightCard from "@/components/SpotlightCard";
+import GradientText from "@/components/GradientText";
+import Footer from "@/components/Footer";
+import Contact from "@/components/Contact";
 
 const SEOPage = () => {
   const containerRef = useRef(null);
@@ -21,6 +34,7 @@ const SEOPage = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [isActive, setIsActive] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(null);
 
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
@@ -33,6 +47,10 @@ const SEOPage = () => {
         staggerChildren: 0.15,
       },
     },
+  };
+
+  const toggleFAQ = (index) => {
+    setActiveIndex(activeIndex === index ? null : index);
   };
 
   return (
@@ -59,48 +77,68 @@ const SEOPage = () => {
                 Home
               </li>
             </Link>
-            <Link href={"/services"}>
-              <li
+            <HoverCard>
+              <HoverCardTrigger
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
-                className="relative group cursor-pointer hover:border-b-2 border-b-2 border-transparent hover:border-indigo-400 transition-all duration-300"
               >
-                <span className="text-white font-medium">Services</span>
-
-                <div className="absolute right-0 mt-1 w-max rounded-lg bg-gray-900/95 backdrop-blur-lg shadow-lg border border-gray-800 opacity-0 -translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-10">
-                  <ul className="p-2">
-                    <Link href={"/services/web-design-development"}>
-                      <li className="whitespace-nowrap py-2 px-4 rounded-md text-gray-200 hover:text-white hover:bg-gradient-to-r from-indigo-500/30 to-purple-500/30 transition-all duration-300">
+                <Link
+                  href={"/services"}
+                  className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-all duration-300"
+                >
+                  Services
+                </Link>
+              </HoverCardTrigger>
+              <HoverCardContent
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                className="p-0 bg-black/60 backdrop-blur border border-gray-800"
+              >
+                <ul className="flex flex-col gap-y-1">
+                  <Link href={"/services/web-design-development"}>
+                    <li>
+                      <Button
+                        className="w-full rounded flex justify-start"
+                        variant={"secondary"}
+                      >
                         Website design and development
-                      </li>
-                    </Link>
-                    <Link href={"/services/search-engine-optimization"}>
-                      <li className="py-2 px-4 rounded-md text-gray-200 hover:text-white hover:bg-gradient-to-r from-indigo-500/30 to-purple-500/30 transition-all duration-300">
+                      </Button>
+                    </li>
+                  </Link>
+                  <Link href={"/services/search-engine-optimization"}>
+                    <li>
+                      <Button
+                        className="w-full rounded flex justify-start"
+                        variant={"secondary"}
+                      >
                         Search Engine Optimization
-                      </li>
-                    </Link>
-                    <Link href={"/services/google-ads-management"}>
-                      <li className="py-2 px-4 rounded-md text-gray-200 hover:text-white hover:bg-gradient-to-r from-indigo-500/30 to-purple-500/30 transition-all duration-300">
+                      </Button>
+                    </li>
+                  </Link>
+                  <Link href={"/services/google-ads-management"}>
+                    <li>
+                      <Button
+                        className="w-full rounded flex justify-start"
+                        variant={"secondary"}
+                      >
                         Google Ads Management
-                      </li>
-                    </Link>
-                    <Link href={"/services/social-media-ads-management"}>
-                      <li className="py-2 px-4 rounded-md text-gray-200 hover:text-white hover:bg-gradient-to-r from-indigo-500/30 to-purple-500/30 transition-all duration-300">
+                      </Button>
+                    </li>
+                  </Link>
+                  <Link href={"/services/social-media-ads-management"}>
+                    <li>
+                      <Button
+                        className="w-full rounded flex justify-start"
+                        variant={"secondary"}
+                      >
                         Social Media Ads Management
-                      </li>
-                    </Link>
-                  </ul>
-                </div>
-              </li>
-            </Link>
-            <li
-              className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300 cursor-pointer"
-              onClick={() => scrollToSection(testimonial)}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-            >
-              Testimonial
-            </li>
+                      </Button>
+                    </li>
+                  </Link>
+                </ul>
+              </HoverCardContent>
+            </HoverCard>
+
             <li
               className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300 cursor-pointer"
               onClick={() => scrollToSection(contact)}
@@ -135,7 +173,7 @@ const SEOPage = () => {
         />
 
         {/* Hero Section */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <section className="pb-20 pt-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           <motion.div
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
@@ -146,26 +184,39 @@ const SEOPage = () => {
               variants={fadeIn}
               className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6"
             >
-              Search Engine{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">
-                Optimization
-              </span>
+              <TextType
+                text={[
+                  "Search Engine Optimization",
+                  "SEO Services That Deliver Results",
+                  "Boost Your Online Visibility",
+                ]}
+                typingSpeed={75}
+                pauseDuration={1500}
+                showCursor={true}
+                cursorCharacter="|"
+              />
             </motion.h1>
             <motion.p
               variants={fadeIn}
               className="text-xl text-gray-300 max-w-3xl mx-auto mb-10"
             >
-              Rank Higher. Get Found. Grow Your Business.
+              <ShinyText
+                text="Rank Higher. Get Found. Grow Your Business."
+                disabled={false}
+                speed={3}
+                className="custom-class text-2xl"
+              />
             </motion.p>
             <motion.p
               variants={fadeIn}
               className="text-lg text-gray-400 max-w-4xl mx-auto"
             >
-              At Shuvo Design, we provide result-driven SEO services that help
-              your business appear at the top of Google search results. Whether
-              you&apos;re targeting local customers in Bangladesh, UK, or going
-              global, our strategies are designed to increase visibility, drive
-              traffic, and boost conversions.
+              <ShinyText
+                text="At Shuvo Design, we provide result-driven SEO services that help your business appear at the top of Google search results. Whether you're targeting local customers in Bangladesh, UK, or going global, our strategies are designed to increase visibility, drive traffic, and boost conversions."
+                disabled={false}
+                speed={3}
+                className="custom-class text-xl"
+              />
             </motion.p>
           </motion.div>
         </section>
@@ -199,30 +250,35 @@ const SEOPage = () => {
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
-              <div className="h-2 bg-gradient-to-r from-emerald-600 to-teal-500"></div>
-              <div className="p-8">
-                <div className="bg-gradient-to-r from-emerald-600 to-teal-500 w-16 h-16 rounded-lg flex items-center justify-center mb-6">
-                  <FiSearch className="text-2xl text-white" />
+              <SpotlightCard
+                className="border-0 rounded-xl h-full"
+                spotlightColor="rgba(0, 229, 255, 0.2)"
+              >
+                <div className="h-2 bg-gradient-to-r from-emerald-600 to-teal-500"></div>
+                <div className="p-8">
+                  <div className="bg-gradient-to-r from-emerald-600 to-teal-500 w-16 h-16 rounded-lg flex items-center justify-center mb-6">
+                    <FiSearch className="text-2xl text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4">On-Page SEO</h3>
+                  <p className="text-gray-400 mb-6">
+                    Optimize every element of your website to improve search
+                    rankings.
+                  </p>
+                  <ul className="space-y-3">
+                    {[
+                      "Keyword research & optimization",
+                      "SEO-friendly content structure",
+                      "Meta tags & heading optimization",
+                      "Internal linking & URL structure",
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-start text-gray-300">
+                        <div className="min-w-2 min-h-2 bg-emerald-400 rounded-full mt-2 mr-2"></div>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <h3 className="text-2xl font-bold mb-4">On-Page SEO</h3>
-                <p className="text-gray-400 mb-6">
-                  Optimize every element of your website to improve search
-                  rankings.
-                </p>
-                <ul className="space-y-3">
-                  {[
-                    "Keyword research & optimization",
-                    "SEO-friendly content structure",
-                    "Meta tags & heading optimization",
-                    "Internal linking & URL structure",
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-start text-gray-300">
-                      <div className="w-2 h-2 bg-emerald-400 rounded-full mt-2 mr-2"></div>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              </SpotlightCard>
             </motion.div>
 
             {/* Technical SEO */}
@@ -235,29 +291,34 @@ const SEOPage = () => {
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
-              <div className="h-2 bg-gradient-to-r from-blue-600 to-cyan-500"></div>
-              <div className="p-8">
-                <div className="bg-gradient-to-r from-blue-600 to-cyan-500 w-16 h-16 rounded-lg flex items-center justify-center mb-6">
-                  <FiCpu className="text-2xl text-white" />
+              <SpotlightCard
+                className="border-0 rounded-xl h-full"
+                spotlightColor="rgba(0, 229, 255, 0.2)"
+              >
+                <div className="h-2 bg-gradient-to-r from-blue-600 to-cyan-500"></div>
+                <div className="p-8">
+                  <div className="bg-gradient-to-r from-blue-600 to-cyan-500 w-16 h-16 rounded-lg flex items-center justify-center mb-6">
+                    <FiCpu className="text-2xl text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4">Technical SEO</h3>
+                  <p className="text-gray-400 mb-6">
+                    Ensure your site meets Google&apos;s technical standards.
+                  </p>
+                  <ul className="space-y-3">
+                    {[
+                      "Site speed optimization",
+                      "Mobile responsiveness",
+                      "XML sitemap & robots.txt",
+                      "Fix crawl errors & indexing issues",
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-start text-gray-300">
+                        <div className="min-w-2 min-h-2 bg-cyan-400 rounded-full mt-2 mr-2"></div>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <h3 className="text-2xl font-bold mb-4">Technical SEO</h3>
-                <p className="text-gray-400 mb-6">
-                  Ensure your site meets Google&apos;s technical standards.
-                </p>
-                <ul className="space-y-3">
-                  {[
-                    "Site speed optimization",
-                    "Mobile responsiveness",
-                    "XML sitemap & robots.txt",
-                    "Fix crawl errors & indexing issues",
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-start text-gray-300">
-                      <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 mr-2"></div>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              </SpotlightCard>
             </motion.div>
 
             {/* Off-Page SEO */}
@@ -270,29 +331,34 @@ const SEOPage = () => {
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
-              <div className="h-2 bg-gradient-to-r from-purple-600 to-indigo-500"></div>
-              <div className="p-8">
-                <div className="bg-gradient-to-r from-purple-600 to-indigo-500 w-16 h-16 rounded-lg flex items-center justify-center mb-6">
-                  <FiGlobe className="text-2xl text-white" />
+              <SpotlightCard
+                className="border-0 rounded-xl h-full"
+                spotlightColor="rgba(0, 229, 255, 0.2)"
+              >
+                <div className="h-2 bg-gradient-to-r from-purple-600 to-indigo-500"></div>
+                <div className="p-8">
+                  <div className="bg-gradient-to-r from-purple-600 to-indigo-500 w-16 h-16 rounded-lg flex items-center justify-center mb-6">
+                    <FiGlobe className="text-2xl text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4">Off-Page SEO</h3>
+                  <p className="text-gray-400 mb-6">
+                    Build your website&apos;s authority with trusted backlinks.
+                  </p>
+                  <ul className="space-y-3">
+                    {[
+                      "High-quality link building",
+                      "Guest posting & outreach",
+                      "Local citations & directory listings",
+                      "Brand mentions across the web",
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-start text-gray-300">
+                        <div className="min-w-2 min-h-2 bg-indigo-400 rounded-full mt-2 mr-2"></div>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <h3 className="text-2xl font-bold mb-4">Off-Page SEO</h3>
-                <p className="text-gray-400 mb-6">
-                  Build your website&apos;s authority with trusted backlinks.
-                </p>
-                <ul className="space-y-3">
-                  {[
-                    "High-quality link building",
-                    "Guest posting & outreach",
-                    "Local citations & directory listings",
-                    "Brand mentions across the web",
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-start text-gray-300">
-                      <div className="w-2 h-2 bg-indigo-400 rounded-full mt-2 mr-2"></div>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              </SpotlightCard>
             </motion.div>
 
             {/* Local SEO */}
@@ -305,35 +371,40 @@ const SEOPage = () => {
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
-              <div className="h-2 bg-gradient-to-r from-amber-600 to-yellow-500"></div>
-              <div className="p-8">
-                <div className="bg-gradient-to-r from-amber-600 to-yellow-500 w-16 h-16 rounded-lg flex items-center justify-center mb-6">
-                  <FiMapPin className="text-2xl text-white" />
+              <SpotlightCard
+                className="border-0 rounded-xl h-full"
+                spotlightColor="rgba(0, 229, 255, 0.2)"
+              >
+                <div className="h-2 bg-gradient-to-r from-amber-600 to-yellow-500"></div>
+                <div className="p-8">
+                  <div className="bg-gradient-to-r from-amber-600 to-yellow-500 w-16 h-16 rounded-lg flex items-center justify-center mb-6">
+                    <FiMapPin className="text-2xl text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4">Local SEO</h3>
+                  <p className="text-gray-400 mb-6">
+                    Dominate your local market and get more nearby customers.
+                  </p>
+                  <ul className="space-y-3">
+                    {[
+                      "Google Business Profile optimization",
+                      "Local keyword targeting",
+                      "Map listing & reviews management",
+                      "Hyper-local content creation",
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-start text-gray-300">
+                        <div className="min-w-2 min-h-2 bg-yellow-400 rounded-full mt-2 mr-2"></div>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <h3 className="text-2xl font-bold mb-4">Local SEO</h3>
-                <p className="text-gray-400 mb-6">
-                  Dominate your local market and get more nearby customers.
-                </p>
-                <ul className="space-y-3">
-                  {[
-                    "Google Business Profile optimization",
-                    "Local keyword targeting",
-                    "Map listing & reviews management",
-                    "Hyper-local content creation",
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-start text-gray-300">
-                      <div className="w-2 h-2 bg-yellow-400 rounded-full mt-2 mr-2"></div>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              </SpotlightCard>
             </motion.div>
           </div>
         </section>
 
         {/* Why Choose Us Section */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-[#1a1a1a] rounded-xl">
+        <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto bg-[#111] rounded-xl">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -341,13 +412,21 @@ const SEOPage = () => {
             viewport={{ once: true }}
             className="text-3xl font-bold text-center mb-16"
           >
-            Why Choose{" "}
+            <GradientText
+              colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+              animationSpeed={7}
+              showBorder={false}
+              className="custom-class"
+            >
+              Why Choose Shuvo Design for SEO?
+            </GradientText>
+            {/* Why Choose{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">
               Shuvo Design for SEO?
-            </span>
+            </span> */}
           </motion.h2>
 
-          <div className="max-w-4xl mx-auto">
+          <div className="space-y-4">
             {[
               {
                 question: "Why should I choose Shuvo Design for SEO services?",
@@ -391,15 +470,42 @@ const SEOPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="mb-8 last:mb-0"
+                className="bg-[#1a1a1a] rounded-xl shadow-md border border-gray-800"
               >
-                <div className="border-b border-gray-800 pb-6">
-                  <h3 className="text-xl font-semibold mb-3 flex items-center">
-                    <FiChevronRight className="text-emerald-400 mr-2" />
-                    {faq.question}
-                  </h3>
-                  <p className="text-gray-400 pl-6">{faq.answer}</p>
-                </div>
+                {/* Question */}
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="w-full flex justify-between items-center p-5"
+                >
+                  <div className="flex items-center gap-3 text-left">
+                    {faq.icon}
+                    <h3 className="text-lg font-semibold text-white">
+                      {faq.question}
+                    </h3>
+                  </div>
+                  <FiChevronDown
+                    className={`w-6 h-6 text-gray-400 transform transition-transform duration-300 ${
+                      activeIndex === index ? "rotate-180 text-blue-400" : ""
+                    }`}
+                  />
+                </button>
+
+                {/* Answer with smooth expand */}
+                <AnimatePresence>
+                  {activeIndex === index && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-8 pb-5 text-gray-400">
+                        {faq.answer}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.div>
             ))}
           </div>
@@ -446,22 +552,27 @@ const SEOPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.15 }}
                 viewport={{ once: true }}
-                className="bg-[#1a1a1a] p-6 rounded-lg border border-gray-800 hover:border-gray-700 transition-all"
+                className="bg-[#1a1a1a] rounded-lg border border-gray-800 hover:border-gray-700 transition-all"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
               >
-                <div className="text-emerald-400 text-2xl font-bold mb-2">
-                  {index + 1}
-                </div>
-                <h3 className="text-xl font-bold mb-3">{step.title}</h3>
-                <p className="text-gray-400">{step.description}</p>
+                <SpotlightCard
+                  className="border-0 rounded-xl h-full p-6"
+                  spotlightColor="rgba(0, 229, 255, 0.2)"
+                >
+                  <div className="text-emerald-400 text-2xl font-bold mb-2">
+                    {index + 1}
+                  </div>
+                  <h3 className="text-xl font-bold mb-3">{step.title}</h3>
+                  <p className="text-gray-400">{step.description}</p>
+                </SpotlightCard>
               </motion.div>
             ))}
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
+        {/* <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -488,7 +599,9 @@ const SEOPage = () => {
               </motion.button>
             </Link>
           </motion.div>
-        </section>
+        </section> */}
+        <Contact />
+        <Footer setIsHovered={setIsHovered} />
       </div>
     </ReactLenis>
   );

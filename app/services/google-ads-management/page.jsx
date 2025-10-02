@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { motion, useInView } from "framer-motion";
+import { AnimatePresence, motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import {
   FiSearch,
@@ -13,12 +13,22 @@ import {
 import Cursor from "@/components/Cursor";
 import Link from "next/link";
 import ReactLenis from "@studio-freight/react-lenis";
+import ServiceNav from "@/components/ServiceNav";
+import { Button } from "@/components/ui/button";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
+import TextType from "@/components/TextType";
+import ShinyText from "@/components/ShinyText";
 
 const PPCPage = () => {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, amount: 0.1 });
   const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const [isActive, setIsActive] = useState(false);
 
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
@@ -51,6 +61,100 @@ const PPCPage = () => {
               />
             </abbr>
           </Link>
+          <ul className="2xl:flex hidden items-center gap-x-5 text-xl text-white">
+            <Link href={"/"}>
+              <li className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300 cursor-pointer">
+                Home
+              </li>
+            </Link>
+            <HoverCard>
+              <HoverCardTrigger
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+              >
+                <Link
+                  href={"/services"}
+                  className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-all duration-300"
+                >
+                  Services
+                </Link>
+              </HoverCardTrigger>
+              <HoverCardContent
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                className="p-0 bg-black/60 backdrop-blur border border-gray-800"
+              >
+                <ul className="flex flex-col gap-y-1">
+                  <Link href={"/services/web-design-development"}>
+                    <li>
+                      <Button
+                        className="w-full rounded flex justify-start"
+                        variant={"secondary"}
+                      >
+                        Website design and development
+                      </Button>
+                    </li>
+                  </Link>
+                  <Link href={"/services/search-engine-optimization"}>
+                    <li>
+                      <Button
+                        className="w-full rounded flex justify-start"
+                        variant={"secondary"}
+                      >
+                        Search Engine Optimization
+                      </Button>
+                    </li>
+                  </Link>
+                  <Link href={"/services/google-ads-management"}>
+                    <li>
+                      <Button
+                        className="w-full rounded flex justify-start"
+                        variant={"secondary"}
+                      >
+                        Google Ads Management
+                      </Button>
+                    </li>
+                  </Link>
+                  <Link href={"/services/social-media-ads-management"}>
+                    <li>
+                      <Button
+                        className="w-full rounded flex justify-start"
+                        variant={"secondary"}
+                      >
+                        Social Media Ads Management
+                      </Button>
+                    </li>
+                  </Link>
+                </ul>
+              </HoverCardContent>
+            </HoverCard>
+
+            <li
+              className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300 cursor-pointer"
+              onClick={() => scrollToSection(contact)}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              Contact me
+            </li>
+          </ul>
+          <div
+            onClick={() => {
+              setIsActive(!isActive);
+            }}
+            className="size-[50px] rounded-full bg-[#455CE9] cursor-pointer flex items-center justify-center z-10 2xl:hidden"
+          >
+            <div
+              className={`w-full before:content-[''] before:block before:h-px before:w-2/5 before:top-[5px] after:top-[-5px] before:mx-auto before:bg-white before:relative before:transition-transform before:duration-300 after:content-[''] after:block after:h-px after:w-2/5 after:mx-auto after:bg-white after:relative after:transition-transform after:duration-300 ${
+                isActive
+                  ? "before:transform before:-rotate-45 after:transform after:rotate-45 after:mt-2"
+                  : ""
+              }`}
+            ></div>
+          </div>
+          <AnimatePresence mode="wait">
+            {isActive && <ServiceNav />}
+          </AnimatePresence>
         </header>
         <Cursor
           isHovered={isHovered}
@@ -68,35 +172,52 @@ const PPCPage = () => {
           >
             <motion.h1
               variants={fadeIn}
-              className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6"
+              className="text-4xl sm:text-5xl md:text-5xl font-bold mb-6"
             >
-              Google Ads{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-yellow-400">
-                Management (PPC)
-              </span>
+              <TextType
+                text={[
+                  "Google Ads Management (PPC)",
+                  "Drive Targeted Traffic & Boost Conversions",
+                  "Maximize Your ROI with Expert PPC Campaigns",
+                ]}
+                typingSpeed={75}
+                pauseDuration={1500}
+                showCursor={true}
+                cursorCharacter="|"
+              />
             </motion.h1>
             <motion.p
               variants={fadeIn}
               className="text-xl text-gray-300 max-w-3xl mx-auto mb-10"
             >
-              Instant Visibility. Targeted Traffic. Maximum ROI.
+              <ShinyText
+                text="Instant Visibility. Targeted Traffic. Maximum ROI."
+                disabled={false}
+                speed={3}
+                className="custom-class text-2xl"
+              />
             </motion.p>
             <motion.p
               variants={fadeIn}
               className="text-lg text-gray-400 max-w-4xl mx-auto"
             >
-              At Shuvo Design, we create and manage high-performing Google Ads
+              <ShinyText
+                text="At Shuvo Design, we create and manage high-performing Google Ads
               campaigns that get you noticed by the right audience at the right
               time. Whether your goal is more leads, online sales, or brand
               awareness, our PPC strategies are designed to deliver measurable
-              results fast.
+              results fast."
+                disabled={false}
+                speed={3}
+                className="custom-class text-xl"
+              />
             </motion.p>
           </motion.div>
         </section>
 
         {/* Services Section */}
         <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          <motion.h2
+          {/* <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -107,8 +228,7 @@ const PPCPage = () => {
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-yellow-400">
               Google Ads Services
             </span>
-          </motion.h2>
-
+          </motion.h2> */}
           <div
             ref={containerRef}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"

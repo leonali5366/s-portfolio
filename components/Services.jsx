@@ -49,14 +49,14 @@ const Services = ({ setIsHovered }) => {
   ];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#121212] min-h-screen">
-      <div className="mx-[5rem]">
+    <section className="md:py-20 py-10 px-4 sm:px-6 lg:px-8 bg-[#121212] min-h-screen">
+      <div className="md:mx-[5rem]">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-16"
+          className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white md:mb-16 mb-8"
         >
           <ShinyText
             text="Featured Services"

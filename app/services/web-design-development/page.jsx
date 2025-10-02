@@ -3,7 +3,6 @@
 import Contact from "@/components/Contact";
 import Cursor from "@/components/Cursor";
 import Footer from "@/components/Footer";
-import PhotoGallery from "@/components/PhotoGallery";
 import ServiceNav from "@/components/ServiceNav";
 import Testimonial from "@/components/Testimonial";
 import VideoSwiper from "@/components/VideoSwiper";
@@ -25,6 +24,12 @@ import ProjectCard from "@/components/ProjectCard";
 import SpotlightCard from "@/components/SpotlightCard";
 import TextType from "@/components/TextType";
 import ShinyText from "@/components/ShinyText";
+import { Button } from "@/components/ui/button";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
 
 const WebDesignPage = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -124,7 +129,68 @@ const WebDesignPage = () => {
                 Home
               </li>
             </Link>
-            <Link href={"/services"}>
+            <HoverCard>
+              <HoverCardTrigger
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+              >
+                <Link
+                  href={"/services"}
+                  className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-all duration-300"
+                >
+                  Services
+                </Link>
+              </HoverCardTrigger>
+              <HoverCardContent
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                className="p-0 bg-black/60 backdrop-blur border border-gray-800"
+              >
+                <ul className="flex flex-col gap-y-1">
+                  <Link href={"/services/web-design-development"}>
+                    <li>
+                      <Button
+                        className="w-full rounded flex justify-start"
+                        variant={"secondary"}
+                      >
+                        Website design and development
+                      </Button>
+                    </li>
+                  </Link>
+                  <Link href={"/services/search-engine-optimization"}>
+                    <li>
+                      <Button
+                        className="w-full rounded flex justify-start"
+                        variant={"secondary"}
+                      >
+                        Search Engine Optimization
+                      </Button>
+                    </li>
+                  </Link>
+                  <Link href={"/services/google-ads-management"}>
+                    <li>
+                      <Button
+                        className="w-full rounded flex justify-start"
+                        variant={"secondary"}
+                      >
+                        Google Ads Management
+                      </Button>
+                    </li>
+                  </Link>
+                  <Link href={"/services/social-media-ads-management"}>
+                    <li>
+                      <Button
+                        className="w-full rounded flex justify-start"
+                        variant={"secondary"}
+                      >
+                        Social Media Ads Management
+                      </Button>
+                    </li>
+                  </Link>
+                </ul>
+              </HoverCardContent>
+            </HoverCard>
+            {/* <Link href={"/services"}>
               <li
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
@@ -157,15 +223,8 @@ const WebDesignPage = () => {
                   </ul>
                 </div>
               </li>
-            </Link>
-            <li
-              className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300 cursor-pointer"
-              onClick={() => scrollToSection(testimonial)}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-            >
-              Testimonial
-            </li>
+            </Link> */}
+
             <li
               className="hover:border-b-2 border-b-2 border-transparent hover:border-white transition-[border] duration-300 cursor-pointer"
               onClick={() => scrollToSection(contact)}
@@ -285,7 +344,7 @@ const WebDesignPage = () => {
               className="bg-[#1a1a1a] rounded-xl overflow-hidden border border-gray-800 hover:border-gray-700 transition-all"
             >
               <SpotlightCard
-                className="border-0 rounded-xl h-full"
+                className="border-0 rounded-xl h-full p-8"
                 spotlightColor="rgba(0, 229, 255, 0.2)"
               >
                 <div className="bg-gradient-to-r from-purple-600 to-blue-500 w-16 h-16 rounded-lg flex items-center justify-center mb-6">
@@ -347,7 +406,7 @@ const WebDesignPage = () => {
               className="bg-[#1a1a1a] rounded-xl overflow-hidden border border-gray-800 hover:border-gray-700 transition-all"
             >
               <SpotlightCard
-                className="border-0 rounded-xl h-full"
+                className="border-0 rounded-xl h-full p-8"
                 spotlightColor="rgba(0, 229, 255, 0.2)"
               >
                 <div className="bg-gradient-to-r from-blue-600 to-cyan-500 w-16 h-16 rounded-lg flex items-center justify-center mb-6">
@@ -387,7 +446,7 @@ const WebDesignPage = () => {
               className="bg-[#1a1a1a] rounded-xl overflow-hidden border border-gray-800 hover:border-gray-700 transition-all"
             >
               <SpotlightCard
-                className="border-0 rounded-xl h-full"
+                className="border-0 rounded-xl h-full p-8"
                 spotlightColor="rgba(0, 229, 255, 0.2)"
               >
                 <div className="bg-gradient-to-r from-amber-600 to-yellow-500 w-16 h-16 rounded-lg flex items-center justify-center mb-6">
@@ -527,7 +586,7 @@ const WebDesignPage = () => {
                 className="bg-[#1a1a1a] rounded-lg border border-gray-800 hover:border-gray-700 transition-all"
               >
                 <SpotlightCard
-                  className="border-0 rounded-xl h-full"
+                  className="border-0 rounded-xl h-full p-6"
                   spotlightColor="rgba(0, 229, 255, 0.2)"
                 >
                   <div className="text-blue-400 text-2xl font-bold mb-2">
