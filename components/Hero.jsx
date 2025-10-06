@@ -7,6 +7,8 @@ import GoogleCalendarScheduler from "./GoogleCalendarScheduler";
 import { FaSquareWhatsapp } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import { event } from "@/lib/fbpixel";
+import ShinyText from "./ShinyText";
+import GradientText from "./GradientText";
 
 export default function Hero({ setIsHovered, home }) {
   const magnetRef = useRef(null);
@@ -167,7 +169,7 @@ export default function Hero({ setIsHovered, home }) {
 
         <div className="w-full h-full flex flex-col justify-center gap-y-10">
           {/* Animated headline with word flip and random animation */}
-          <motion.div
+          {/* <motion.div
             className="xl:text-5xl md:text-4xl text-3xl sm:px-0 px-5 font-mono capitalize flex flex-wrap gap-2 max-xl:justify-center"
             style={{ lineHeight: "1.2" }}
           >
@@ -207,10 +209,20 @@ export default function Hero({ setIsHovered, home }) {
                 ))}
               </span>
             ))}
-          </motion.div>
+          </motion.div> */}
+
+          <GradientText
+            colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+            animationSpeed={7}
+            showBorder={false}
+            className="xl:text-5xl md:text-4xl text-3xl"
+          >
+            Get High-End Custom Websites or Online Shops without Breaking the
+            Bank.
+          </GradientText>
 
           {/* Animated paragraph with word flip and random animation */}
-          <motion.div
+          {/* <motion.div
             className="sm:text-[28px] text-xl sm:px-0 px-5 max-xl:justify-center font-light flex flex-wrap gap-2"
             style={{ lineHeight: "1.3" }}
           >
@@ -242,7 +254,14 @@ export default function Hero({ setIsHovered, home }) {
                   {word}
                 </motion.span>
               ))}
-          </motion.div>
+          </motion.div> */}
+
+          <ShinyText
+                text="Unleash your brand’s potential with 100% custom-built websites, offering speed and seamless performance across all desktop, tablet, and mobile platforms."
+                disabled={false}
+                speed={3}
+                className="sm:text-[28px] text-xl"
+              />
 
           <div className="flex sm:flex-row flex-wrap flex-col items-center justify-center gap-y-5">
             <GoogleCalendarScheduler>

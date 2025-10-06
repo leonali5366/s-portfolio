@@ -7,7 +7,7 @@ import { event } from "../lib/fbpixel"; // ✅ import Pixel helper
 const GoogleCalendarScheduler = ({ children }) => {
   // URL for Google Calendar scheduling
   const calendarUrl =
-    "https://calendar.google.com/calendar/appointments/schedules/AcZssZ2jlsd2MUFQ-S9uwj0Y0KIRKp2hx7i9hzXpQOlhjWcWqZ8H1tzAqk3NLJEmofRThvJXdU1MER9J?gv=true";
+    "https://calendar.app.google/F1oikVbKZuvg5qCP7";
 
   // Client-side effect to initialize the calendar button once the component is mounted
   useEffect(() => {

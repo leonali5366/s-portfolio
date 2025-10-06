@@ -30,7 +30,7 @@ export default function Header({
         className="w-auto h-full"
       >
         <abbr title="Home">
-          <img src="/images/logo.png" alt="logo" className="w-auto h-full" />
+          <img src="/images/logo-shuvo.png" alt="logo" className="w-auto h-full" />
         </abbr>
       </Link>
       <ul className="2xl:flex hidden items-center gap-x-5 text-xl text-white">
@@ -52,7 +52,7 @@ export default function Header({
               Services
             </Link>
           </HoverCardTrigger>
-          <HoverCardContent className="p-0 bg-black/60 backdrop-blur border border-gray-800">
+          <HoverCardContent className="p-1 bg-black/60 backdrop-blur border border-gray-800">
             <ul className="flex flex-col gap-y-1">
               <Link href={"/services/web-design-development"}>
                 <li>
